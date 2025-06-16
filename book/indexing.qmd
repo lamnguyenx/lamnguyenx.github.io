@@ -1,0 +1,26 @@
+# Indexing {#sec-indexing}
+
+This chapter is about indexes, which are the source of much confusion in Pandas and simply don't exist in Polars.
+
+## Fetch Data
+
+First we fetch some flight delay data. This part isn't about dataframes so feel free to skip the code.
+
+## Read the data
+
+:::{.callout-tip}
+The examples in this book use the [lazy evaluation](https://pola-rs.github.io/polars/user-guide/migration/pandas/#be-lazy)
+feature of Polars less than you should.
+It's just inconvenient to use the lazy API when displaying dozens of intermediate results for educational purposes.
+:::
+
+::: {.panel-tabset}
+## Polars
+
+nice
+
+## Pandas
+
+hello
+
+:::

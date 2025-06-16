@@ -1,0 +1,31 @@
+project:
+  type: book
+
+book:
+  title: "lamnguyenxd"
+  # author: "Tung Lam Nguyen"
+  favicon: polar-bear-airpods-no-background.png
+  description: Tung Lam Nguyen.
+  keyword: python, performance, engineering
+  url: https://kevinheavey.github.io/modern-polars/
+  sidebar:
+    logo: polar-bear-airpods-no-background.png
+    search: true
+  repo-url: https://github.com/lamnguyenx/lamnguyenx.github.io/
+  repo-subdir: book
+  repo-branch: master
+  repo-actions: [edit, issue, source]
+  sharing: [twitter, facebook, linkedin]
+  image: polar-bear-airpods-no-background.png
+
+  chapters:
+    - index.qmd
+    - indexing.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo]
+      dark: [darkly]
+    code-fold: false
+    css: custom.css
