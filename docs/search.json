@@ -2,21 +2,11 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "lamnguyenxd",
+    "title": "lamnguyenx",
     "section": "",
-    "text": "Preface\nThis is a side-by-side comparison of the Polars and Pandas dataframe libraries, based on Modern Pandas by Tom Augsburger.\n(In case you haven’t heard, Polars is a very fast and elegant dataframe libary that does the same kinds of things Pandas does.)\nThe bulk of this book is structured examples of idiomatic Polars and Pandas code, with commentary on the API and performance of both.\nFor the most part, I argue that Polars is “better” than Pandas, though I do try and make it clear when Polars is lacking a Pandas feature or is otherwise disappointing.",
+    "text": "About Me\nHi. It’s me, Lam Nguyen - an AI backend engineer with 6.5 years of experience in building voice processing systems with strong focus on performance, scalability and maintainability.",
     "crumbs": [
-      "Preface"
-    ]
-  },
-  {
-    "objectID": "index.html#who-is-this-for",
-    "href": "index.html#who-is-this-for",
-    "title": "lamnguyenxd",
-    "section": "Who is this for?",
-    "text": "Who is this for?\nThis is not a beginner’s introduction to data programming, though you certainly don’t need to be an expert to read it. If you have some familiarity with any dataframe library, most of the examples should make sense, but if you’re familiar with Pandas they’ll make even more sense because all the Polars code is accompanied by the equivalent Pandas code.\nYou don’t need to have read Modern Pandas, though I of course think it’s a great read.",
-    "crumbs": [
-      "Preface"
+      "About Me"
     ]
   },
   {

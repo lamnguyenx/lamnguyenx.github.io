@@ -3,10 +3,10 @@ project:
   output-dir: docs
 
 book:
-  title: "lamnguyenxd"
+  title: "lamnguyenx"
   # author: "Tung Lam Nguyen"
   favicon: polar-bear-airpods-no-background.png
-  description: Tung Lam Nguyen.
+  description: "code/music/cycling/cats/dogs expert since 1995"
   keyword: python, performance, engineering
   url: https://kevinheavey.github.io/modern-polars/
   sidebar:
