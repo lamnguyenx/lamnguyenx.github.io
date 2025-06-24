@@ -24,7 +24,7 @@ book:
 
   chapters:
     - index.qmd
-    - indexing.qmd
+    # - indexing.qmd
 
 format:
   html:
@@ -58,8 +58,8 @@ format:
     grid:
       gutter-width: 2em
 
-    include-in-header: sectionstat.html
-    other-links:
-      - text: Accessibility
-        href: https://accessibility.mit.edu/
-        icon: universal-access
+    # include-in-header: sectionstat.html
+    # other-links:
+    #   - text: Accessibility
+    #     href: https://accessibility.mit.edu/
+    #     icon: universal-access
