@@ -1,5 +1,7 @@
 # Preface {.unnumbered}
 
+I'm an AI backend engineer with 6.5 years of experience in building voice processing systems with strong focus on performance, scalability and maintainability.
+
 This is a side-by-side comparison of the [Polars](https://www.pola.rs/)
 and [Pandas](https://pandas.pydata.org/) dataframe libraries,
 based on [Modern Pandas](https://tomaugspurger.github.io/posts/modern-8-scaling/) by Tom Augsburger.
