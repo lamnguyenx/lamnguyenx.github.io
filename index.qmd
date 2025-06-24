@@ -1,4 +1,4 @@
 # About Me {.unnumbered}
 
-Hi, my name is Tung Lam Nguyen. I'm AI backend engineer with 6.5 years of experience in building voice processing systems with strong focus on performance, scalability and maintainability.
+My name is Tung Lam Nguyen. I'm an AI backend engineer with 6.5 years of experience building voice processing systems that are performant, scalable, and easy to maintain.
 
