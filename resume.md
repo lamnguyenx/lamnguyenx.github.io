@@ -197,3 +197,12 @@ BT Ta, **TL Nguyen**, DS Dang, DL Le
 **Speaker diarization for Vietnamese conversations using deep neural network embeddings** <br>
 **TL Nguyen**, BT Ta, TAX Tran, NM Le<br>
 *2022 IEEE Ninth International Conference on Communications and Electronics*, 2022
+
+
+## Pastimes and Activites
+
+- I'm absolutely passionate about cycling - whenever I arrive in a new place or country, the first thing I think about is how I can explore it on two wheels. There's honestly nothing better than discovering a new destination by cycling around and taking in all the sights at your own pace.
+
+- Music plays a big role in my life too. Playing piano, or singing with my guitar is my simple way to unwind and relieve stress after a long day of work.
+
+- Also, I'm a huge podcast fan. My current favorites are Stuff You Should Know, The Economist, and 99% Invisible - they keep me entertained and informed during my commutes and workouts.
