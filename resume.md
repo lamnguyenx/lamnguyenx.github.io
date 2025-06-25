@@ -24,7 +24,7 @@
 ## History
 ### Intern
 **2019.02 - 2019.06**
-**Project:** On-device KaldiASR.
+**Project:** On-device Kaldi ASR.
 - **Description:** VietMAP approached us with a unique challenge: developing an offline, on-device ASR solution. At the time, all our models were built using KaldiASR, the state-of-the-art C++-based speech recognition framework. However, no open-source projects existed for running Kaldi on Android devices. This presented us with a significant engineering challenge: making Kaldi work on the Android platform.
 - **Technologies:** Docker, Android NDK, C++, Shell, KaldiASR, GStreamer
 - **Responsibilities:**
@@ -37,5 +37,5 @@
 
 ### Junior AI Engineer
 **2019.06 - 2021**
-**Project:** ASR Decoding Backend.
-- **Description:**
+**Project:** ASR Decoding Backend Revamp.
+- **Description:** Redesigned ASR decoding backend architecture for the company's AI Platform and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
