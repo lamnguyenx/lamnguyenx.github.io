@@ -29,8 +29,8 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - French (DELF B1)
 
 ### Others
-- Always eager to explore and experiment with the latest technology.
-- Strong advocate for clean code practices (e.g: variable naming, resting spaces, logical file structure..)
+- Always eager to explore, experiment with, and quickly learn the latest technology.
+- Write clean, maintainable code with clear structure and naming.
 - Highly experienced in Linux system administration.
 
 
