@@ -29,9 +29,9 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - French (DELF B1)
 
 ### Others
-- Always eager to explore, experiment with, and quickly learn the latest technology.
-- Write clean, maintainable code with clear structure and naming.
-- Highly experienced in Linux system administration.
+- Always eager to explore, experiment with, and quickly learn the latest technology
+- Write clean, maintainable code with clear structure and naming
+- Highly experienced in Linux system administration
 
 
 ## Personal Experience
@@ -49,7 +49,7 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
   - Learned 3D graphics fundamentals and content creation workflows
   - Developed programmable animation systems in Unity3D using C# for real-time character control and interaction
   - Implemented speech-to-blendshape mapping algorithms to achieve accurate lip-sync and facial expression rendering synchronized with audio output
-  - Integrated conversational AI pipeline including speech-to-text, text-to-speech, and large language models.
+  - Integrated conversational AI pipeline including speech-to-text, text-to-speech, and large language models
 
 
 **2022 - Now**
@@ -59,11 +59,11 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - **Team:** 1 Engineer + 1 AI Research Team
 - **Description:** A comprehensive speech processing library that consolidates years of development into a unified, modular codebase.
 - **Responsibilities:**
-  - Implemented Python best practices and highly reusable code patterns, with continuous updates and improvements incorporated after each project completion.
-  - Integrated multiple speech processing capabilities (including speech recognition, speaker recognition, speaker diarization, voice activity detection, text normalization, call quality assessment..) into a single, well-tested codebase with ~80% test coverage.
-  - Developed flexible pipeline composition architecture, enabling developers to chain processing modules in any desired sequence for custom workflows.
+  - Implemented Python best practices and highly reusable code patterns, with continuous updates and improvements incorporated after each project completion
+  - Integrated multiple speech processing capabilities (including speech recognition, speaker recognition, speaker diarization, voice activity detection, text normalization, call quality assessment..) into a single, well-tested codebase with ~80% test coverage
+  - Developed flexible pipeline composition architecture, enabling developers to chain processing modules in any desired sequence for custom workflows
   - Built rapid deployment system that transforms locally-tested processing chains into production-ready API workers within half a day, accelerating development-to-deployment cycles.
-  - Forked Black Python formatter to create Blax, and implemented custom formatting rules for improved code aesthetics and readability.
+  - Forked Black Python formatter to create Blax, and implemented custom formatting rules for improved code aesthetics and readability
 
 
 **2021 - Now**
@@ -74,8 +74,8 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - **Description:** A high-performance, distributed voicemail transcription system that handles enterprise-level telecommunication traffic.
 - **Technologies:** Python, Shell, Docker, RabbitMQ, Kafka, KaldiASR
 - **Responsibilities:**
-  - Designed, developed and tested the system to max-out throughput on servers with multiple Nvidia Tesla T4 / A30 GPUs.
-  - Successfully deployed the system, achieving 200k+ calls/hour peak throughput capacity.
+  - Designed, developed and tested the system to max-out throughput on servers with multiple Nvidia Tesla T4 / A30 GPUs
+  - Successfully deployed the system, achieving 200k+ calls/hour peak throughput capacity
 
 
 **2021 - 2024**
@@ -88,7 +88,7 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - **Responsibilities:**
   - Designed, developed and tested hybrid content processing pipeline combining polling-based database monitoring and event-driven Kafka integration
   - Integrated various models for copyright violation detection, adult content screening, speech recognition and text-based content filtering. Worked with a junior engineer to implement Milvus that support multiple-GPUs indexing for copyright violation detection.
-  - Deployed and managed the system on Kubernetes clusters, processing 200+ hours of videos per day.
+  - Deployed and managed the system on Kubernetes clusters, processing 200+ hours of videos per day
 
 **2021 - 2023**
 
@@ -109,9 +109,9 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - **Description:** An automated meeting documentation system that transforms audio recordings into structured, searchable and text-normalized transcripts. The system intelligently separates multiple speakers, identifies voice segments, and generates timestamped text aligned with speaker identities, streamlining meeting follow-up and knowledge management processes.
 - **Technologies:** Python, Shell, Docker, RabbitMQ, KaldiASR, XVector, CTranslate
 - **Responsibilities:**
-  - Designed, developed and tested the system.
-  - Collected & sythesized multi-way Vietnamese conversation dataset. Trained, fine-tuned and test speaker embedding and diarzation models on collected dataset.
-  - Conducted on-site deployments and system installations at multiple customer premises.
+  - Designed, developed and tested the system
+  - Collected & sythesized multi-way Vietnamese conversation dataset. Trained, fine-tuned and test speaker embedding and diarzation models on collected dataset
+  - Conducted on-site deployments and system installations at multiple customer premises
 
 **2019.06 - 2021**
 
@@ -122,10 +122,10 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - **Technologies:** Python, Shell, Docker, RabbitMQ, KaldiASR
 - **Responsibilities:**
     - Help team members setting up an unified, browser-based development workflow with Code-Server.
-    - Redesigned and developed ASR decoding backend architecture.
-    - Designed incremental and chained training/testing pipeline to streamline Kaldi model development and evaluation processes.
-    - Introduced Docker and DevOps practices to the team. Containerized all microservices for consistent deployment across environments.
-    - Conducted on-site deployments and system installations at multiple customer premises.
+    - Redesigned and developed ASR decoding backend architecture
+    - Designed incremental and chained training/testing pipeline to streamline Kaldi model development and evaluation processes
+    - Introduced Docker and DevOps practices to the team. Containerized all microservices for consistent deployment across environments
+    - Conducted on-site deployments and system installations at multiple customer premises
 
 **2019.02 - 2019.06**
 
@@ -136,7 +136,6 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
   - Conducted deep dive into KaldiASR ecosystem, GStreamer framework and Android NDK.
   - Successfully ported online GStreamer-based Kaldi implementation from x86 to Android ARM architecture
   - Integrated ported implementation with GStreamer Android demo application to achieve real-time voice recognition
-  - Project was archived when client pivoted to a more mature solution.
 
 ### SealCommerce (2017 - 2018)
 
@@ -151,7 +150,7 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
   - Redesigned Gempages' page builder, dashboard and website to improve user experience
   - Collaborated with development team to build conversion-focused website templates
   - Provided technical support to international customers via live chat, emails and documentation
-  - Maintained customer relationships and resolved technical issues across multiple communication channels.
+  - Maintained customer relationships and resolved technical issues across multiple communication channels
 
 ### Etady (2015 - 2017)
 
