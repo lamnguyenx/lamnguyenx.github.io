@@ -1,25 +1,32 @@
+# Tung Lam Nguyen
+**AI Engineer**
+HANOI, VIETNAM
++84-987-858-527
+lamfm95@gmail.com
 
-## Technical Skills
+## Skills
+
 ### Programming Languages
 - Python, Shell
 
-### Framework / Platforms
+### Frameworks / Platforms
 - Docker, Kubernetes, Grafana
 - FastAPI, Pydantic, PyTorch
 - RabbitMQ, Kafka, MySQL
+- Pytest, Locust, JMeter
+- Unity3D, Daz3D
 
 ### Tooling
 - Git, Code-Server
 
 ### Foreign Language
-- TOEIC 965/990
+- English (TOEIC 965/990)
+- French (DELF B1)
 
-
-### Others
-- Passionate of reading about and tinkering with latest open-source projects. Ability to learn new things fast and effectively.
-- Strong experience in Linux system administration. Hands-on experience on setting up on premise systems, with or without kubernetes and implement best DevOps practices.
-- Good understanding of OOP princinples & design patterns. I write beautiful and easily-maintained code.
-
+## Others
+- Passionate about exploring and experimenting with the latest technology.
+- Experienced in Linux system administration, including hands-on deployment of on-premise systems (both Kubernetes and non-Kubernetes environments).
+- Good understanding of object-oriented programming (OOP) principles and design patterns; develop clean, maintainable, and well-structured code.
 
 
 ## Experience
@@ -38,7 +45,7 @@
   - Integrated conversational AI pipeline including speech-to-text, text-to-speech, and large language models.
 
 
-**2023 - Now**
+**2022 - Now**
 
 **Project:** HanoiVoiceAPIs
 - **Role:** AI Engineer
@@ -49,6 +56,8 @@
   - Integrated multiple speech processing capabilities including speech recognition, speaker recognition, speaker diarization, voice activity detection, text normalization, and call quality assessment into a single, well-tested codebase with ~80% test coverage.
   - Developed flexible pipeline composition architecture, enabling developers to chain processing modules in any desired sequence for custom workflows.
   - Built rapid deployment system that transforms locally-tested processing chains into production-ready API workers within half a day, accelerating development-to-deployment cycles.
+  - Forked Black Python formatter to create Blax, and implemented custom formatting rules for improved code aesthetics and readability.
+
 
 **2021 - Now**
 
@@ -56,7 +65,7 @@
 - **Role:** Lead AI Engineer
 - **Team:** 2 Engineers + 1 AI research team
 - **Description:** A high-performance, distributed voicemail transcription system that handles enterprise-level telecommunication traffic.
-- **Technologies:** Shell, Python, Docker, RabbitMQ, Kafka, KaldiASR
+- **Technologies:** Python, Shell, Docker, RabbitMQ, Kafka, KaldiASR
 - **Responsibilities:**
   - Designed, developed and tested the system to max-out throughput on servers with multiple Nvidia Tesla T4 / A30 GPUs.
   - Successfully deployed the system, achieving 200k+ calls/hour peak throughput capacity.
@@ -68,7 +77,7 @@
 - **Role:** Lead AI Engineer
 - **Team:** 2 Engineers + 1 AI research team
 - **Description:** A comprehensive multi-modal content analysis platform that processes video content through automated audio-visual separation, copyright compliance checking, and policy violation detection. The system performs audio fingerprinting for licensing verification, audio-based adult content detection, speech-to-text conversion, and multi-model text analysis to identify sexual or politically sensitive content, ensuring platform safety and regulatory compliance.
-- **Technologies:** Shell, Python, Docker, RabbitMQ, FFMPEG, KaldiASR, CTranslate2, BERT
+- **Technologies:** Python, Shell, Docker, RabbitMQ, FFMPEG, KaldiASR, CTranslate2, BERT
 - **Responsibilities:**
   - Designed, developed and tested hybrid content processing pipeline combining polling-based database monitoring and event-driven Kafka integration
   - Integrated various models for copyright violation detection, adult content screening, speech recognition and text-based content filtering. Worked with a junior engineer to implement Milvus that support multiple-GPUs indexing for copyright violation detection.
@@ -80,7 +89,7 @@
 - **Role:** AI Engineer
 - **Team:** 1 Engineer + 1 AI research team
 - **Description:** A high-performance, distributed phone call quality assessment system that handles enterprise-level telecommunication traffic.
-- **Technologies:** Shell, Python, Docker, RabbitMQ
+- **Technologies:** Python, Shell, Docker, RabbitMQ
 - **Responsibilities:**
   - Designed, developed and tested the system to max-out throughput on servers with multiple Nvidia Tesla T4 GPUs.
   - Successfully deployed the system to monitor 40% of a major telecommunications company's voice traffic
@@ -91,7 +100,7 @@
 - **Role:** AI Engineer
 - **Team:** 1 Engineer + 1 AI research team
 - **Description:** An automated meeting documentation system that transforms audio recordings into structured, searchable and text-normalized transcripts. The system intelligently separates multiple speakers, identifies voice segments, and generates timestamped text aligned with speaker identities, streamlining meeting follow-up and knowledge management processes.
-- **Technologies:** Shell, Python, Docker, RabbitMQ, KaldiASR, XVector, CTranslate
+- **Technologies:** Python, Shell, Docker, RabbitMQ, KaldiASR, XVector, CTranslate
 - **Responsibilities:**
   - Designed, developed and tested the system.
   - Collected & sythesized multi-way Vietnamese conversation dataset. Trained, fine-tuned and test speaker embedding and diarzation models on collected dataset.
@@ -103,7 +112,7 @@
 - **Role:** AI Engineer
 - **Team:** 1 Engineer + 1 AI research team
 - **Description:** Redesigned ASR decoding backend architecture and coding convention for internal ASR backends and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system also lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
-- **Technologies:** Shell, Python, Docker, RabbitMQ, KaldiASR
+- **Technologies:** Python, Shell, Docker, RabbitMQ, KaldiASR
 - **Responsibilities:**
     - Help team members setting up an unified, browser-based development workflow with Code-Server.
     - Redesigned and developed ASR decoding backend architecture.
@@ -115,7 +124,7 @@
 
 **Project:** On-device Kaldi ASR.
 - **Description:** VietMAP approached us with a unique challenge: developing an offline, on-device ASR solution. At the time, all our models were built using KaldiASR, the state-of-the-art C++-based speech recognition framework. However, no open-source projects existed for running Kaldi on Android devices. This presented us with a significant engineering challenge: making Kaldi work on the Android platform.
-- **Technologies:** Shell, Python, KaldiASR, Docker, GStreamer, Android NDK, C++
+- **Technologies:** Python, Shell, KaldiASR, Docker, GStreamer, Android NDK, C++
 - **Responsibilities:**
   - Conducted deep dive into KaldiASR ecosystem, GStreamer framework and Android NDK.
   - Successfully ported online GStreamer-based Kaldi implementation from x86 to Android ARM architecture
