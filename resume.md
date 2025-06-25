@@ -25,7 +25,7 @@
 
 ### Junior AI Engineer
 **2019.06 - 2021**
-**Project:** ASR Decoding Backend Revamp.
+**Project:** Kaldi ASR Backend Revamp.
 - **Description:** Redesigned ASR decoding backend architecture for the company's AI Platform and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
 - **Technologies:** Shell, Python, KaldiASR, Docker, Code-Server
 - **Responsibilities:**
