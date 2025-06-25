@@ -6,7 +6,8 @@ lamfm95@gmail.com<br>
 
 ## Summary
 
-I’m an AI backend engineer with 6.5 years of experience building speech processing systems that are performant, scalable, and easy to maintain.
+I'm an AI backend engineer with 6.5 years of experience building speech processing systems that are robust, performant, and scalable. I strongly believe in writing code that's clean and easy to understand - the kind that makes both myself other developers happy to work with.
+
 
 ## Technical Skills
 
@@ -28,9 +29,9 @@ I’m an AI backend engineer with 6.5 years of experience building speech proces
 - French (DELF B1)
 
 ### Others
-- Passionate about exploring and experimenting with the latest technology.
-- Experienced in Linux system administration, including hands-on deployment of on-premise systems (both Kubernetes and non-Kubernetes environments).
-- Good understanding of object-oriented programming (OOP) principles and design patterns; develop clean, maintainable, and well-structured code.
+- Always eager to explore and experiment with the latest technology.
+- Strong advocate for clean code practices (e.g: variable naming, resting spaces, logical file structure..)
+- Highly experienced in Linux system administration.
 
 
 ## Personal Experience
