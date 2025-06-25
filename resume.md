@@ -32,19 +32,6 @@
 - **Responsibilities:**
 
 
-### AI Engineer (Middle Level)
-**2019.06 - 2021**
-**Project:** Kaldi ASR Backend Revamp.
-- **Description:** Redesigned ASR decoding backend architecture and coding convention for internal ASR backends and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system also lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
-- **Technologies:** Shell, Python, KaldiASR, Docker, Code-Server
-- **Responsibilities:**
-    - Redesigned ASR decoding backend architecture and coding convention.
-    - Designed incremental and chained training/testing pipeline to streamline Kaldi model development and evaluation processes.
-    - Introduced Docker and DevOps practices to the team. Containerized all microservices for consistent deployment across environments.
-    - Conducted on-site deployments and system installations at multiple customer premises.
-    - Help team members setting up an unified, browser-based development workflow with Code-Server.
-
-### AI Engineer (Intern)
 **2019.02 - 2019.06**
 **Project:** On-device Kaldi ASR.
 - **Description:** VietMAP approached us with a unique challenge: developing an offline, on-device ASR solution. At the time, all our models were built using KaldiASR, the state-of-the-art C++-based speech recognition framework. However, no open-source projects existed for running Kaldi on Android devices. This presented us with a significant engineering challenge: making Kaldi work on the Android platform.
@@ -55,3 +42,15 @@
   - Successfully ported online GStreamer-based Kaldi implementation from x86 to Android ARM architecture
   - Integrated ported implementation with GStreamer Android demo application to achieve real-time voice recognition
   - Project was archived when client pivoted to alternative solutions (including Google APIs integration)
+
+
+**2019.06 - 2021**
+**Project:** Kaldi ASR Backend Revamp.
+- **Description:** Redesigned ASR decoding backend architecture and coding convention for internal ASR backends and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system also lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
+- **Technologies:** Shell, Python, KaldiASR, Docker, Code-Server
+- **Responsibilities:**
+    - Redesigned ASR decoding backend architecture and coding convention.
+    - Designed incremental and chained training/testing pipeline to streamline Kaldi model development and evaluation processes.
+    - Introduced Docker and DevOps practices to the team. Containerized all microservices for consistent deployment across environments.
+    - Conducted on-site deployments and system installations at multiple customer premises.
+    - Help team members setting up an unified, browser-based development workflow with Code-Server.
