@@ -25,12 +25,6 @@
 
 
 ### AI Engineer
-**2021-2025**
-**Project:** Kaldi ASR Backend Revamp.
-- **Description:**
-- **Technologies:**
-- **Responsibilities:**
-
 
 **2019.02 - 2019.06**
 **Project:** On-device Kaldi ASR.
@@ -94,5 +88,18 @@
 - **Description:** A high-performance, distributed voicemail transcription system that handles enterprise-level telecommunication traffic.
 - **Technologies:** Shell, Python, Docker, RabbitMQ, Kafka, KaldiASR
 - **Responsibilities:**
-  - Designed, developed and tested the system to max-out throughput on a server with multiple Tesla T4 / A30 GPUs.
+  - Designed, developed and tested the system to max-out throughput on servers with multiple Nvidia Tesla T4 / A30 GPUs.
   - Successfully deployed the system, achieving 200k+ calls/hour peak throughput capacity.
+
+
+
+**2022 - Now**
+
+**Project:** Phone Call Quality Assessment System
+- **Role:** AI Engineer
+- **Team:** 1 Engineer + 1 AI research team
+- **Description:** A high-performance, distributed phone call quality assessment system that handles enterprise-level telecommunication traffic.
+- **Technologies:** Shell, Python, Docker, RabbitMQ
+- **Responsibilities:**
+  - Designed, developed and tested the system to max-out throughput on servers with multiple Nvidia Tesla T4 GPUs.
+  - Successfully deployed the system to monitor 40% of a major telecommunications company's voice traffic
