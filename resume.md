@@ -115,7 +115,7 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 
 **2019.06 - 2021**
 
-**Project:** Kaldi ASR Backend Revamp.
+**Project:** Kaldi ASR Backend Revamp
 - **Role:** AI Engineer
 - **Team:** 1 Engineer + 1 AI research team
 - **Description:** Redesigned ASR decoding backend architecture and coding convention for internal ASR backends and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system also lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
@@ -129,7 +129,7 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 
 **2019.02 - 2019.06**
 
-**Project:** On-device Kaldi ASR.
+**Project:** On-device Kaldi ASR
 - **Description:** VietMAP approached us with a unique challenge: developing an offline, on-device ASR solution. At the time, all our models were built using KaldiASR, the state-of-the-art C++-based speech recognition framework. However, no open-source projects existed for running Kaldi on Android devices. This presented us with a significant engineering challenge: making Kaldi work on the Android platform.
 - **Technologies:** Python, Shell, KaldiASR, Docker, GStreamer, Android NDK, C++
 - **Responsibilities:**
