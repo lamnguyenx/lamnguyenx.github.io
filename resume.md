@@ -23,7 +23,7 @@ lamfm95@gmail.com
 - English (TOEIC 965/990)
 - French (DELF B1)
 
-## Others
+### Others
 - Passionate about exploring and experimenting with the latest technology.
 - Experienced in Linux system administration, including hands-on deployment of on-premise systems (both Kubernetes and non-Kubernetes environments).
 - Good understanding of object-oriented programming (OOP) principles and design patterns; develop clean, maintainable, and well-structured code.
@@ -130,3 +130,17 @@ lamfm95@gmail.com
   - Successfully ported online GStreamer-based Kaldi implementation from x86 to Android ARM architecture
   - Integrated ported implementation with GStreamer Android demo application to achieve real-time voice recognition
   - Project was archived when client pivoted to a more mature solution.
+
+## Publications
+
+**LightVoc: An upsampling-free GAN vocoder based on Conformer and inverse short-time Fourier transform**
+DS Dang, **TL Nguyen**, BT Ta, TT Nguyen, TNA Nguyen, DL Le, NM Le, et al.
+*Proc. Interspeech*, 3043-3047, 2023
+
+**A multi-task conformer for spoofing aware speaker verification**
+BT Ta, **TL Nguyen**, DS Dang, DL Le
+*2022 IEEE Ninth International Conference on Communications and Electronics*, 2022
+
+**Speaker diarization for Vietnamese conversations using deep neural network embeddings**
+**TL Nguyen**, BT Ta, TAX Tran, NM Le
+*2022 IEEE Ninth International Conference on Communications and Electronics*, 2022
