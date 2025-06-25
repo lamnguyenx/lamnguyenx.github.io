@@ -131,16 +131,32 @@ lamfm95@gmail.com
   - Integrated ported implementation with GStreamer Android demo application to achieve real-time voice recognition
   - Project was archived when client pivoted to a more mature solution.
 
+## Education
+
+**Hanoi University of Science and Technology**<br>
+*Master in Industrial Informatics - PFIEV Program*<br>
+Thesis: *A Study on Improving Speaker Diarization System*<br>
+2020 - 2022
+
+**Hanoi University of Science and Technology**<br>
+*Bachelor in Industrial Informatics - PFIEV Program*<br>
+Thesis: *A Voice-Controlled Quiz Game*<br>
+2012 - 2017
+
+**HUS High School for Gifted Students**<br>
+*Department of Physics*<br>
+2009 - 2012
+
 ## Publications
 
-**LightVoc: An upsampling-free GAN vocoder based on Conformer and inverse short-time Fourier transform** |
-DS Dang, **TL Nguyen**, BT Ta, TT Nguyen, TNA Nguyen, DL Le, NM Le, et al.
+**LightVoc: An upsampling-free GAN vocoder based on Conformer and inverse short-time Fourier transform** <br>
+DS Dang, **TL Nguyen**, BT Ta, TT Nguyen, TNA Nguyen, DL Le, NM Le, et al.<br>
 *Proc. Interspeech*, 3043-3047, 2023
 
-**A multi-task conformer for spoofing aware speaker verification** |
+**A multi-task conformer for spoofing aware speaker verification** <br>
 BT Ta, **TL Nguyen**, DS Dang, DL Le
-*2022 IEEE Ninth International Conference on Communications and Electronics*, 2022
+*2022 IEEE Ninth International Conference on Communications and Electronics*, 2022<br>
 
-**Speaker diarization for Vietnamese conversations using deep neural network embeddings** |
-**TL Nguyen**, BT Ta, TAX Tran, NM Le
+**Speaker diarization for Vietnamese conversations using deep neural network embeddings** <br>
+**TL Nguyen**, BT Ta, TAX Tran, NM Le<br>
 *2022 IEEE Ninth International Conference on Communications and Electronics*, 2022
