@@ -47,10 +47,22 @@
 **2019.06 - 2021**
 **Project:** Kaldi ASR Backend Revamp.
 - **Description:** Redesigned ASR decoding backend architecture and coding convention for internal ASR backends and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system also lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
-- **Technologies:** Shell, Python, KaldiASR, Docker, Code-Server
+- **Technologies:** Shell, Python, KaldiASR, Docker, RabbitMQ
 - **Responsibilities:**
-    - Redesigned ASR decoding backend architecture and coding convention.
+    - Help team members setting up an unified, browser-based development workflow with Code-Server.
+    - Redesigned and implemented ASR decoding backend architecture.
     - Designed incremental and chained training/testing pipeline to streamline Kaldi model development and evaluation processes.
     - Introduced Docker and DevOps practices to the team. Containerized all microservices for consistent deployment across environments.
     - Conducted on-site deployments and system installations at multiple customer premises.
-    - Help team members setting up an unified, browser-based development workflow with Code-Server.
+
+
+
+**2021 - 2022**
+**Project:** Voice Meeting Note
+- **Description:** An automated meeting documentation system that transforms audio recordings into structured, searchable and text-normalized transcripts. The system intelligently separates multiple speakers, identifies voice segments, and generates timestamped text aligned with speaker identities, streamlining meeting follow-up and knowledge management processes.
+- **Technologies:** Shell, Python, KaldiASR, Docker, RabbitMQ, XVector.
+- **Responsibilities:**
+  - Designed and implemented comprehensive system architecture and established coding conventions for scalable development.
+  - Collect & sythesize multi-way Vietnamese conversation dataset.
+  - Fine-tune and test speaker embedding and diarzation model on collected dataset.
+  - Conducted on-site deployments and system installations at multiple customer premises.
