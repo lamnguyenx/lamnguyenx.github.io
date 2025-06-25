@@ -60,7 +60,7 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - **Description:** A comprehensive speech processing library that consolidates years of development into a unified, modular codebase.
 - **Responsibilities:**
   - Implemented Python best practices and highly reusable code patterns, with continuous updates and improvements incorporated after each project completion.
-  - Integrated multiple speech processing capabilities including speech recognition, speaker recognition, speaker diarization, voice activity detection, text normalization, and call quality assessment into a single, well-tested codebase with ~80% test coverage.
+  - Integrated multiple speech processing capabilities (including speech recognition, speaker recognition, speaker diarization, voice activity detection, text normalization, call quality assessment..) into a single, well-tested codebase with ~80% test coverage.
   - Developed flexible pipeline composition architecture, enabling developers to chain processing modules in any desired sequence for custom workflows.
   - Built rapid deployment system that transforms locally-tested processing chains into production-ready API workers within half a day, accelerating development-to-deployment cycles.
   - Forked Black Python formatter to create Blax, and implemented custom formatting rules for improved code aesthetics and readability.
