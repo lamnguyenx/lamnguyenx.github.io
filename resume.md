@@ -133,14 +133,14 @@ lamfm95@gmail.com
 
 ## Publications
 
-**LightVoc: An upsampling-free GAN vocoder based on Conformer and inverse short-time Fourier transform**
+**LightVoc: An upsampling-free GAN vocoder based on Conformer and inverse short-time Fourier transform** |
 DS Dang, **TL Nguyen**, BT Ta, TT Nguyen, TNA Nguyen, DL Le, NM Le, et al.
 *Proc. Interspeech*, 3043-3047, 2023
 
-**A multi-task conformer for spoofing aware speaker verification**
+**A multi-task conformer for spoofing aware speaker verification** |
 BT Ta, **TL Nguyen**, DS Dang, DL Le
 *2022 IEEE Ninth International Conference on Communications and Electronics*, 2022
 
-**Speaker diarization for Vietnamese conversations using deep neural network embeddings**
+**Speaker diarization for Vietnamese conversations using deep neural network embeddings** |
 **TL Nguyen**, BT Ta, TAX Tran, NM Le
 *2022 IEEE Ninth International Conference on Communications and Electronics*, 2022
