@@ -35,7 +35,7 @@
 ### AI Engineer (Middle Level)
 **2019.06 - 2021**
 **Project:** Kaldi ASR Backend Revamp.
-- **Description:** Redesigned ASR decoding backend architecture and coding convention for internal ASR backends and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
+- **Description:** Redesigned ASR decoding backend architecture and coding convention for internal ASR backends and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system also lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
 - **Technologies:** Shell, Python, KaldiASR, Docker, Code-Server
 - **Responsibilities:**
     - Redesigned ASR decoding backend architecture and coding convention.
