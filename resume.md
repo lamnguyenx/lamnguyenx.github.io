@@ -41,7 +41,7 @@
 - **Description:** Redesigned ASR decoding backend architecture for the company's AI Platform and multiple on-premise customer installations. The existing system relied on basic shell scripting without containerization, making deployments challenging and requiring manual KaldiASR builds from source. The system lacked proper testing, version control, and modern DevOps practices, presenting an opportunity to modernize the entire orchestration and deployment pipeline through containerization and automation.
 - **Technologies:** Shell, Python, KaldiASR, Docker, Code-Server
 - **Responsibilities:**
-    - Set up Code-Server development environment, providing team members with unified, browser-based development workflows.
+    - Help team members setting up an unified, browser-based development workflow with Code-Server.
     - Refactored and rewrote shell scripts for various ASR-related tasks in Kaldi.
     - Designed incremental and chained training/testing pipeline to streamline Kaldi model development and evaluation processes.
     - Introduced Docker and DevOps practices to the team, successfully containerizing all microservices for consistent deployment across environments.
