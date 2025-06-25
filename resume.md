@@ -46,7 +46,7 @@ I'm an AI backend engineer with 6.5 years of experience building speech processi
 - **Description:** A photorealistic 3D conversational AI system that combines natural language processing with real-time 3D human avatar rendering. The system creates lifelike digital humans capable of natural conversation with synchronized facial expressions, lip-sync, and body language to deliver human-like interactive experiences.
 - **Technologies:** Python, Blender, Daz3D, NeuroSync, Unity3D, C#, ChatDollKit
 - **Responsibilities:**
-  - Acquired 3D graphics fundamentals and content creation workflows
+  - Learned 3D graphics fundamentals and content creation workflows
   - Developed programmable animation systems in Unity3D using C# for real-time character control and interaction
   - Implemented speech-to-blendshape mapping algorithms to achieve accurate lip-sync and facial expression rendering synchronized with audio output
   - Integrated conversational AI pipeline including speech-to-text, text-to-speech, and large language models.
