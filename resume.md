@@ -35,6 +35,8 @@ I’m an AI backend engineer with 6.5 years of experience building speech proces
 
 ## Personal Experience
 
+### Viettel AI (2019 - Now)
+
 **2024.10 - 2025.01**
 
 **Project:** 3D Digital Human System
@@ -134,6 +136,21 @@ I’m an AI backend engineer with 6.5 years of experience building speech proces
   - Successfully ported online GStreamer-based Kaldi implementation from x86 to Android ARM architecture
   - Integrated ported implementation with GStreamer Android demo application to achieve real-time voice recognition
   - Project was archived when client pivoted to a more mature solution.
+
+### SealCommerce (2017 - 2018)
+
+**2017 - 2018**
+
+**Project:** Gempages - Shopify Page Builder
+- **Role:** Product Designer / Customer Support
+- **Team:** 4 people
+- **Description:** A Shopify page builder that allows users to create high-converting landing pages, product pages, and storefronts.
+- **Technologies:** Javascript, HTML, CSS
+- **Responsibilities:**
+  - Redesigned Gempages' page builder, dashboard and website to improve user experience
+  - Collaborated with development team to build conversion-focused website templates
+  - Provided technical support to international customers via live chat, emails and documentation
+  - Maintained customer relationships and resolved technical issues across multiple communication channels.
 
 ## Education
 
