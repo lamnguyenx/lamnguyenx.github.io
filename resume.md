@@ -29,6 +29,13 @@
 - **Technologies:** Docker, Android NDK, C++, Shell, KaldiASR, GStreamer
 - **Responsibilities:**
   - Conducted deep dive into KaldiASR ecosystem architecture and implementation
-  - Learned GStreamer framework and Android NDK for cross-platform development
-  - Ported online GStreamer-based Kaldi implementation from x86 to Android ARM architecture. Integrated this implemenation with GStreamer Android demo application to achieve real-time voice recognition.
-  - This porject is archived when client pivoted to alternative solutions (including Google APIs integration).
+  - Mastered GStreamer framework and Android NDK for cross-platform development
+  - Successfully ported online GStreamer-based Kaldi implementation from x86 to Android ARM architecture
+  - Integrated ported implementation with GStreamer Android demo application to achieve real-time voice recognition
+  - Project was archived when client pivoted to alternative solutions (including Google APIs integration)
+
+
+### Junior AI Engineer
+**2019.06 - 2021**
+**Project:** ASR Decoding Backend.
+- **Description:**
