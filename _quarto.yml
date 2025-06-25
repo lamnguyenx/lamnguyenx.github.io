@@ -10,7 +10,7 @@ book:
   keyword: python, performance, engineering
   url: https://kevinheavey.github.io/modern-polars/
   sidebar:
-    logo: polar-bear-airpods-no-background.png
+    # logo: me.jpeg
     search: true
     style: "floating"
     collapse-level: 2
@@ -20,7 +20,7 @@ book:
   repo-branch: master
   repo-actions: [edit, issue, source]
   sharing: [twitter, facebook, linkedin]
-  image: polar-bear-airpods-no-background.png
+  # image: me.jpeg
 
   chapters:
     - index.qmd
