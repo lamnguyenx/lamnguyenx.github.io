@@ -4,7 +4,11 @@ HANOI, VIETNAM<br>
 +84-987-858-527<br>
 lamfm95@gmail.com<br>
 
-## Skills
+## Summary
+
+I’m an AI backend engineer with 6.5 years of experience building speech processing systems that are performant, scalable, and easy to maintain.
+
+## Technical Skills
 
 ### Programming Languages
 - Python, Shell
@@ -29,7 +33,7 @@ lamfm95@gmail.com<br>
 - Good understanding of object-oriented programming (OOP) principles and design patterns; develop clean, maintainable, and well-structured code.
 
 
-## Experience
+## Personal Experience
 
 **2024.10 - 2025.01**
 
