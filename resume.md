@@ -1,8 +1,8 @@
 # Tung Lam Nguyen
-**AI Engineer**
-HANOI, VIETNAM
-+84-987-858-527
-lamfm95@gmail.com
+**AI Engineer**<br>
+HANOI, VIETNAM<br>
++84-987-858-527<br>
+lamfm95@gmail.com<br>
 
 ## Skills
 
