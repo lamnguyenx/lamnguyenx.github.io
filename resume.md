@@ -145,12 +145,28 @@ I’m an AI backend engineer with 6.5 years of experience building speech proces
 - **Role:** Product Designer / Customer Support
 - **Team:** 4 people
 - **Description:** A Shopify page builder that allows users to create high-converting landing pages, product pages, and storefronts.
-- **Technologies:** Javascript, HTML, CSS
+- **Technologies:** Javascript, HTML, CSS, Sketch, Adobe Suite
 - **Responsibilities:**
   - Redesigned Gempages' page builder, dashboard and website to improve user experience
   - Collaborated with development team to build conversion-focused website templates
   - Provided technical support to international customers via live chat, emails and documentation
   - Maintained customer relationships and resolved technical issues across multiple communication channels.
+
+### Etady (2015 - 2017)
+
+**2015 - 2017**
+
+**Project:** Etady - Traffic Social Network
+- **Role:** Co-founder / Product Designer
+- **Team:** 6 people
+- **Description:** A social navigation mobile application that combines real-time traffic data with community-driven reporting for optimized routing and traffic information sharing.
+- **Technologies:** Python, PostgreSQL, MapBox, Adobe Suite
+- **Responsibilities:**
+  - Led art direction and collaborated closely with team members to define mobile app features and design strategy
+  - Created comprehensive graphic assets for web, print, and social media marketing campaigns
+  - Architected and implemented multi-layered vector map server with advanced routing capabilities
+  - Integrated OpenStreetMap data with PostgreSQL database for optimal performance and scalability
+  - Shaped product vision and user experience as co-founder while managing design operations
 
 ## Education
 
