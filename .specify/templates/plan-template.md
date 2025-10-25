@@ -31,7 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Content-First**: Does this feature primarily serve content creation or reader value?
+- **Static Simplicity**: Does this maintain static site benefits (fast loading, easy deployment)?
+- **Reader-Centric**: Does this improve reading experience (mobile-friendly, accessible, fast)?
+- **Publishing Standards**: Does this follow consistent formatting and quality standards?
+- **Sustainable Evolution**: Does this prevent technical debt and support long-term maintenance?
 
 ## Project Structure
 

@@ -1,50 +1,38 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- Sync Impact Report: v1.0.0 (initial constitution)
+- Version change: none → 1.0.0
+- Added sections: Core Principles (5), Technical Standards, Content Workflow, Governance
+- Templates requiring updates: plan-template.md (constitution check gates) ✅ updated
+- Follow-up TODOs: none
+-->
+# Personal Static Blog Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Content-First Development
+All technical decisions serve content creation and reader value. Blog posts drive site architecture - never compromise writing workflow for complex features. Markdown remains the primary content format for its simplicity and portability.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Static Site Simplicity
+Maximize static generation benefits: fast loading, easy deployment, version control. Avoid dynamic features unless they provide clear value to content or readers. Prioritize maintainable, understandable code over clever optimizations.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Reader-Centric Design
+Site optimized for reading: mobile-friendly, accessible, fast-loading. WCAG 2.1 AA compliance mandatory. Content must be readable and navigable on any device. Performance metrics drive technical decisions.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Consistent Publishing Standards
+Every post follows consistent formatting, metadata, and quality standards. SEO optimization built into publishing workflow. Content reviewed for clarity and accuracy before publication. Categories and tags used systematically.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Sustainable Evolution
+Regular maintenance prevents technical debt accumulation. Dependencies updated quarterly, broken links fixed immediately. Platform changes evaluated for impact on existing content. Blog remains functional and accessible over time.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technical Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Quarto for content management, GitHub Pages for hosting. Posts in Markdown with frontmatter. Images optimized, links validated. RSS feed and social sharing enabled.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Content Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Topics span personal interests without artificial constraints. Posts categorized and tagged consistently. Comments and analytics integrated but not required. Drafts reviewed before publication.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Constitution guides all content and technical decisions. Updates require review for impact on existing content. Major platform changes documented and tested. Constitution evolves with blog growth while maintaining core principles.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2024-10-25 | **Last Amended**: 2024-10-25
