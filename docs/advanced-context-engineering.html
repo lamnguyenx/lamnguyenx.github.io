@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="code/music/cycling/cats/dogs expert since 1995">
+
+<title>1&nbsp; Getting AI to Work in Complex Codebases – lamnguyenx</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
+<link href="./polar-bear-airpods-no-background.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-be0bf478834dcd5fa1d207f31fcfa0a3.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-be0bf478834dcd5fa1d207f31fcfa0a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-be0bf478834dcd5fa1d207f31fcfa0a3.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fa390b402a9b58622f3a420c951a0cfd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-4a9d1d17a6569d1bbc9860c6f1785516.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fa390b402a9b58622f3a420c951a0cfd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="visionbook.css">
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced-context-engineering.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting AI to Work in Complex Codebases</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./polar-bear-airpods-no-background.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./polar-bear-airpods-no-background.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">lamnguyenx</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/lamnguyenx/lamnguyenx.github.io/tree/master/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">about me</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./advanced-context-engineering.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting AI to Work in Complex Codebases</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#grounding-context-from-ai-engineer" id="toc-grounding-context-from-ai-engineer" class="nav-link active" data-scroll-target="#grounding-context-from-ai-engineer"><span class="header-section-number">1.0.1</span> Grounding Context from AI Engineer</a></li>
+  <li><a href="#whats-actually-possible-today" id="toc-whats-actually-possible-today" class="nav-link" data-scroll-target="#whats-actually-possible-today"><span class="header-section-number">1.0.2</span> What’s actually possible today</a></li>
+  <li><a href="#our-weird-journey-to-get-here" id="toc-our-weird-journey-to-get-here" class="nav-link" data-scroll-target="#our-weird-journey-to-get-here"><span class="header-section-number">1.0.3</span> Our weird journey to get here</a></li>
+  <li><a href="#advanced-context-engineering-for-coding-agents" id="toc-advanced-context-engineering-for-coding-agents" class="nav-link" data-scroll-target="#advanced-context-engineering-for-coding-agents"><span class="header-section-number">1.1</span> Advanced Context Engineering for Coding Agents</a>
+  <ul class="collapse">
+  <li><a href="#but-first-the-naive-way-to-manage-agent-context" id="toc-but-first-the-naive-way-to-manage-agent-context" class="nav-link" data-scroll-target="#but-first-the-naive-way-to-manage-agent-context"><span class="header-section-number">1.1.1</span> But first: The Naive Way to manage agent context</a></li>
+  <li><a href="#slightly-smarter-intentional-compaction" id="toc-slightly-smarter-intentional-compaction" class="nav-link" data-scroll-target="#slightly-smarter-intentional-compaction"><span class="header-section-number">1.1.2</span> Slightly Smarter: Intentional Compaction</a></li>
+  <li><a href="#what-exactly-are-we-compacting" id="toc-what-exactly-are-we-compacting" class="nav-link" data-scroll-target="#what-exactly-are-we-compacting"><span class="header-section-number">1.1.3</span> What Exactly Are We Compacting?</a></li>
+  <li><a href="#why-obsess-over-context" id="toc-why-obsess-over-context" class="nav-link" data-scroll-target="#why-obsess-over-context"><span class="header-section-number">1.1.4</span> Why obsess over context?</a></li>
+  <li><a href="#back-to-compaction-using-sub-agents" id="toc-back-to-compaction-using-sub-agents" class="nav-link" data-scroll-target="#back-to-compaction-using-sub-agents"><span class="header-section-number">1.1.5</span> Back to compaction: Using Sub-Agents</a></li>
+  <li><a href="#what-works-even-better-frequent-intentional-compaction" id="toc-what-works-even-better-frequent-intentional-compaction" class="nav-link" data-scroll-target="#what-works-even-better-frequent-intentional-compaction"><span class="header-section-number">1.1.6</span> What works even better: Frequent Intentional Compaction</a></li>
+  <li><a href="#putting-this-into-practice" id="toc-putting-this-into-practice" class="nav-link" data-scroll-target="#putting-this-into-practice"><span class="header-section-number">1.1.7</span> Putting this into practice</a></li>
+  <li><a href="#solving-complex-problems" id="toc-solving-complex-problems" class="nav-link" data-scroll-target="#solving-complex-problems"><span class="header-section-number">1.1.8</span> Solving complex problems</a></li>
+  <li><a href="#this-is-not-magic" id="toc-this-is-not-magic" class="nav-link" data-scroll-target="#this-is-not-magic"><span class="header-section-number">1.1.9</span> This is not Magic</a></li>
+  <li><a href="#eggs-on-faces" id="toc-eggs-on-faces" class="nav-link" data-scroll-target="#eggs-on-faces"><span class="header-section-number">1.1.10</span> Eggs on Faces</a></li>
+  <li><a href="#on-human-leverage" id="toc-on-human-leverage" class="nav-link" data-scroll-target="#on-human-leverage"><span class="header-section-number">1.1.11</span> On Human Leverage</a></li>
+  <li><a href="#what-is-code-review-for" id="toc-what-is-code-review-for" class="nav-link" data-scroll-target="#what-is-code-review-for"><span class="header-section-number">1.1.12</span> What is code review for?</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap"><span class="header-section-number">1.1.13</span> Recap</a></li>
+  <li><a href="#whats-coming" id="toc-whats-coming" class="nav-link" data-scroll-target="#whats-coming"><span class="header-section-number">1.1.14</span> What’s coming</a></li>
+  <li><a href="#okay-so-clearly-you-have-something-to-sell-me" id="toc-okay-so-clearly-you-have-something-to-sell-me" class="nav-link" data-scroll-target="#okay-so-clearly-you-have-something-to-sell-me"><span class="header-section-number">1.1.15</span> okay so clearly you have something to sell me</a></li>
+  </ul></li>
+  <li><a href="#for-oss-maintainers---lets-ship-something-together" id="toc-for-oss-maintainers---lets-ship-something-together" class="nav-link" data-scroll-target="#for-oss-maintainers---lets-ship-something-together"><span class="header-section-number">1.2</span> For OSS Maintainers - lets ship something together</a></li>
+  <li><a href="#for-engineering-leaders" id="toc-for-engineering-leaders" class="nav-link" data-scroll-target="#for-engineering-leaders"><span class="header-section-number">1.3</span> For Engineering Leaders</a>
+  <ul class="collapse">
+  <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks"><span class="header-section-number">1.3.1</span> Thanks</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/edit/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/blob/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting AI to Work in Complex Codebases</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>It seems pretty well-accepted that AI coding tools struggle with real production codebases. The <a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">Stanford study on AI’s impact on developer productivity</a> found:</p>
+<ol type="1">
+<li>A lot of the “extra code” shipped by AI tools ends up just reworking the slop that was shipped last week.</li>
+<li>Coding agents are great for new projects or small changes, but in large established codebases, they can often make developers <em>less</em> productive.</li>
+</ol>
+<p>The common response is somewhere between the pessimist “this will never work” and the more measured “maybe someday when there are smarter models.”</p>
+<p>After several months of tinkering, I’ve found that <strong>you can get really far with today’s models if you embrace core context engineering principles</strong>.</p>
+<p>This isn’t another “10x your productivity” pitch. I <a href="https://hlyr.dev/12fa">tend to be pretty measured when it comes to interfacing with the ai hype machine</a>. But we’ve stumbled into workflows that leave me with considerable optimism for what’s possible. We’ve gotten claude code to handle 300k LOC Rust codebases, ship a week’s worth of work in a day, and maintain code quality that passes expert review. We use a family of techniques I call “frequent intentional compaction” - deliberately structuring how you feed context to the AI throughout the development process.</p>
+<p>I am now fully convinced that AI for coding is not just for toys and prototypes, but rather a deeply technical engineering craft.</p>
+<p><strong>Video Version</strong>: If you prefer video, this post is based on <a href="https://hlyr.dev/ace">a talk given at Y Combinator on August 20th</a></p>
+<section id="grounding-context-from-ai-engineer" class="level3 page-columns page-full" data-number="1.0.1">
+<h3 data-number="1.0.1" class="anchored" data-anchor-id="grounding-context-from-ai-engineer"><span class="header-section-number">1.0.1</span> Grounding Context from AI Engineer</h3>
+<p>Two talks from AI Engineer 2025 fundamentally shaped my thinking about this problem.</p>
+<p>The first is <a href="https://www.youtube.com/watch?v=8rABwKRsec4">Sean Grove’s talk on “Specs are the new code”</a> and the second is <a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">the Stanford study on AI’s impact on developer productivity</a>.</p>
+<p>Sean argued that we’re all <em>vibe coding wrong</em>. The idea of chatting with an AI agent for two hours, specifying what you want, and then throwing away all the prompts while committing only the final code… is like a Java developer compiling a JAR and checking in the compiled binary while throwing away the source.</p>
+<p>Sean proposes that in the AI future, the specs will become the real code. That in two years, you’ll be opening python files in your IDE with about the same frequency that, today, you might open up a hex editor to read assembly (which, for most of us, is never).</p>
+<p><a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">Yegor’s talk on developer productivity</a> tackled an orthogonal problem. They analyzed commits from 100k developers and found, among other things,</p>
+<ol type="1">
+<li>That AI tools often lead to a lot of rework, diminishing the perceived productivity gains</li>
+</ol>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/f7cec497-3ee2-47d1-8f91-a18210625e19.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AI coding productivity research findings"><img src="https://github.com/user-attachments/assets/f7cec497-3ee2-47d1-8f91-a18210625e19.png" class="img-fluid figure-img" style="width:100.0%" alt="Chart showing AI tools often lead to more rework and can be counterproductive for complex brownfield codebases"></a></p>
+<figcaption class="margin-caption">AI coding productivity research findings</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>That AI tools work well for greenfield projects, but are often counter-productive for brownfield codebases and complex tasks</li>
+</ol>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/06f03232-f9d9-4a92-a182-37056bf877a4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AI tools performance across different project types"><img src="https://github.com/user-attachments/assets/06f03232-f9d9-4a92-a182-37056bf877a4.png" class="img-fluid figure-img" style="width:100.0%" alt="Chart showing AI tools work better for greenfield projects than complex brownfield codebases"></a></p>
+<figcaption class="margin-caption">AI tools performance across different project types</figcaption>
+</figure>
+</div>
+<p>This matched what I heard talking with founders:</p>
+<ul>
+<li>“Too much slop.”</li>
+<li>“Tech debt factory.”</li>
+<li>“Doesn’t work in big repos.”</li>
+<li>“Doesn’t work for complex systems.”</li>
+</ul>
+<p>The general vibe on AI-coding for hard stuff tends to be</p>
+<blockquote class="blockquote">
+<p>Maybe someday, when models are smarter…</p>
+</blockquote>
+<p>Heck even <a href="https://x.com/amasad">Amjad</a> was on a <a href="https://www.lennysnewsletter.com/p/behind-the-product-replit-amjad-masad">lenny’s podcast 9 months ago</a> talking about how PMs use Replit agent to prototype new stuff and then they hand it off to engineers to implement for production. (Disclaimer: i haven’t caught up with him recently (ok, ever), this stance may have changed)</p>
+<p>Whenever I hear “Maybe someday when the models are smart” I generally leap to exclaim <strong>that’s what context engineering is all about</strong>: getting the most out of <em>today’s</em> models.</p>
+</section>
+<section id="whats-actually-possible-today" class="level3" data-number="1.0.2">
+<h3 data-number="1.0.2" class="anchored" data-anchor-id="whats-actually-possible-today"><span class="header-section-number">1.0.2</span> What’s actually possible today</h3>
+<p>I’ll deep dive on this a bit futher down, but to prove this isn’t just theory, let me outline a concrete example. A few weeks ago, I decided to test our techniques on <a href="https://github.com/BoundaryML/baml">BAML</a>, a 300k LOC Rust codebase for a programming language that works with LLMs. I’m at best an amateur Rust dev and had never touched the BAML codebase before.</p>
+<p>Within an hour or so, I had a <a href="https://github.com/BoundaryML/baml/pull/2259#issuecomment-3155883849">PR fixing a bug</a> which was approved by the maintainer the next morning. A few weeks later, <a href="https://x.com/hellovai"><span class="citation" data-cites="hellovai">@hellovai</span></a> and I paired on shipping 35k LOC to BAML, adding <a href="https://github.com/BoundaryML/baml/pull/2357">cancellation support</a> and <a href="https://github.com/BoundaryML/baml/pull/2330">WASM compilation</a> - features the team estimated would take a senior engineer 3-5 days each. We got both draft prs ready in about 7 hours.</p>
+<p>Again, this is all built around a workflow we call <a href="#what-works-even-better-frequent-intentional-compaction">frequent intentional compaction</a> - essentially designing your entire development process around context management, keeping utilization in the 40-60% range, and building in high-leverage human review at exactly the right points. We use a “research, plan, implement” workflow, but the core capabilities/learnings here are FAR more general than any specific workflow or set of prompts.</p>
+</section>
+<section id="our-weird-journey-to-get-here" class="level3" data-number="1.0.3">
+<h3 data-number="1.0.3" class="anchored" data-anchor-id="our-weird-journey-to-get-here"><span class="header-section-number">1.0.3</span> Our weird journey to get here</h3>
+<p>I was working with one of the most productive AI coders I’ve ever met. Every few days they’d drop <strong>2000-line Go PRs</strong>. And this wasn’t a nextjs app or a CRUD API. This was complex, <a href="https://github.com/humanlayer/humanlayer/blob/main/hld/daemon/daemon_subscription_integration_test.go#L45">race-prone systems code</a> that did JSON RPC over unix sockets and managed streaming stdio from forked unix processes (mostly claude code sdk processes, more on that later 🙂).</p>
+<p>The idea of carefully reading 2,000 lines of complex Go code every few days was simply not sustainable. I was starting to feel a bit like Mitchell Hashimoto when he added the <a href="https://github.com/ghostty-org/ghostty/pull/8289">AI contributions must be disclosed</a> rules for ghostty.</p>
+<p>Our approach was to adopt something like sean’s <strong>spec-driven development</strong>.</p>
+<p>It was uncomfortable at first. I had to learn to let go of reading every line of PR code. I still read the tests pretty carefully, but the specs became our source of truth for what was being built and why.</p>
+<p>The transformation took about 8 weeks. It was incredibly uncomfortable for everyone involved, not least of all for me. But now we’re flying. A few weeks back, I shipped 6 PRs in a day. I can count on one hand the number of times I’ve edited a non-markdown file by hand in the last three months.</p>
+</section>
+<section id="advanced-context-engineering-for-coding-agents" class="level2 page-columns page-full" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="advanced-context-engineering-for-coding-agents"><span class="header-section-number">1.1</span> Advanced Context Engineering for Coding Agents</h2>
+<p>What we needed was:</p>
+<ul>
+<li>AI that Works Well in Brownfield Codebases</li>
+<li>AI that Solves Complex Problems</li>
+<li>No Slop</li>
+<li>Maintain Mental Alignment across the team</li>
+</ul>
+<p>(And yeah sure, let’s try to spend as many tokens as possible.)</p>
+<p>I’ll dive into:</p>
+<ol type="1">
+<li>what we learned applying context engineering to coding agents</li>
+<li>the dimensions along which using these agents is a deeply technical craft</li>
+<li>why I don’t believe these approaches are generalizable</li>
+<li>the number of times I’ve been repeatedly proven wrong about (3)</li>
+</ol>
+<section id="but-first-the-naive-way-to-manage-agent-context" class="level3 page-columns page-full" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="but-first-the-naive-way-to-manage-agent-context"><span class="header-section-number">1.1.1</span> But first: The Naive Way to manage agent context</h3>
+<p>Most of us start by using a coding agent like a chatbot. You talk (or <a href="https://ghuntley.com/six-month-recap/#:~:text=Last%20week%2C%20over%20Zoom%20margaritas%2C%20a%20friend%20and%20I%20reminisced%20about%20COBOL.">drunkenly shout</a>) back and forth with it, vibing your way through a problem until you either run out of context, give up, or the agent starts apologizing.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/7361a203-9d95-42e2-ac16-1f38b04adb58.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Naive context management approach"><img src="https://github.com/user-attachments/assets/7361a203-9d95-42e2-ac16-1f38b04adb58.png" class="img-fluid figure-img" style="width:100.0%" alt="Diagram showing naive approach of chatting with AI agent for hours then discarding prompts"></a></p>
+<figcaption class="margin-caption">Naive context management approach</figcaption>
+</figure>
+</div>
+<p>A slightly smarter way is to just start over when you get off track, discarding your session and starting a new one, perhaps with a little more steering in the prompt.</p>
+<blockquote class="blockquote">
+<p>[original prompt], but make sure you use XYZ approach, because ABC approach won’t work</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/1bbbc8ad-60da-4f8b-98c3-e6603b04a0ce.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Restarting sessions when off-track"><img src="https://github.com/user-attachments/assets/1bbbc8ad-60da-4f8b-98c3-e6603b04a0ce.png" class="img-fluid figure-img" style="width:100.0%" alt="Diagram showing approach of discarding sessions and starting fresh with better prompts"></a></p>
+<figcaption class="margin-caption">Restarting sessions when off-track</figcaption>
+</figure>
+</div>
+</section>
+<section id="slightly-smarter-intentional-compaction" class="level3 page-columns page-full" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="slightly-smarter-intentional-compaction"><span class="header-section-number">1.1.2</span> Slightly Smarter: Intentional Compaction</h3>
+<p>You have probably done something I’ve come to call “intentional compaction”. Whether you’re on track or not, as your context starts to fill up, you probably want to pause your work and start over with a fresh context window. To do this, you might use a prompt like</p>
+<blockquote class="blockquote">
+<p>“Write everything we did so far to progress.md, ensure to note the end goal, the approach we’re taking, the steps we’ve done so far, and the current failure we’re working on”</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/64b940e5-89b1-4f6c-a79c-ec2810d9af77.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Intentional compaction workflow"><img src="https://github.com/user-attachments/assets/64b940e5-89b1-4f6c-a79c-ec2810d9af77.png" class="img-fluid figure-img" style="width:100.0%" alt="Diagram showing intentional compaction approach where context is distilled into structured artifacts"></a></p>
+<figcaption class="margin-caption">Intentional compaction workflow</figcaption>
+</figure>
+</div>
+<p>You can also <a href="https://x.com/dexhorthy/status/1961490837017088051">use commit messages for intentional compaction</a>.</p>
+</section>
+<section id="what-exactly-are-we-compacting" class="level3 page-columns page-full" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="what-exactly-are-we-compacting"><span class="header-section-number">1.1.3</span> What Exactly Are We Compacting?</h3>
+<p>What eats up context?</p>
+<ul>
+<li>Searching for files</li>
+<li>Understanding code flow</li>
+<li>Applying edits</li>
+<li>Test/build logs</li>
+<li>Huge JSON blobs from tools</li>
+</ul>
+<p>All of these can flood the context window. <strong>Compaction</strong> is simply distilling them into structured artifacts.</p>
+<p>A good output for an intentional compaction might include something like</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/a7d5946d-4e81-46e8-b314-d02dae1f00ee.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Example of good compaction output"><img src="https://github.com/user-attachments/assets/a7d5946d-4e81-46e8-b314-d02dae1f00ee.png" class="img-fluid figure-img" style="width:100.0%" alt="Structured summary showing end goal, approach, completed steps, and current failure point"></a></p>
+<figcaption class="margin-caption">Example of good compaction output</figcaption>
+</figure>
+</div>
+</section>
+<section id="why-obsess-over-context" class="level3 page-columns page-full" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="why-obsess-over-context"><span class="header-section-number">1.1.4</span> Why obsess over context?</h3>
+<p>As we went deep on in <a href="https://hlyr.dev/12fa">12-factor agents</a>, LLMs are stateless functions. The only thing that affects the quality of your output (without training/tuning models themselves) is the quality of the inputs.</p>
+<p>This is just as true for <a href="https://www.youtube.com/watch?v=F_RyElT_gJk">wielding</a> coding agents as it is for general agent design, you just have a smaller problem space, and rather than building agents, we’re talking about using agents.</p>
+<p>At any given point, a turn in an agent like claude code is a stateless function call. Context window in, next step out.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/c1e920e8-5dc5-4dd2-b76d-853b85a92e6a.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Image"><img src="https://github.com/user-attachments/assets/c1e920e8-5dc5-4dd2-b76d-853b85a92e6a.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+<p>That is, the contents of your context window are the ONLY lever you have to affect the quality of your output. So yeah, it’s worth obsessing over.</p>
+<p>You should optimize your context window for:</p>
+<ol type="1">
+<li>Correctness</li>
+<li>Completeness</li>
+<li>Size</li>
+<li>Trajectory</li>
+</ol>
+<p>Put another way, the worst things that can happen to your context window, in order, are:</p>
+<ol type="1">
+<li>Incorrect Information</li>
+<li>Missing Information</li>
+<li>Too much Noise</li>
+</ol>
+<p>If you like equations, here’s a dumb one you can reference:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/a6ea98a6-665b-48af-983b-a1cb2c45e44c.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Image"><img src="https://github.com/user-attachments/assets/a6ea98a6-665b-48af-983b-a1cb2c45e44c.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+<p>As <a href="https://x.com/GeoffreyHuntley">Geoff Huntley</a> puts it,</p>
+<blockquote class="blockquote">
+<p>The name of the game is that you only have approximately <strong>170k of context window</strong> to work with. So it’s essential to use as little of it as possible. The more you use the context window, the worse the outcomes you’ll get.</p>
+</blockquote>
+<p>Geoff’s solution to this engineering constraint is a technique he calls <a href="https://ghuntley.com/ralph/">Ralph Wiggum as a Software Engineer</a>, which basically involves running an agent in a while loop forever with a simple prompt.</p>
+<pre><code>while :; do
+  cat PROMPT.md | npx --yes @sourcegraph/amp
+done</code></pre>
+<p>If you wanna learn more about ralph or what’s in PROMPT.md, you can check out Geoff’s post or dive into the project that <a href="https://x.com/simonfarshid"><span class="citation" data-cites="simonfarshid">@simonfarshid</span></a>, <a href="https://x.com/lantos1618"><span class="citation" data-cites="lantos1618">@lantos1618</span></a>, <a href="https://x.com/AVGVSTVS96"><span class="citation" data-cites="AVGVSTVS96">@AVGVSTVS96</span></a> and I built at last weekend’s YC Agents Hackathon, which was able to (mostly) <a href="https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md">port BrowserUse to TypeScript overnight</a></p>
+<p>Geoff describes ralph as a “hilariously dumb” solution to the context window problem. <a href="https://ghuntley.com/content/images/size/w2400/2025/07/The-ralph-Process.png">I’m not entirely sure that it is dumb</a>.</p>
+</section>
+<section id="back-to-compaction-using-sub-agents" class="level3 page-columns page-full" data-number="1.1.5">
+<h3 data-number="1.1.5" class="anchored" data-anchor-id="back-to-compaction-using-sub-agents"><span class="header-section-number">1.1.5</span> Back to compaction: Using Sub-Agents</h3>
+<p>Subagents are another way to manage context, and generic subagents (i.e.&nbsp;not <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">custom</a> ones) have been a feature of claude code and many coding CLIs since the early days.</p>
+<p>Subagents are not about <a href="https://x.com/dexhorthy/status/1950288431122436597">playing house and anthropomorphizing roles</a>. Subagents are about context control.</p>
+<p>The most common/straightforward use case for subagents is to let you use a fresh context window to do finding/searching/summarizing that enables the parent agent to get straight to work without clouding its context window with <code>Glob</code> / <code>Grep</code> / <code>Read</code> / etc calls.</p>
+<p>https://github.com/user-attachments/assets/cb4e7864-9556-4eaa-99ca-a105927f484d</p>
+<details class="page-columns page-full">
+<summary>
+(video not playing on mobile? expand for the static image version)
+</summary>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/c72e7dba-1476-4ee9-9cb0-0f97d428b82a.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Image"><img src="https://github.com/user-attachments/assets/c72e7dba-1476-4ee9-9cb0-0f97d428b82a.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+</details>
+<p>The ideal subagent response probably looks similar to the ideal ad-hoc compaction from above</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/a7d5946d-4e81-46e8-b314-d02dae1f00ee.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Image"><img src="https://github.com/user-attachments/assets/a7d5946d-4e81-46e8-b314-d02dae1f00ee.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+<p>Getting a subagent to return this is not trivial:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/2bcd30f6-84fd-4911-ac15-63f75619e76d.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Image"><img src="https://github.com/user-attachments/assets/2bcd30f6-84fd-4911-ac15-63f75619e76d.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+</section>
+<section id="what-works-even-better-frequent-intentional-compaction" class="level3" data-number="1.1.6">
+<h3 data-number="1.1.6" class="anchored" data-anchor-id="what-works-even-better-frequent-intentional-compaction"><span class="header-section-number">1.1.6</span> What works even better: Frequent Intentional Compaction</h3>
+<p>The techniques I want to talk about and that we’ve adopted in the last few months fall under what I call “frequent intentional compaction”.</p>
+<p>Essentially, this means designing your ENTIRE WORKFLOW around context management, and keeping utilization in the 40%-60% range (depends on complexity of the problem ).</p>
+<p>The way we do it is to split into three (ish) steps.</p>
+<p>I say “ish” because sometimes we skip the research and go straight to planning, and sometimes we’ll do multiple passes of compacted research before we’re ready to implement.</p>
+<p>I’ll share example outputs of each step in a concrete example below. For a given feature or bug, we’ll tend to do:</p>
+<p><strong>Research</strong></p>
+<p>Understand the codebase, the files relevant to the issue, and how information flows, and perhaps potential causes of a problem.</p>
+<p>here’s our <a href="https://github.com/humanlayer/humanlayer/blob/main/.claude/commands/research_codebase.md">research prompt</a>. It currently uses custom subagents, but in other repos I use a more generic version that uses the claude code Task() tool with <code>general-agent</code>. The generic one works almost as well.</p>
+<p><strong>Plan</strong></p>
+<p>Outline the exact steps we’ll take to fix the issue, and the files we’ll need to edit and how, being super precise about the testing / verification steps in each phase.</p>
+<p>This is the <a href="https://github.com/humanlayer/humanlayer/blob/main/.claude/commands/create_plan.md">prompt we use for planning</a>.</p>
+<p><strong>Implement</strong></p>
+<p>Step through the plan, phase by phase. For complex work, I’ll often compact the current status back into the original plan file after each implementation phase is verified.</p>
+<p>This is the <a href="https://github.com/humanlayer/humanlayer/blob/main/.claude/commands/implement_plan.md">implementation prompt we use</a>.</p>
+<p>Aside - if you’ve been hearing a lot about git worktrees, this is the only step that needs to be done in a worktree. We tend to do everything else on main.</p>
+<p><strong>How we manage/share the markdown files</strong></p>
+<p>I will skip this part for brevity but feel free to launch a claude session in <a href="https://github.com/humanlayer/humanlayer">humanlayer/humanlayer</a> and ask how the “thoughts tool” works.</p>
+</section>
+<section id="putting-this-into-practice" class="level3" data-number="1.1.7">
+<h3 data-number="1.1.7" class="anchored" data-anchor-id="putting-this-into-practice"><span class="header-section-number">1.1.7</span> Putting this into practice</h3>
+<p>I do a <a href="https://github.com/ai-that-works/ai-that-works">weekly live-coding session</a> with <a href="https://www.linkedin.com/in/vaigup/"><span class="citation" data-cites="vaibhav">@vaibhav</span></a> where we whiteboard and code up a solution to an advanced AI Engineering problem. It’s one of the highlights of my week.</p>
+<p>Several weeks ago, I <a href="https://hlyr.dev/he-gh">decided to share some more about the process</a>, curious if our in-house techniques could one-shot a fix to a 300k LOC Rust codebase for BAML, a programming language for working with LLMs. I picked out <a href="https://github.com/BoundaryML/baml/issues/1252">an (admittedly small-ish) bug</a> from the <span class="citation" data-cites="BoundaryML">@BoundaryML</span> repo and got to work.</p>
+<p>You can <a href="https://hlyr.dev/he-yt">watch the episode</a> to learn more about the process, but to outline it:</p>
+<p><strong>Worth noting</strong>: I am at best an amateur Rust dev, and I have never worked in the BAML codebase before.</p>
+<section id="the-research" class="level4" data-number="1.1.7.1">
+<h4 data-number="1.1.7.1" class="anchored" data-anchor-id="the-research"><span class="header-section-number">1.1.7.1</span> The research</h4>
+<ul>
+<li>I created a piece of research, I read it. Claude decided the bug was invalid and the codebase was correct.</li>
+<li>I threw that research out and kicked off a new one, with more steering.</li>
+<li>here is <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/research/2025-08-05_05-15-59_baml_test_assertions.md">the final research doc i ended up using</a></li>
+</ul>
+</section>
+<section id="the-plans" class="level4" data-number="1.1.7.2">
+<h4 data-number="1.1.7.2" class="anchored" data-anchor-id="the-plans"><span class="header-section-number">1.1.7.2</span> The plans</h4>
+<ul>
+<li>While the research was running, I got impatient and kicked off a plan, with no research, to see if claude could go straight to an implementation plan - <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/plans/fix-assert-syntax-validation-no-research.md">you can see it here</a></li>
+<li>When the research was done, I kicked off another implementation plan that used the research results - <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/plans/baml-test-assertion-validation-with-research.md">you can see it here</a></li>
+</ul>
+<p>The plans are both fairly short, but they differ significantly. They fix the issue in different ways, and have different testing approaches. Without going too much into detail, they both “would have worked” but the one built with research fixed the problem in the <em>best</em> place and prescribed testing that was in line with the codebase conventions.</p>
+</section>
+<section id="the-implementation" class="level4" data-number="1.1.7.3">
+<h4 data-number="1.1.7.3" class="anchored" data-anchor-id="the-implementation"><span class="header-section-number">1.1.7.3</span> The implementation</h4>
+<ul>
+<li>This was all happening the night before the podcast recording. I ran both plans in parallel and submitted both as PRs before signing off for the night.</li>
+</ul>
+<p>By the time we were on the show at 10am PT the next day, <a href="https://github.com/BoundaryML/baml/pull/2259#issuecomment-3155883849">the PR from the plan with the research was already approved by <span class="citation" data-cites="aaron">@aaron</span></a>, who didn’t even know I was doing a bit for a podcast 🙂. We <a href="https://github.com/BoundaryML/baml/pull/2258/files">closed the other one</a>.</p>
+<p>So out of our original 4 goals, we hit:</p>
+<ul>
+<li>✅ Works in brownfield codebases (300k LOC rust project)</li>
+<li>Solves complex problems</li>
+<li>✅ no slop (pr merged)</li>
+<li>Keeps mental alignment</li>
+</ul>
+</section>
+</section>
+<section id="solving-complex-problems" class="level3" data-number="1.1.8">
+<h3 data-number="1.1.8" class="anchored" data-anchor-id="solving-complex-problems"><span class="header-section-number">1.1.8</span> Solving complex problems</h3>
+<p>Vaibhav was still skeptical, and I wanted to see if we could solve a more complex problem.</p>
+<p>So a few weeks later, the two of us spent 7 hours (3 hours on research/plans, 4 hours on implementation) and shipped 35k LOC to add cancellation and wasm support to BAML. The <a href="https://github.com/BoundaryML/baml/pull/2357">cancelation PR just got merged last week</a>. <a href="https://github.com/BoundaryML/baml/pull/2330">The WASM one is still open</a>, but has a working demo of calling the wasm-compiled rust runtime from a JS app in the browser.</p>
+<p>While the cancelation PR required a little more love to take things over the line, we got incredible progress in just a day. Vaibhav estimated that each of these PRs would have been 3-5 days of work for a senior engineer on the BAML team to complete.</p>
+<p>✅ So we can solve complex problems too.</p>
+</section>
+<section id="this-is-not-magic" class="level3 page-columns page-full" data-number="1.1.9">
+<h3 data-number="1.1.9" class="anchored" data-anchor-id="this-is-not-magic"><span class="header-section-number">1.1.9</span> This is not Magic</h3>
+<p>Remember that part in the example where I read the research and threw it out cause it was wrong? Or me and Vaibhav sitting DEEPLY ENGAGED FOR 7 HOURS? You have to engage with your task when you’re doing this or it WILL NOT WORK.</p>
+<p>There’s a certain type of person who is always looking for the one magic prompt that will solve all their problems. It doesn’t exist.</p>
+<p>Frequent Intentional Compaction via a research/plan/implement flow will make your performance <strong>better</strong>, but what makes it <strong>good enough for hard problems</strong> is that you build high-leverage human review into your pipeline.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/01c7818a-9a0d-4ede-a23b-fb0c2e80f843.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Image"><img src="https://github.com/user-attachments/assets/01c7818a-9a0d-4ede-a23b-fb0c2e80f843.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+</section>
+<section id="eggs-on-faces" class="level3" data-number="1.1.10">
+<h3 data-number="1.1.10" class="anchored" data-anchor-id="eggs-on-faces"><span class="header-section-number">1.1.10</span> Eggs on Faces</h3>
+<p>A few weeks back, <a href="https://www.linkedin.com/in/bhsmith/"><span class="citation" data-cites="blakesmith">@blakesmith</span></a> and I sat down for 7 hours and <a href="https://github.com/dexhorthy/parquet-java/blob/remove-hadoop/thoughts/shared/plans/remove-hadoop-dependencies.md">tried to remove hadoop dependencies from parquet java</a> - the deep dive on everything that went wrong and my theories as to why, I’ll save for another post, suffice it to say that it did not go well. The tl;dr is that the research steps didn’t go deep enough through the dependency tree, and assumed classes could be moved upstream without introducing deeply nested hadoop dependencies.</p>
+<p>There are big hard problems you cannot just prompt your way through in 7 hours, and we’re still curiously and excitedly hacking on pushing the boundaries with friends and partners. I think the other learning here is that you probably need at least one person who is an expert in the codebase, and for this case, that was neither of us.</p>
+</section>
+<section id="on-human-leverage" class="level3 page-columns page-full" data-number="1.1.11">
+<h3 data-number="1.1.11" class="anchored" data-anchor-id="on-human-leverage"><span class="header-section-number">1.1.11</span> On Human Leverage</h3>
+<p>If there’s one thing you take away from all this, let it be this:</p>
+<p>A bad line of code is… a bad line of code. But a bad line of a <strong>plan</strong> could lead to hundreds of bad lines of code. And a bad line of <strong>research</strong>, a misunderstanding of how the codebase works or where certain functionality is located, could land you with thousands of bad lines of code.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/dab49f61-caae-4c15-b481-ee9b8f64995f.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Image"><img src="https://github.com/user-attachments/assets/dab49f61-caae-4c15-b481-ee9b8f64995f.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+<p>So you want to <strong>focus human effort and attention</strong> on the HIGHEST LEVERAGE parts of the pipeline.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/cf981f70-5e61-4938-aa9a-7dcb88c9f8a4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Image"><img src="https://github.com/user-attachments/assets/cf981f70-5e61-4938-aa9a-7dcb88c9f8a4.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+<p>When you review the research and the plans, you get more leverage than you do when you review the code. (By the way, one of our primary focuses @ <a href="https://hlyr.dev/code">humanlayer</a> is helping teams build and leverage high-quality workflow prompts and crafting great collaboration workflows for ai-generated code and specs).</p>
+</section>
+<section id="what-is-code-review-for" class="level3 page-columns page-full" data-number="1.1.12">
+<h3 data-number="1.1.12" class="anchored" data-anchor-id="what-is-code-review-for"><span class="header-section-number">1.1.12</span> What is code review for?</h3>
+<p>People have a lot of different opinions on what code review is for.</p>
+<p>I prefer <a href="https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html">Blake Smith’s framing in Code Review Essentials for Software Teams</a>, where he says the most important part of code review is mental alignment - keeping members of the team on the page as to how the code is changing and why.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="https://github.com/user-attachments/assets/77f4001b-175f-4da6-a6d4-e00b80489476.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Image"><img src="https://github.com/user-attachments/assets/77f4001b-175f-4da6-a6d4-e00b80489476.png" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<figcaption class="margin-caption">Image</figcaption>
+</figure>
+</div>
+<p>Remember those 2k line golang PRs? I cared about them being correct and well designed, but the biggest source of internal unrest and frustration on the team was the lack of mental alignment. <strong>I was starting to lose touch with what our product was and how it worked.</strong></p>
+<p>I would expect that anyone who’s worked with a very productive AI coder has had this experience.</p>
+<p>This is actually the most important part of research/plan/implement to us. A guaranteed side effect of everyone shipping way more code is that a much larger proportion of your codebase is going to be unfamiliar to any given engineer at any point in time.</p>
+<p>I won’t even try to convince you that research/plan/implement is the right approach for most teams - it probably isn’t. But you ABSOLUTELY need an engineering process that</p>
+<ol type="1">
+<li>keeps team members on the same page</li>
+<li>enables team members to quickly learn about unfamiliar parts of the codebase</li>
+</ol>
+<p>For most teams, this is pull requests and internal docs. For us, it’s now specs, plans, and research.</p>
+<p>I can’t read 2000 lines of golang daily. But I <em>can</em> read 200 lines of a well-written implementation plan.</p>
+<p>I can’t go spelunking through 40+ files of daemon code for an hour+ when something is broken (okay, I can, but I don’t want to). I <em>can</em> steer a research prompt to give me the speed-run on where I should be looking and why.</p>
+</section>
+<section id="recap" class="level3" data-number="1.1.13">
+<h3 data-number="1.1.13" class="anchored" data-anchor-id="recap"><span class="header-section-number">1.1.13</span> Recap</h3>
+<p>Basically we got everything we needed.</p>
+<ul>
+<li>✅ Works in brownfield codebases</li>
+<li>✅ Solves complex problems</li>
+<li>✅ No slop</li>
+<li>✅ Maintains mental alignment</li>
+</ul>
+<p>(oh, and yeah, our team of three is averaging about $12k on opus per month)</p>
+<p>So you don’t think I’m just another <a href="https://www.youtube.com/watch?v=IS_y40zY-hc&amp;lc=UgzFldRM6LU5unLuFn54AaABAg.AMKlTmJAT5ZAMKrOOAMw3I">hyped up mustachio’d sales guy</a>, I’ll note that this does not work perfectly for every problem (we’ll be back for another round sound, parquet-java).</p>
+<p>In August the whole team spent 2 weeks spinning circles on a really tricky race condition that spiraled into a rabbit hole of issues with MCP sHTTP keepalives in golang and a whole bunch of other dead ends.</p>
+<p>But that’s the exception now. In general, this works well for us. Our intern shipped 2 PRs on his first day, and 10 on his 8th day. I was genuinely skeptical that it would work for anyone else, but me and Vaibhav shipped 35k LOC of working BAML code in 7 hours. (And if you haven’t met Vaibhav, he’s one of the most meticulous engineers I know when it comes to code design and quality.)</p>
+</section>
+<section id="whats-coming" class="level3" data-number="1.1.14">
+<h3 data-number="1.1.14" class="anchored" data-anchor-id="whats-coming"><span class="header-section-number">1.1.14</span> What’s coming</h3>
+<p>I’m reasonably confident that coding agents will be commoditized.</p>
+<p>The hard part will be the team and workflow transformation. Everything about collaboration will change in a world where AI writes 99% of our code.</p>
+<p>And I believe pretty strongly that if you don’t figure this out, you’re gonna get lapped by someone who did.</p>
+</section>
+<section id="okay-so-clearly-you-have-something-to-sell-me" class="level3" data-number="1.1.15">
+<h3 data-number="1.1.15" class="anchored" data-anchor-id="okay-so-clearly-you-have-something-to-sell-me"><span class="header-section-number">1.1.15</span> okay so clearly you have something to sell me</h3>
+<p>We’re pretty bullish on spec-first, agentic workflows, so we’re building tools to make it easier. Among many things, I’m obsessed with the problem of scaling these “frequent intentional compaction” workflows collaboratively across large teams.</p>
+<p>Today, we’re launching CodeLayer, our new “post-IDE IDE” in private beta - think “Superhuman for claude code”. If you’re a fan of Superhuman and/or vim mode and you’re ready to move beyond “vibe coding” and get serious about building with agents, we’d love to have you join the waitlist.</p>
+<p><strong>Sign up at <a href="https://humanlayer.dev">https://humanlayer.dev</a></strong>.</p>
+</section>
+</section>
+<section id="for-oss-maintainers---lets-ship-something-together" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="for-oss-maintainers---lets-ship-something-together"><span class="header-section-number">1.2</span> For OSS Maintainers - lets ship something together</h2>
+<p>If you are a maintainer on a complex OSS project and based in the bay area, my open offer - I will pair with you in-person in SF for 7 hours on a saturday and see if we can ship something big.</p>
+<p>I get a lot of learning about the limitations and where these techniques fall short (and, with any luck, a working merged PR that adds a ton of value that I can point to). You get to learn the workflow in the only way I’ve found that works well - direct 1x1 pairing.</p>
+</section>
+<section id="for-engineering-leaders" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="for-engineering-leaders"><span class="header-section-number">1.3</span> For Engineering Leaders</h2>
+<p>If you or someone you know is an engineering leader that wants to 10x their team’s productivity with AI, we’re forward-deploying with ~10-25 person eng orgs to help teams make the culture/process/tech shift needed to transition to an ai-first coding world.</p>
+<section id="thanks" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="thanks"><span class="header-section-number">1.3.1</span> Thanks</h3>
+<ul>
+<li>Thanks to all the friends and founders who’ve listened through early ramble-y versions of this post - Adam, Josh, Andrew, and many many more</li>
+<li>Thanks Sundeep for weathering this wacky storm</li>
+<li>Thanks Allison, Geoff, and Gerred for dragging us kicking and screaming into the future</li>
+<li></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="about me">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">about me</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/edit/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/blob/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -192,3 +192,29 @@
 .color-pretrained { color: rgb(0, 204, 51); }  /* pretrained_color */
 .color-adapted { color: rgb(204, 0, 51); }     /* adapted_color */
 .color-both { color: rgb(25, 25, 204); }       /* both_color */
+
+/* Responsive images for blog posts */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Specific styling for large images in blog content */
+.quarto-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Lightbox styling for clickable images */
+.lightbox img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lightbox img:hover {
+  transform: scale(1.02);
+}
