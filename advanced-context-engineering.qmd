@@ -29,11 +29,11 @@ Sean proposes that in the AI future, the specs will become the real code. That i
 
 1. That AI tools often lead to a lot of rework, diminishing the perceived productivity gains
 
-![AI coding productivity research findings](https://github.com/user-attachments/assets/f7cec497-3ee2-47d1-8f91-a18210625e19){width=100% .lightbox fig-alt="Chart showing AI tools often lead to more rework and can be counterproductive for complex brownfield codebases"}
+![AI coding productivity research findings](./images/ai-productivity-rework-chart.png){width=100% .lightbox fig-alt="Chart showing AI tools often lead to more rework and can be counterproductive for complex brownfield codebases"}
 
 2. That AI tools work well for greenfield projects, but are often counter-productive for brownfield codebases and complex tasks
 
-![AI tools performance across different project types](https://github.com/user-attachments/assets/06f03232-f9d9-4a92-a182-37056bf877a4){width=100% .lightbox fig-alt="Chart showing AI tools work better for greenfield projects than complex brownfield codebases"}
+![AI tools performance across different project types](./images/ai-tools-greenfield-brownfield-chart.png){width=100% .lightbox fig-alt="Chart showing AI tools work better for greenfield projects than complex brownfield codebases"}
 
 This matched what I heard talking with founders:
 
@@ -100,14 +100,14 @@ I'll dive into:
 
 Most of us start by using a coding agent like a chatbot. You talk (or [drunkenly shout](https://ghuntley.com/six-month-recap/#:~:text=Last%20week%2C%20over%20Zoom%20margaritas%2C%20a%20friend%20and%20I%20reminisced%20about%20COBOL.)) back and forth with it, vibing your way through a problem until you either run out of context, give up, or the agent starts apologizing.
 
-![Naive context management approach](https://github.com/user-attachments/assets/7361a203-9d95-42e2-ac16-1f38b04adb58){width=100% .lightbox fig-alt="Diagram showing naive approach of chatting with AI agent for hours then discarding prompts"}
+![Naive context management approach](./images/naive-context-management-diagram.png){width=100% .lightbox fig-alt="Diagram showing naive approach of chatting with AI agent for hours then discarding prompts"}
 
 
 A slightly smarter way is to just start over when you get off track, discarding your session and starting a new one, perhaps with a little more steering in the prompt.
 
 > [original prompt], but make sure you use XYZ approach, because ABC approach won't work
 
-![Restarting sessions when off-track](https://github.com/user-attachments/assets/1bbbc8ad-60da-4f8b-98c3-e6603b04a0ce){width=100% .lightbox fig-alt="Diagram showing approach of discarding sessions and starting fresh with better prompts"}
+![Restarting sessions when off-track](./images/restarting-sessions-diagram.png){width=100% .lightbox fig-alt="Diagram showing approach of discarding sessions and starting fresh with better prompts"}
 
 ### Slightly Smarter: Intentional Compaction
 
@@ -115,7 +115,7 @@ You have probably done something I've come to call "intentional compaction". Whe
 
 > "Write everything we did so far to progress.md, ensure to note the end goal, the approach we're taking, the steps we've done so far, and the current failure we're working on"
 
-![Intentional compaction workflow](https://github.com/user-attachments/assets/64b940e5-89b1-4f6c-a79c-ec2810d9af77){width=100% .lightbox fig-alt="Diagram showing intentional compaction approach where context is distilled into structured artifacts"}
+![Intentional compaction workflow](./images/intentional-compaction-workflow-diagram.png){width=100% .lightbox fig-alt="Diagram showing intentional compaction approach where context is distilled into structured artifacts"}
 
 
 You can also [use commit messages for intentional compaction](https://x.com/dexhorthy/status/1961490837017088051).
@@ -134,7 +134,7 @@ All of these can flood the context window. **Compaction** is simply distilling t
 
 A good output for an intentional compaction might include something like
 
-![Example of good compaction output](https://github.com/user-attachments/assets/a7d5946d-4e81-46e8-b314-d02dae1f00ee){width=100% .lightbox fig-alt="Structured summary showing end goal, approach, completed steps, and current failure point"}
+![Example of good compaction output](./images/good-compaction-output-example.png){width=100% .lightbox fig-alt="Structured summary showing end goal, approach, completed steps, and current failure point"}
 
 
 ### Why obsess over context?
@@ -145,7 +145,7 @@ This is just as true for [wielding](https://www.youtube.com/watch?v=F_RyElT_gJk)
 
 At any given point, a turn in an agent like claude code is a stateless function call. Context window in, next step out.
 
-![Image](https://github.com/user-attachments/assets/c1e920e8-5dc5-4dd2-b76d-853b85a92e6a){width=100% .lightbox}
+![Image](./images/context-window-agent-diagram.png){width=100% .lightbox}
 
 That is, the contents of your context window are the ONLY lever you have to affect the quality of your output. So yeah, it's worth obsessing over.
 
@@ -164,7 +164,7 @@ Put another way, the worst things that can happen to your context window, in ord
 
 If you like equations, here's a dumb one you can reference:
 
-![Image](https://github.com/user-attachments/assets/a6ea98a6-665b-48af-983b-a1cb2c45e44c){width=100% .lightbox}
+> *Equation diagram not available*
 
 As [Geoff Huntley](https://x.com/GeoffreyHuntley) puts it,
 
@@ -194,21 +194,21 @@ The most common/straightforward use case for subagents is to let you use a fresh
 
 
 
-https://github.com/user-attachments/assets/cb4e7864-9556-4eaa-99ca-a105927f484d
+
 
 
 <details><summary>(video not playing on mobile? expand for the static image version)</summary>
-  ![Image](https://github.com/user-attachments/assets/c72e7dba-1476-4ee9-9cb0-0f97d428b82a){width=100% .lightbox}
+  > *Static image version not available*
 </details>
 
 
 The ideal subagent response probably looks similar to the ideal ad-hoc compaction from above
 
-![Image](https://github.com/user-attachments/assets/a7d5946d-4e81-46e8-b314-d02dae1f00ee){width=100% .lightbox}
+![Image](./images/good-compaction-output-example.png){width=100% .lightbox}
 
 Getting a subagent to return this is not trivial:
 
-![Image](https://github.com/user-attachments/assets/2bcd30f6-84fd-4911-ac15-63f75619e76d){width=100% .lightbox}
+![Image](./images/subagent-response-example.png){width=100% .lightbox}
 
 
 ### What works even better: Frequent Intentional Compaction
@@ -307,7 +307,7 @@ There's a certain type of person who is always looking for the one magic prompt 
 
 Frequent Intentional Compaction via a research/plan/implement flow will make your performance **better**, but what makes it **good enough for hard problems** is that you build high-leverage human review into your pipeline.
 
-![Image](https://github.com/user-attachments/assets/01c7818a-9a0d-4ede-a23b-fb0c2e80f843){width=100% .lightbox}
+> *Human leverage diagram not available*
 
 ### Eggs on Faces
 
@@ -323,11 +323,11 @@ A bad line of code is… a bad line of code.
 But a bad line of a **plan** could lead to hundreds of bad lines of code.
 And a bad line of **research**, a misunderstanding of how the codebase works or where certain functionality is located, could land you with thousands of bad lines of code.
 
-![Image](https://github.com/user-attachments/assets/dab49f61-caae-4c15-b481-ee9b8f64995f){width=100% .lightbox}
+![Image](./images/bad-lines-impact-diagram.png){width=100% .lightbox}
 
 So you want to **focus human effort and attention** on the HIGHEST LEVERAGE parts of the pipeline.
 
-![Image](https://github.com/user-attachments/assets/cf981f70-5e61-4938-aa9a-7dcb88c9f8a4){width=100% .lightbox}
+> *Leverage pipeline diagram not available*
 
 
 When you review the research and the plans, you get more leverage than you do when you review the code. (By the way, one of our primary focuses @ [humanlayer](https://hlyr.dev/code) is helping teams build and leverage high-quality workflow prompts and crafting great collaboration workflows for ai-generated code and specs).
@@ -338,7 +338,7 @@ People have a lot of different opinions on what code review is for.
 
 I prefer [Blake Smith's framing in Code Review Essentials for Software Teams](https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html), where he says the most important part of code review is mental alignment - keeping members of the team on the page as to how the code is changing and why.
 
-![Image](https://github.com/user-attachments/assets/77f4001b-175f-4da6-a6d4-e00b80489476){width=100% .lightbox}
+![Image](./images/code-review-mental-alignment-diagram.png){width=100% .lightbox}
 
 Remember those 2k line golang PRs? I cared about them being correct and well designed, but the biggest source of internal unrest and frustration on the team was the lack of mental alignment. **I was starting to lose touch with what our product was and how it worked.**
 
