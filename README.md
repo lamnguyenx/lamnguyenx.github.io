@@ -1,3 +1,3 @@
-# Modern Polars
+# lamnguyenx.github.io
 
-The repository for the [Modern Polars](https://kevinheavey.github.io/modern-polars/) book.
+Personal website built with Hugo, featuring minimal dependencies and dark mode toggle.
