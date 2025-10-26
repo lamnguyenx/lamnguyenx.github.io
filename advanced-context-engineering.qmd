@@ -164,7 +164,7 @@ Put another way, the worst things that can happen to your context window, in ord
 
 If you like equations, here's a dumb one you can reference:
 
-> *Equation diagram not available*
+![Context window equation diagram](./images/context-equation.webp){width=100% .lightbox}
 
 As [Geoff Huntley](https://x.com/GeoffreyHuntley) puts it,
 
@@ -198,7 +198,7 @@ The most common/straightforward use case for subagents is to let you use a fresh
 
 
 <details><summary>(video not playing on mobile? expand for the static image version)</summary>
-  > *Static image version not available*
+  ![Subagent workflow diagram](./images/subagent-workflow.webp){width=100% .lightbox}
 </details>
 
 
@@ -307,7 +307,7 @@ There's a certain type of person who is always looking for the one magic prompt 
 
 Frequent Intentional Compaction via a research/plan/implement flow will make your performance **better**, but what makes it **good enough for hard problems** is that you build high-leverage human review into your pipeline.
 
-> *Human leverage diagram not available*
+![Human leverage diagram](./images/human-leverage-diagram.webp){width=100% .lightbox}
 
 ### Eggs on Faces
 
@@ -327,7 +327,7 @@ And a bad line of **research**, a misunderstanding of how the codebase works or 
 
 So you want to **focus human effort and attention** on the HIGHEST LEVERAGE parts of the pipeline.
 
-> *Leverage pipeline diagram not available*
+![Leverage pipeline diagram](./images/leverage-pipeline-diagram.webp){width=100% .lightbox}
 
 
 When you review the research and the plans, you get more leverage than you do when you review the code. (By the way, one of our primary focuses @ [humanlayer](https://hlyr.dev/code) is helping teams build and leverage high-quality workflow prompts and crafting great collaboration workflows for ai-generated code and specs).

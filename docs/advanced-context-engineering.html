@@ -544,9 +544,12 @@ ul.task-list li input[type="checkbox"] {
 <li>Too much Noise</li>
 </ol>
 <p>If you like equations, here’s a dumb one you can reference:</p>
-<blockquote class="blockquote">
-<p><em>Equation diagram not available</em></p>
-</blockquote>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="./images/context-equation.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Context window equation diagram"><img src="./images/context-equation.webp" class="img-fluid figure-img" style="width:100.0%" alt="Context window equation diagram"></a></p>
+<figcaption class="margin-caption">Context window equation diagram</figcaption>
+</figure>
+</div>
 <p>As <a href="https://x.com/GeoffreyHuntley">Geoff Huntley</a> puts it,</p>
 <blockquote class="blockquote">
 <p>The name of the game is that you only have approximately <strong>170k of context window</strong> to work with. So it’s essential to use as little of it as possible. The more you use the context window, the worse the outcomes you’ll get.</p>
@@ -563,25 +566,28 @@ done</code></pre>
 <p>Subagents are another way to manage context, and generic subagents (i.e.&nbsp;not <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">custom</a> ones) have been a feature of claude code and many coding CLIs since the early days.</p>
 <p>Subagents are not about <a href="https://x.com/dexhorthy/status/1950288431122436597">playing house and anthropomorphizing roles</a>. Subagents are about context control.</p>
 <p>The most common/straightforward use case for subagents is to let you use a fresh context window to do finding/searching/summarizing that enables the parent agent to get straight to work without clouding its context window with <code>Glob</code> / <code>Grep</code> / <code>Read</code> / etc calls.</p>
-<details>
+<details class="page-columns page-full">
 <summary>
 (video not playing on mobile? expand for the static image version)
 </summary>
-<blockquote class="blockquote">
-<p><em>Static image version not available</em></p>
-</blockquote>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="./images/subagent-workflow.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Subagent workflow diagram"><img src="./images/subagent-workflow.webp" class="img-fluid figure-img" style="width:100.0%" alt="Subagent workflow diagram"></a></p>
+<figcaption class="margin-caption">Subagent workflow diagram</figcaption>
+</figure>
+</div>
 </details>
 <p>The ideal subagent response probably looks similar to the ideal ad-hoc compaction from above</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><a href="./images/good-compaction-output-example.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Image"><img src="./images/good-compaction-output-example.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<p><a href="./images/good-compaction-output-example.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Image"><img src="./images/good-compaction-output-example.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
 <figcaption class="margin-caption">Image</figcaption>
 </figure>
 </div>
 <p>Getting a subagent to return this is not trivial:</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><a href="./images/subagent-response-example.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Image"><img src="./images/subagent-response-example.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<p><a href="./images/subagent-response-example.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Image"><img src="./images/subagent-response-example.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
 <figcaption class="margin-caption">Image</figcaption>
 </figure>
 </div>
@@ -650,14 +656,17 @@ done</code></pre>
 <p>While the cancelation PR required a little more love to take things over the line, we got incredible progress in just a day. Vaibhav estimated that each of these PRs would have been 3-5 days of work for a senior engineer on the BAML team to complete.</p>
 <p>✅ So we can solve complex problems too.</p>
 </section>
-<section id="this-is-not-magic" class="level3" data-number="1.4.9">
+<section id="this-is-not-magic" class="level3 page-columns page-full" data-number="1.4.9">
 <h3 data-number="1.4.9" class="anchored" data-anchor-id="this-is-not-magic"><span class="header-section-number">1.4.9</span> This is not Magic</h3>
 <p>Remember that part in the example where I read the research and threw it out cause it was wrong? Or me and Vaibhav sitting DEEPLY ENGAGED FOR 7 HOURS? You have to engage with your task when you’re doing this or it WILL NOT WORK.</p>
 <p>There’s a certain type of person who is always looking for the one magic prompt that will solve all their problems. It doesn’t exist.</p>
 <p>Frequent Intentional Compaction via a research/plan/implement flow will make your performance <strong>better</strong>, but what makes it <strong>good enough for hard problems</strong> is that you build high-leverage human review into your pipeline.</p>
-<blockquote class="blockquote">
-<p><em>Human leverage diagram not available</em></p>
-</blockquote>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="./images/human-leverage-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Human leverage diagram"><img src="./images/human-leverage-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Human leverage diagram"></a></p>
+<figcaption class="margin-caption">Human leverage diagram</figcaption>
+</figure>
+</div>
 </section>
 <section id="eggs-on-faces" class="level3" data-number="1.4.10">
 <h3 data-number="1.4.10" class="anchored" data-anchor-id="eggs-on-faces"><span class="header-section-number">1.4.10</span> Eggs on Faces</h3>
@@ -670,14 +679,17 @@ done</code></pre>
 <p>A bad line of code is… a bad line of code. But a bad line of a <strong>plan</strong> could lead to hundreds of bad lines of code. And a bad line of <strong>research</strong>, a misunderstanding of how the codebase works or where certain functionality is located, could land you with thousands of bad lines of code.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><a href="./images/bad-lines-impact-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Image"><img src="./images/bad-lines-impact-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<p><a href="./images/bad-lines-impact-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Image"><img src="./images/bad-lines-impact-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
 <figcaption class="margin-caption">Image</figcaption>
 </figure>
 </div>
 <p>So you want to <strong>focus human effort and attention</strong> on the HIGHEST LEVERAGE parts of the pipeline.</p>
-<blockquote class="blockquote">
-<p><em>Leverage pipeline diagram not available</em></p>
-</blockquote>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="./images/leverage-pipeline-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Leverage pipeline diagram"><img src="./images/leverage-pipeline-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Leverage pipeline diagram"></a></p>
+<figcaption class="margin-caption">Leverage pipeline diagram</figcaption>
+</figure>
+</div>
 <p>When you review the research and the plans, you get more leverage than you do when you review the code. (By the way, one of our primary focuses @ <a href="https://hlyr.dev/code">humanlayer</a> is helping teams build and leverage high-quality workflow prompts and crafting great collaboration workflows for ai-generated code and specs).</p>
 </section>
 <section id="what-is-code-review-for" class="level3 page-columns page-full" data-number="1.4.12">
@@ -686,7 +698,7 @@ done</code></pre>
 <p>I prefer <a href="https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html">Blake Smith’s framing in Code Review Essentials for Software Teams</a>, where he says the most important part of code review is mental alignment - keeping members of the team on the page as to how the code is changing and why.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><a href="./images/code-review-mental-alignment-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Image"><img src="./images/code-review-mental-alignment-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
+<p><a href="./images/code-review-mental-alignment-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Image"><img src="./images/code-review-mental-alignment-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
 <figcaption class="margin-caption">Image</figcaption>
 </figure>
 </div>
