@@ -1,0 +1,66 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "lamnguyenx"
+  # author: "Tung Lam Nguyen"
+  favicon: polar-bear-airpods-no-background.webp
+  description: "code/music/cycling/cats/dogs expert since 1995"
+  keyword: python, performance, engineering
+  url: https://kevinheavey.github.io/modern-polars/
+  sidebar:
+    logo: polar-bear-airpods-no-background.webp
+    search: true
+    style: "floating"
+    collapse-level: 2
+    border: true
+  repo-url: https://github.com/lamnguyenx/lamnguyenx.github.io/
+  repo-subdir: book
+  repo-branch: master
+  repo-actions: [edit, issue, source]
+  sharing: [twitter, facebook, linkedin]
+  image: polar-bear-airpods-no-background.webp
+
+  chapters:
+    - index.qmd
+    - advanced-context-engineering.qmd
+    # - indexing.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo]
+      dark: [darkly, custom-dark.scss]
+    code-fold: false
+    css: visionbook.css
+    citation-style: elsevier-with-titles.csl
+    anchor-sections: true
+    fontsize: "16px"
+    linestretch: 1.6
+    smooth-scroll: true
+    toc-depth: 3
+    # code stuff
+    code-link: true
+    code-tools: false
+    highlight-style: printing
+    code-block-bg: true
+    code-overflow: wrap
+    fig-align: "center"
+    reference-location: margin
+    cap-location: margin
+    mathjax: true
+    lightbox: true
+    crossref:
+      custom:
+        - key: alg
+          kind: float
+          reference-prefix: Algorithm
+    grid:
+      gutter-width: 2em
+
+    # include-in-header: sectionstat.html
+    # other-links:
+    #   - text: Accessibility
+    #     href: https://accessibility.mit.edu/
+    #     icon: universal-access

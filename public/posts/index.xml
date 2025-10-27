@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on lamnguyenx</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on lamnguyenx</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting AI to Work in Complex Codebases</title>
+      <link>http://localhost:1313/posts/advanced-context-engineering/</link>
+      <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/advanced-context-engineering/</guid>
+      <description>&lt;h1 id=&#34;getting-ai-to-work-in-complex-codebases&#34;&gt;Getting AI to Work in Complex Codebases&lt;/h1&gt;&#xA;&lt;p&gt;It seems pretty well-accepted that AI coding tools struggle with real production codebases. The &lt;a href=&#34;https://www.youtube.com/watch?v=tbDDYKRFjhk&#34;&gt;Stanford study on AI&amp;rsquo;s impact on developer productivity&lt;/a&gt; found:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;A lot of the &amp;ldquo;extra code&amp;rdquo; shipped by AI tools ends up just reworking the slop that was shipped last week.&lt;/li&gt;&#xA;&lt;li&gt;Coding agents are great for new projects or small changes, but in large established codebases, they can often make developers &lt;em&gt;less&lt;/em&gt; productive.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;The common response is somewhere between the pessimist &amp;ldquo;this will never work&amp;rdquo; and the more measured &amp;ldquo;maybe someday when there are smarter models.&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

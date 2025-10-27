@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting AI to Work in Complex Codebases | lamnguyenx</title>
+    <meta name="description" content="code/music/cycling/cats/dogs expert since 1995">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="/" class="site-title">lamnguyenx</a>
+                <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header class="post-header">
+        <h1>Getting AI to Work in Complex Codebases</h1>
+        <div class="post-meta">
+            <time datetime="2025-10-26">October 26, 2025</time>
+            
+            <div class="tags">
+                
+                <span class="tag">AI</span>
+                
+                <span class="tag">coding</span>
+                
+                <span class="tag">engineering</span>
+                
+                <span class="tag">context</span>
+                
+            </div>
+            
+        </div>
+    </header>
+    <div class="post-content">
+        <h1 id="getting-ai-to-work-in-complex-codebases">Getting AI to Work in Complex Codebases</h1>
+<p>It seems pretty well-accepted that AI coding tools struggle with real production codebases. The <a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">Stanford study on AI&rsquo;s impact on developer productivity</a> found:</p>
+<ol>
+<li>A lot of the &ldquo;extra code&rdquo; shipped by AI tools ends up just reworking the slop that was shipped last week.</li>
+<li>Coding agents are great for new projects or small changes, but in large established codebases, they can often make developers <em>less</em> productive.</li>
+</ol>
+<p>The common response is somewhere between the pessimist &ldquo;this will never work&rdquo; and the more measured &ldquo;maybe someday when there are smarter models.&rdquo;</p>
+<p>After several months of tinkering, I&rsquo;ve found that <strong>you can get really far with today&rsquo;s models if you embrace core context engineering principles</strong>.</p>
+<p>This isn&rsquo;t another &ldquo;10x your productivity&rdquo; pitch. I <a href="https://hlyr.dev/12fa">tend to be pretty measured when it comes to interfacing with the ai hype machine</a>. But we&rsquo;ve stumbled into workflows that leave me with considerable optimism for what&rsquo;s possible. We&rsquo;ve gotten claude code to handle 300k LOC Rust codebases, ship a week&rsquo;s worth of work in a day, and maintain code quality that passes expert review. We use a family of techniques I call &ldquo;frequent intentional compaction&rdquo; - deliberately structuring how you feed context to the AI throughout the development process.</p>
+<p>I am now fully convinced that AI for coding is not just for toys and prototypes, but rather a deeply technical engineering craft.</p>
+<p><strong>Video Version</strong>: If you prefer video, this post is based on <a href="https://hlyr.dev/ace">a talk given at Y Combinator on August 20th</a></p>
+<h2 id="grounding-context-from-ai-engineer">Grounding Context from AI Engineer</h2>
+<p>Two talks from AI Engineer 2025 fundamentally shaped my thinking about this problem.</p>
+<p>The first is <a href="https://www.youtube.com/watch?v=8rABwKRsec4">Sean Grove&rsquo;s talk on &ldquo;Specs are the new code&rdquo;</a> and the second is <a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">the Stanford study on AI&rsquo;s impact on developer productivity</a>.</p>
+<p>Sean argued that we&rsquo;re all <em>vibe coding wrong</em>. The idea of chatting with an AI agent for two hours, specifying what you want, and then throwing away all the prompts while committing only the final code… is like a Java developer compiling a JAR and checking in the compiled binary while throwing away the source.</p>
+<p>Sean proposes that in the AI future, the specs will become the real code. That in two years, you&rsquo;ll be opening python files in your IDE with about the same frequency that, today, you might open up a hex editor to read assembly (which, for most of us, is never).</p>
+<p><a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">Yegor&rsquo;s talk on developer productivity</a> tackled an orthogonal problem. They analyzed commits from 100k developers and found, among other things,</p>
+<ol>
+<li>That AI tools often lead to a lot of rework, diminishing the perceived productivity gains</li>
+</ol>
+<p><img src="./images/ai-productivity-rework-chart.webp" alt="AI coding productivity research findings">{width=100% .lightbox fig-alt=&ldquo;Chart showing AI tools often lead to more rework and can be counterproductive for complex brownfield codebases&rdquo;}</p>
+<ol start="2">
+<li>That AI tools work well for greenfield projects, but are often counter-productive for brownfield codebases and complex tasks</li>
+</ol>
+<p><img src="./images/ai-tools-greenfield-brownfield-chart.webp" alt="AI tools performance across different project types">{width=100% .lightbox fig-alt=&ldquo;Chart showing AI tools work better for greenfield projects than complex brownfield codebases&rdquo;}</p>
+<p>This matched what I heard talking with founders:</p>
+<ul>
+<li>&ldquo;Too much slop.&rdquo;</li>
+<li>&ldquo;Tech debt factory.&rdquo;</li>
+<li>&ldquo;Doesn&rsquo;t work in big repos.&rdquo;</li>
+<li>&ldquo;Doesn&rsquo;t work for complex systems.&rdquo;</li>
+</ul>
+<p>The general vibe on AI-coding for hard stuff tends to be</p>
+<blockquote>
+<p>Maybe someday, when models are smarter…</p>
+</blockquote>
+<p>Heck even <a href="https://x.com/amasad">Amjad</a> was on a <a href="https://www.lennysnewsletter.com/p/behind-the-product-replit-amjad-masad">lenny&rsquo;s podcast 9 months ago</a> talking about how PMs use Replit agent to prototype new stuff and then they hand it off to engineers to implement for production.
+(Disclaimer: i haven&rsquo;t caught up with him recently (ok, ever), this stance may have changed)</p>
+<p>Whenever I hear &ldquo;Maybe someday when the models are smart&rdquo; I generally leap to exclaim <strong>that&rsquo;s what context engineering is all about</strong>: getting the most out of <em>today&rsquo;s</em> models.</p>
+<h2 id="whats-actually-possible-today">What&rsquo;s actually possible today</h2>
+<p>I&rsquo;ll deep dive on this a bit futher down, but to prove this isn&rsquo;t just theory, let me outline a concrete example. A few weeks ago, I decided to test our techniques on <a href="https://github.com/BoundaryML/baml">BAML</a>, a 300k LOC Rust codebase for a programming language that works with LLMs. I&rsquo;m at best an amateur Rust dev and had never touched the BAML codebase before.</p>
+<p>Within an hour or so, I had a <a href="https://github.com/BoundaryML/baml/pull/2259#issuecomment-3155883849">PR fixing a bug</a> which was approved by the maintainer the next morning. A few weeks later, <a href="https://x.com/hellovai">@hellovai</a> and I paired on shipping 35k LOC to BAML, adding <a href="https://github.com/BoundaryML/baml/pull/2357">cancellation support</a> and <a href="https://github.com/BoundaryML/baml/pull/2330">WASM compilation</a> - features the team estimated would take a senior engineer 3-5 days each. We got both draft prs ready in about 7 hours.</p>
+<p>Again, this is all built around a workflow we call <a href="#what-works-even-better-frequent-intentional-compaction">frequent intentional compaction</a> - essentially designing your entire development process around context management, keeping utilization in the 40-60% range, and building in high-leverage human review at exactly the right points. We use a &ldquo;research, plan, implement&rdquo; workflow, but the core capabilities/learnings here are FAR more general than any specific workflow or set of prompts.</p>
+<h2 id="our-weird-journey-to-get-here">Our weird journey to get here</h2>
+<p>I was working with one of the most productive AI coders I&rsquo;ve ever met.
+Every few days they&rsquo;d drop <strong>2000-line Go PRs</strong>.
+And this wasn&rsquo;t a nextjs app or a CRUD API. This was complex, <a href="https://github.com/humanlayer/humanlayer/blob/main/hld/daemon/daemon_subscription_integration_test.go#L45">race-prone systems code</a> that did JSON RPC over unix sockets and managed streaming stdio from forked unix processes (mostly claude code sdk processes, more on that later 🙂).</p>
+<p>The idea of carefully reading 2,000 lines of complex Go code every few days was simply not sustainable. I was starting to feel a bit like Mitchell Hashimoto when he added the <a href="https://github.com/ghostty-org/ghostty/pull/8289">AI contributions must be disclosed</a> rules for ghostty.</p>
+<p>Our approach was to adopt something like sean&rsquo;s <strong>spec-driven development</strong>.</p>
+<p>It was uncomfortable at first.
+I had to learn to let go of reading every line of PR code.
+I still read the tests pretty carefully, but the specs became our source of truth for what was being built and why.</p>
+<p>The transformation took about 8 weeks.
+It was incredibly uncomfortable for everyone involved, not least of all for me.
+But now we&rsquo;re flying. A few weeks back, I shipped 6 PRs in a day.
+I can count on one hand the number of times I&rsquo;ve edited a non-markdown file by hand in the last three months.</p>
+<h2 id="advanced-context-engineering-for-coding-agents">Advanced Context Engineering for Coding Agents</h2>
+<p>What we needed was:</p>
+<ul>
+<li>AI that Works Well in Brownfield Codebases</li>
+<li>AI that Solves Complex Problems</li>
+<li>No Slop</li>
+<li>Maintain Mental Alignment across the team</li>
+</ul>
+<p>(And yeah sure, let&rsquo;s try to spend as many tokens as possible.)</p>
+<p>I&rsquo;ll dive into:</p>
+<ol>
+<li>what we learned applying context engineering to coding agents</li>
+<li>the dimensions along which using these agents is a deeply technical craft</li>
+<li>why I don&rsquo;t believe these approaches are generalizable</li>
+<li>the number of times I&rsquo;ve been repeatedly proven wrong about (3)</li>
+</ol>
+<h3 id="but-first-the-naive-way-to-manage-agent-context">But first: The Naive Way to manage agent context</h3>
+<p>Most of us start by using a coding agent like a chatbot. You talk (or <a href="https://ghuntley.com/six-month-recap/#:~:text=Last%20week%2C%20over%20Zoom%20margaritas%2C%20a%20friend%20and%20I%20reminisced%20about%20COBOL.">drunkenly shout</a>) back and forth with it, vibing your way through a problem until you either run out of context, give up, or the agent starts apologizing.</p>
+<p><img src="./images/naive-context-management-diagram.webp" alt="Naive context management approach">{width=100% .lightbox fig-alt=&ldquo;Diagram showing naive approach of chatting with AI agent for hours then discarding prompts&rdquo;}</p>
+<p>A slightly smarter way is to just start over when you get off track, discarding your session and starting a new one, perhaps with a little more steering in the prompt.</p>
+<blockquote>
+<p>[original prompt], but make sure you use XYZ approach, because ABC approach won&rsquo;t work</p>
+</blockquote>
+<p><img src="./images/restarting-sessions-diagram.webp" alt="Restarting sessions when off-track">{width=100% .lightbox fig-alt=&ldquo;Diagram showing approach of discarding sessions and starting fresh with better prompts&rdquo;}</p>
+<h3 id="slightly-smarter-intentional-compaction">Slightly Smarter: Intentional Compaction</h3>
+<p>You have probably done something I&rsquo;ve come to call &ldquo;intentional compaction&rdquo;. Whether you&rsquo;re on track or not, as your context starts to fill up, you probably want to pause your work and start over with a fresh context window. To do this, you might use a prompt like</p>
+<blockquote>
+<p>&ldquo;Write everything we did so far to progress.md, ensure to note the end goal, the approach we&rsquo;re taking, the steps we&rsquo;ve done so far, and the current failure we&rsquo;re working on&rdquo;</p>
+</blockquote>
+<p><img src="./images/intentional-compaction-workflow-diagram.webp" alt="Intentional compaction workflow">{width=100% .lightbox fig-alt=&ldquo;Diagram showing intentional compaction approach where context is distilled into structured artifacts&rdquo;}</p>
+<p>You can also <a href="https://x.com/dexhorthy/status/1961490837017088051">use commit messages for intentional compaction</a>.</p>
+<h3 id="what-exactly-are-we-compacting">What Exactly Are We Compacting?</h3>
+<p>What eats up context?</p>
+<ul>
+<li>Searching for files</li>
+<li>Understanding code flow</li>
+<li>Applying edits</li>
+<li>Test/build logs</li>
+<li>Huge JSON blobs from tools</li>
+</ul>
+<p>All of these can flood the context window. <strong>Compaction</strong> is simply distilling them into structured artifacts.</p>
+<p>A good output for an intentional compaction might include something like</p>
+<p><img src="./images/good-compaction-output-example.webp" alt="Example of good compaction output">{width=100% .lightbox fig-alt=&ldquo;Structured summary showing end goal, approach, completed steps, and current failure point&rdquo;}</p>
+<h3 id="why-obsess-over-context">Why obsess over context?</h3>
+<p>As we went deep on in <a href="https://hlyr.dev/12fa">12-factor agents</a>, LLMs are stateless functions. The only thing that affects the quality of your output (without training/tuning models themselves) is the quality of the inputs.</p>
+<p>This is just as true for <a href="https://www.youtube.com/watch?v=F_RyElT_gJk">wielding</a> coding agents as it is for general agent design, you just have a smaller problem space, and rather than building agents, we&rsquo;re talking about using agents.</p>
+<p>At any given point, a turn in an agent like claude code is a stateless function call. Context window in, next step out.</p>
+<p><img src="./images/context-window-agent-diagram.webp" alt="Image">{width=100% .lightbox}</p>
+<p>That is, the contents of your context window are the ONLY lever you have to affect the quality of your output. So yeah, it&rsquo;s worth obsessing over.</p>
+<p>You should optimize your context window for:</p>
+<ol>
+<li>Correctness</li>
+<li>Completeness</li>
+<li>Size</li>
+<li>Trajectory</li>
+</ol>
+<p>Put another way, the worst things that can happen to your context window, in order, are:</p>
+<ol>
+<li>Incorrect Information</li>
+<li>Missing Information</li>
+<li>Too much Noise</li>
+</ol>
+<p>If you like equations, here&rsquo;s a dumb one you can reference:</p>
+<p><img src="./images/context-equation.webp" alt="Context window equation diagram">{width=100% .lightbox}</p>
+<p>As <a href="https://x.com/GeoffreyHuntley">Geoff Huntley</a> puts it,</p>
+<blockquote>
+<p>The name of the game is that you only have approximately <strong>170k of context window</strong> to work with.
+So it&rsquo;s essential to use as little of it as possible.
+The more you use the context window, the worse the outcomes you&rsquo;ll get.</p>
+</blockquote>
+<p>Geoff&rsquo;s solution to this engineering constraint is a technique he calls <a href="https://ghuntley.com/ralph/">Ralph Wiggum as a Software Engineer</a>, which basically involves running an agent in a while loop forever with a simple prompt.</p>
+<pre tabindex="0"><code>while :; do
+  cat PROMPT.md | npx --yes @sourcegraph/amp
+done
+</code></pre><p>If you wanna learn more about ralph or what&rsquo;s in PROMPT.md, you can check out Geoff&rsquo;s post or dive into the project that <a href="https://x.com/simonfarshid">@simonfarshid</a>, <a href="https://x.com/lantos1618">@lantos1618</a>, <a href="https://x.com/AVGVSTVS96">@AVGVSTVS96</a> and I built at last weekend&rsquo;s YC Agents Hackathon, which was able to (mostly) <a href="https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md">port BrowserUse to TypeScript overnight</a></p>
+<p>Geoff describes ralph as a &ldquo;hilariously dumb&rdquo; solution to the context window problem. <a href="https://ghuntley.com/content/images/size/w2400/2025/07/The-ralph-Process.webp">I&rsquo;m not entirely sure that it is dumb</a>.</p>
+<h3 id="back-to-compaction-using-sub-agents">Back to compaction: Using Sub-Agents</h3>
+<p>Subagents are another way to manage context, and generic subagents (i.e. not <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">custom</a> ones) have been a feature of claude code and many coding CLIs since the early days.</p>
+<p>Subagents are not about <a href="https://x.com/dexhorthy/status/1950288431122436597">playing house and anthropomorphizing roles</a>. Subagents are about context control.</p>
+<p>The most common/straightforward use case for subagents is to let you use a fresh context window to do finding/searching/summarizing that enables the parent agent to get straight to work without clouding its context window with <code>Glob</code> / <code>Grep</code> / <code>Read</code> / etc calls.</p>
+<!-- raw HTML omitted -->
+<p>The ideal subagent response probably looks similar to the ideal ad-hoc compaction from above</p>
+<p><img src="./images/good-compaction-output-example.webp" alt="Image">{width=100% .lightbox}</p>
+<p>Getting a subagent to return this is not trivial:</p>
+<p><img src="./images/subagent-response-example.webp" alt="Image">{width=100% .lightbox}</p>
+<h3 id="what-works-even-better-frequent-intentional-compaction">What works even better: Frequent Intentional Compaction</h3>
+<p>The techniques I want to talk about and that we&rsquo;ve adopted in the last few months fall under what I call &ldquo;frequent intentional compaction&rdquo;.</p>
+<p>Essentially, this means designing your ENTIRE WORKFLOW around context management, and keeping utilization in the 40%-60% range (depends on complexity of the problem ).</p>
+<p>The way we do it is to split into three (ish) steps.</p>
+<p>I say &ldquo;ish&rdquo; because sometimes we skip the research and go straight to planning, and sometimes we&rsquo;ll do multiple passes of compacted research before we&rsquo;re ready to implement.</p>
+<p>I&rsquo;ll share example outputs of each step in a concrete example below. For a given feature or bug, we&rsquo;ll tend to do:</p>
+<p><strong>Research</strong></p>
+<p>Understand the codebase, the files relevant to the issue, and how information flows, and perhaps potential causes of a problem.</p>
+<p>here&rsquo;s our <a href="https://github.com/humanlayer/humanlayer/blob/main/.claude/commands/research_codebase.md">research prompt</a>.
+It currently uses custom subagents, but in other repos I use a more generic version that uses the claude code Task() tool with <code>general-agent</code>.
+The generic one works almost as well.</p>
+<p><strong>Plan</strong></p>
+<p>Outline the exact steps we&rsquo;ll take to fix the issue, and the files we&rsquo;ll need to edit and how, being super precise about the testing / verification steps in each phase.</p>
+<p>This is the <a href="https://github.com/humanlayer/humanlayer/blob/main/.claude/commands/create_plan.md">prompt we use for planning</a>.</p>
+<p><strong>Implement</strong></p>
+<p>Step through the plan, phase by phase. For complex work, I&rsquo;ll often compact the current status back into the original plan file after each implementation phase is verified.</p>
+<p>This is the <a href="https://github.com/humanlayer/humanlayer/blob/main/.claude/commands/implement_plan.md">implementation prompt we use</a>.</p>
+<p>Aside - if you&rsquo;ve been hearing a lot about git worktrees, this is the only step that needs to be done in a worktree. We tend to do everything else on main.</p>
+<p><strong>How we manage/share the markdown files</strong></p>
+<p>I will skip this part for brevity but feel free to launch a claude session in <a href="https://github.com/humanlayer/humanlayer">humanlayer/humanlayer</a> and ask how the &ldquo;thoughts tool&rdquo; works.</p>
+<h3 id="putting-this-into-practice">Putting this into practice</h3>
+<p>I do a <a href="https://github.com/ai-that-works/ai-that-works">weekly live-coding session</a> with <a href="https://www.linkedin.com/in/vaigup/">@vaibhav</a> where we whiteboard and code up a solution to an advanced AI Engineering problem. It&rsquo;s one of the highlights of my week.</p>
+<p>Several weeks ago, I <a href="https://hlyr.dev/he-gh">decided to share some more about the process</a>, curious if our in-house techniques could one-shot a fix to a 300k LOC Rust codebase for BAML, a programming language for working with LLMs. I picked out <a href="https://github.com/BoundaryML/baml/issues/1252">an (admittedly small-ish) bug</a> from the @BoundaryML repo and got to work.</p>
+<p>You can <a href="https://hlyr.dev/he-yt">watch the episode</a> to learn more about the process, but to outline it:</p>
+<p><strong>Worth noting</strong>: I am at best an amateur Rust dev, and I have never worked in the BAML codebase before.</p>
+<h4 id="the-research">The research</h4>
+<ul>
+<li>I created a piece of research, I read it. Claude decided the bug was invalid and the codebase was correct.</li>
+<li>I threw that research out and kicked off a new one, with more steering.</li>
+<li>here is <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/research/2025-08-05_05-15-59_baml_test_assertions.md">the final research doc i ended up using</a></li>
+</ul>
+<h4 id="the-plans">The plans</h4>
+<ul>
+<li>While the research was running, I got impatient and kicked off a plan, with no research, to see if claude could go straight to an implementation plan - <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/plans/fix-assert-syntax-validation-no-research.md">you can see it here</a></li>
+<li>When the research was done, I kicked off another implementation plan that used the research results - <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/plans/baml-test-assertion-validation-with-research.md">you can see it here</a></li>
+</ul>
+<p>The plans are both fairly short, but they differ significantly. They fix the issue in different ways, and have different testing approaches. Without going too much into detail, they both &ldquo;would have worked&rdquo; but the one built with research fixed the problem in the <em>best</em> place and prescribed testing that was in line with the codebase conventions.</p>
+<h4 id="the-implementation">The implementation</h4>
+<ul>
+<li>This was all happening the night before the podcast recording. I ran both plans in parallel and submitted both as PRs before signing off for the night.</li>
+</ul>
+<p>By the time we were on the show at 10am PT the next day, <a href="https://github.com/BoundaryML/baml/pull/2259#issuecomment-3155883849">the PR from the plan with the research was already approved by @aaron</a>, who didn&rsquo;t even know I was doing a bit for a podcast 🙂. We <a href="https://github.com/BoundaryML/baml/pull/2258/files">closed the other one</a>.</p>
+<p>So out of our original 4 goals, we hit:</p>
+<ul>
+<li>✅ Works in brownfield codebases (300k LOC rust project)</li>
+<li>Solves complex problems</li>
+<li>✅ no slop (pr merged)</li>
+<li>Keeps mental alignment</li>
+</ul>
+<h3 id="solving-complex-problems">Solving complex problems</h3>
+<p>Vaibhav was still skeptical, and I wanted to see if we could solve a more complex problem.</p>
+<p>So a few weeks later, the two of us spent 7 hours (3 hours on research/plans, 4 hours on implementation) and shipped 35k LOC to add cancellation and wasm support to BAML.
+The <a href="https://github.com/BoundaryML/baml/pull/2357">cancelation PR just got merged last week</a>. <a href="https://github.com/BoundaryML/baml/pull/2330">The WASM one is still open</a>, but has a working demo of calling the wasm-compiled rust runtime from a JS app in the browser.</p>
+<p>While the cancelation PR required a little more love to take things over the line, we got incredible progress in just a day. Vaibhav estimated that each of these PRs would have been 3-5 days of work for a senior engineer on the BAML team to complete.</p>
+<p>✅ So we can solve complex problems too.</p>
+<h3 id="this-is-not-magic">This is not Magic</h3>
+<p>Remember that part in the example where I read the research and threw it out cause it was wrong? Or me and Vaibhav sitting DEEPLY ENGAGED FOR 7 HOURS? You have to engage with your task when you&rsquo;re doing this or it WILL NOT WORK.</p>
+<p>There&rsquo;s a certain type of person who is always looking for the one magic prompt that will solve all their problems. It doesn&rsquo;t exist.</p>
+<p>Frequent Intentional Compaction via a research/plan/implement flow will make your performance <strong>better</strong>, but what makes it <strong>good enough for hard problems</strong> is that you build high-leverage human review into your pipeline.</p>
+<p><img src="./images/human-leverage-diagram.webp" alt="Human leverage diagram">{width=100% .lightbox}</p>
+<h3 id="eggs-on-faces">Eggs on Faces</h3>
+<p>A few weeks back, <a href="https://www.linkedin.com/in/bhsmith/">@blakesmith</a> and I sat down for 7 hours and <a href="https://github.com/dexhorthy/parquet-java/blob/remove-hadoop/thoughts/shared/plans/remove-hadoop-dependencies.md">tried to remove hadoop dependencies from parquet java</a> - the deep dive on everything that went wrong and my theories as to why, I&rsquo;ll save for another post, suffice it to say that it did not go well. The tl;dr is that the research steps didn&rsquo;t go deep enough through the dependency tree, and assumed classes could be moved upstream without introducing deeply nested hadoop dependencies.</p>
+<p>There are big hard problems you cannot just prompt your way through in 7 hours, and we&rsquo;re still curiously and excitedly hacking on pushing the boundaries with friends and partners. I think the other learning here is that you probably need at least one person who is an expert in the codebase, and for this case, that was neither of us.</p>
+<h3 id="on-human-leverage">On Human Leverage</h3>
+<p>If there&rsquo;s one thing you take away from all this, let it be this:</p>
+<p>A bad line of code is… a bad line of code.
+But a bad line of a <strong>plan</strong> could lead to hundreds of bad lines of code.
+And a bad line of <strong>research</strong>, a misunderstanding of how the codebase works or where certain functionality is located, could land you with thousands of bad lines of code.</p>
+<p><img src="./images/bad-lines-impact-diagram.webp" alt="Image">{width=100% .lightbox}</p>
+<p>So you want to <strong>focus human effort and attention</strong> on the HIGHEST LEVERAGE parts of the pipeline.</p>
+<p><img src="./images/leverage-pipeline-diagram.webp" alt="Leverage pipeline diagram">{width=100% .lightbox}</p>
+<p>When you review the research and the plans, you get more leverage than you do when you review the code. (By the way, one of our primary focuses @ <a href="https://hlyr.dev/code">humanlayer</a> is helping teams build and leverage high-quality workflow prompts and crafting great collaboration workflows for ai-generated code and specs).</p>
+<h3 id="what-is-code-review-for">What is code review for?</h3>
+<p>People have a lot of different opinions on what code review is for.</p>
+<p>I prefer <a href="https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html">Blake Smith&rsquo;s framing in Code Review Essentials for Software Teams</a>, where he says the most important part of code review is mental alignment - keeping members of the team on the page as to how the code is changing and why.</p>
+<p><img src="./images/code-review-mental-alignment-diagram.webp" alt="Image">{width=100% .lightbox}</p>
+<p>Remember those 2k line golang PRs? I cared about them being correct and well designed, but the biggest source of internal unrest and frustration on the team was the lack of mental alignment. <strong>I was starting to lose touch with what our product was and how it worked.</strong></p>
+<p>I would expect that anyone who&rsquo;s worked with a very productive AI coder has had this experience.</p>
+<p>This is actually the most important part of research/plan/implement to us.
+A guaranteed side effect of everyone shipping way more code is that a much larger proportion of your codebase is going to be unfamiliar to any given engineer at any point in time.</p>
+<p>I won&rsquo;t even try to convince you that research/plan/implement is the right approach for most teams - it probably isn&rsquo;t. But you ABSOLUTELY need an engineering process that</p>
+<ol>
+<li>keeps team members on the same page</li>
+<li>enables team members to quickly learn about unfamiliar parts of the codebase</li>
+</ol>
+<p>For most teams, this is pull requests and internal docs. For us, it&rsquo;s now specs, plans, and research.</p>
+<p>I can&rsquo;t read 2000 lines of golang daily. But I <em>can</em> read 200 lines of a well-written implementation plan.</p>
+<p>I can&rsquo;t go spelunking through 40+ files of daemon code for an hour+ when something is broken (okay, I can, but I don&rsquo;t want to). I <em>can</em> steer a research prompt to give me the speed-run on where I should be looking and why.</p>
+<h3 id="recap">Recap</h3>
+<p>Basically we got everything we needed.</p>
+<ul>
+<li>✅ Works in brownfield codebases</li>
+<li>✅ Solves complex problems</li>
+<li>✅ No slop</li>
+<li>✅ Maintains mental alignment</li>
+</ul>
+<p>(oh, and yeah, our team of three is averaging about $12k on opus per month)</p>
+<p>So you don&rsquo;t think I&rsquo;m just another <a href="https://www.youtube.com/watch?v=IS_y40zY-hc&amp;lc=UgzFldRM6LU5unLuFn54AaABAg.AMKlTmJAT5ZAMKrOOAMw3I">hyped up mustachio&rsquo;d sales guy</a>, I&rsquo;ll note that this does not work perfectly for every problem (we&rsquo;ll be back for another round sound, parquet-java).</p>
+<p>In August the whole team spent 2 weeks spinning circles on a really tricky race condition that spiraled into a rabbit hole of issues with MCP sHTTP keepalives in golang and a whole bunch of other dead ends.</p>
+<p>But that&rsquo;s the exception now. In general, this works well for us. Our intern shipped 2 PRs on his first day, and 10 on his 8th day. I was genuinely skeptical that it would work for anyone else, but me and Vaibhav shipped 35k LOC of working BAML code in 7 hours. (And if you haven&rsquo;t met Vaibhav, he&rsquo;s one of the most meticulous engineers I know when it comes to code design and quality.)</p>
+<h3 id="whats-coming">What&rsquo;s coming</h3>
+<p>I&rsquo;m reasonably confident that coding agents will be commoditized.</p>
+<p>The hard part will be the team and workflow transformation. Everything about collaboration will change in a world where AI writes 99% of our code.</p>
+<p>And I believe pretty strongly that if you don&rsquo;t figure this out, you&rsquo;re gonna get lapped by someone who did.</p>
+<h3 id="okay-so-clearly-you-have-something-to-sell-me">okay so clearly you have something to sell me</h3>
+<p>We&rsquo;re pretty bullish on spec-first, agentic workflows, so we&rsquo;re building tools to make it easier. Among many things, I&rsquo;m obsessed with the problem of scaling these &ldquo;frequent intentional compaction&rdquo; workflows collaboratively across large teams.</p>
+<p>Today, we&rsquo;re launching CodeLayer, our new &ldquo;post-IDE IDE&rdquo; in private beta - think &ldquo;Superhuman for claude code&rdquo;. If you&rsquo;re a fan of Superhuman and/or vim mode and you&rsquo;re ready to move beyond &ldquo;vibe coding&rdquo; and get serious about building with agents, we&rsquo;d love to have you join the waitlist.</p>
+<p><strong>Sign up at <a href="https://humanlayer.dev">https://humanlayer.dev</a></strong>.</p>
+<h2 id="for-oss-maintainers---lets-ship-something-together">For OSS Maintainers - lets ship something together</h2>
+<p>If you are a maintainer on a complex OSS project and based in the bay area, my open offer - I will pair with you in-person in SF for 7 hours on a saturday and see if we can ship something big.</p>
+<p>I get a lot of learning about the limitations and where these techniques fall short (and, with any luck, a working merged PR that adds a ton of value that I can point to). You get to learn the workflow in the only way I&rsquo;ve found that works well - direct 1x1 pairing.</p>
+<h2 id="for-engineering-leaders">For Engineering Leaders</h2>
+<p>If you or someone you know is an engineering leader that wants to 10x their team&rsquo;s productivity with AI, we&rsquo;re forward-deploying with ~10-25 person eng orgs to help teams make the culture/process/tech shift needed to transition to an ai-first coding world.</p>
+<h3 id="thanks">Thanks</h3>
+<ul>
+<li>Thanks to all the friends and founders who&rsquo;ve listened through early ramble-y versions of this post - Adam, Josh, Andrew, and many many more</li>
+<li>Thanks Sundeep for weathering this wacky storm</li>
+<li>Thanks Allison, Geoff, and Gerred for dragging us kicking and screaming into the future</li>
+<li></li>
+</ul>
+
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tung Lam Nguyen</p>
+    </footer>
+
+    <script src="/js/theme-toggle.js"></script>
+</body>
+</html>

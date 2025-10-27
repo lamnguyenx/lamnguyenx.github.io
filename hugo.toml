@@ -1,0 +1,8 @@
+baseURL = "https://lamnguyenx.github.io/"
+languageCode = "en-us"
+title = "lamnguyenx"
+theme = ""
+
+[params]
+  author = "Tung Lam Nguyen"
+  description = "code/music/cycling/cats/dogs expert since 1995"
