@@ -57,10 +57,12 @@ format:
           kind: float
           reference-prefix: Algorithm
     grid:
-      gutter-width: 2em
+       gutter-width: 2em
+
+    include-in-header: custom-script.html
 
     # include-in-header: sectionstat.html
     # other-links:
     #   - text: Accessibility
-    #     href: https://accessibility.mit.edu/
-    #     icon: universal-access
+     #     href: https://accessibility.mit.edu/
+     #     icon: universal-access

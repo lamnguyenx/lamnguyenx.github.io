@@ -14,3 +14,98 @@ body {
 .sidebar {
   background-color: #000000 !important;
 }
+
+/* Search bar dark theme styling */
+#quarto-search .aa-Autocomplete {
+  background-color: #000000 !important;
+}
+
+#quarto-search .aa-Form {
+  background-color: #1a1a1a !important;
+  border: 1px solid #767676 !important;
+  border-radius: 4px !important;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+#quarto-search .aa-Input {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  border: none !important;
+  outline: none !important;
+}
+
+#quarto-search .aa-Input::placeholder {
+  color: #888 !important;
+}
+
+#quarto-search .aa-SubmitButton,
+#quarto-search .aa-ClearButton {
+  color: #ffffff !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+#quarto-search .aa-SubmitButton:hover,
+#quarto-search .aa-ClearButton:hover {
+  color: #ccc !important;
+}
+
+/* Search input submit icon styling for dark mode */
+#quarto-search .aa-SubmitIcon {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+#quarto-search .aa-SubmitButton:hover .aa-SubmitIcon {
+  color: #ccc !important;
+  fill: #ccc !important;
+}
+
+/* Search results dropdown panel dark theme styling */
+#quarto-search .aa-Panel {
+  background-color: #000000 !important;
+  border: 1px solid #767676 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+#quarto-search .aa-PanelLayout {
+  background-color: #000000 !important;
+}
+
+#quarto-search .aa-List {
+  background-color: #000000 !important;
+}
+
+#quarto-search .aa-Item {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #333 !important;
+}
+
+#quarto-search .aa-Item:hover,
+#quarto-search .aa-Item[aria-selected="true"] {
+  background-color: #1a1a1a !important;
+}
+
+#quarto-search .aa-Item .aa-ItemContent {
+  color: #ffffff !important;
+}
+
+#quarto-search .aa-Item .aa-ItemContent .aa-ItemContentTitle {
+  color: #ffffff !important;
+}
+
+#quarto-search .aa-Item .aa-ItemContent .aa-ItemContentSubtitle {
+  color: #888 !important;
+}
+
+#quarto-search .aa-Item .aa-ItemContent .aa-ItemContentBody {
+  color: #ccc !important;
+}
+
+#quarto-search .aa-Empty {
+  background-color: #000000 !important;
+  color: #888 !important;
+}
