@@ -1,0 +1,5 @@
+.ipynb_checkpoints/
+debug/
+target/
+/.quarto/
+/_site/
