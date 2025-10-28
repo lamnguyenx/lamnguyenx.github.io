@@ -41,12 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-8f6726c79dff2af28c45c64c8336ec2b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8f6726c79dff2af28c45c64c8336ec2b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-8f6726c79dff2af28c45c64c8336ec2b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-f65471c08c449f7d1c47985afec77fc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-0f2dec135036734d869e9c401441fb2f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-f65471c08c449f7d1c47985afec77fc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -84,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="visionbook.css">
 </head>
 
-<body class="nav-sidebar floating slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating slimcontent quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -226,10 +224,8 @@ ul.task-list li input[type="checkbox"] {
         changeGiscusTheme();
       }
     };
-    const authorPrefersDark = false;
+    const authorPrefersDark = true;
     const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
     // Dark / light mode switch
     window.quartoToggleColorScheme = () => {
@@ -332,31 +328,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#grounding-context-from-ai-engineer" id="toc-grounding-context-from-ai-engineer" class="nav-link active" data-scroll-target="#grounding-context-from-ai-engineer"><span class="header-section-number">1.0.1</span> Grounding Context from AI Engineer</a></li>
-  <li><a href="#whats-actually-possible-today" id="toc-whats-actually-possible-today" class="nav-link" data-scroll-target="#whats-actually-possible-today"><span class="header-section-number">1.0.2</span> What’s actually possible today</a></li>
-  <li><a href="#our-weird-journey-to-get-here" id="toc-our-weird-journey-to-get-here" class="nav-link" data-scroll-target="#our-weird-journey-to-get-here"><span class="header-section-number">1.0.3</span> Our weird journey to get here</a></li>
-  <li><a href="#advanced-context-engineering-for-coding-agents" id="toc-advanced-context-engineering-for-coding-agents" class="nav-link" data-scroll-target="#advanced-context-engineering-for-coding-agents"><span class="header-section-number">1.1</span> Advanced Context Engineering for Coding Agents</a>
+  <li><a href="#grounding-context-from-ai-engineer" id="toc-grounding-context-from-ai-engineer" class="nav-link active" data-scroll-target="#grounding-context-from-ai-engineer"><span class="header-section-number">1.1</span> Grounding Context from AI Engineer</a></li>
+  <li><a href="#whats-actually-possible-today" id="toc-whats-actually-possible-today" class="nav-link" data-scroll-target="#whats-actually-possible-today"><span class="header-section-number">1.2</span> What’s actually possible today</a></li>
+  <li><a href="#our-weird-journey-to-get-here" id="toc-our-weird-journey-to-get-here" class="nav-link" data-scroll-target="#our-weird-journey-to-get-here"><span class="header-section-number">1.3</span> Our weird journey to get here</a></li>
+  <li><a href="#advanced-context-engineering-for-coding-agents" id="toc-advanced-context-engineering-for-coding-agents" class="nav-link" data-scroll-target="#advanced-context-engineering-for-coding-agents"><span class="header-section-number">1.4</span> Advanced Context Engineering for Coding Agents</a>
   <ul class="collapse">
-  <li><a href="#but-first-the-naive-way-to-manage-agent-context" id="toc-but-first-the-naive-way-to-manage-agent-context" class="nav-link" data-scroll-target="#but-first-the-naive-way-to-manage-agent-context"><span class="header-section-number">1.1.1</span> But first: The Naive Way to manage agent context</a></li>
-  <li><a href="#slightly-smarter-intentional-compaction" id="toc-slightly-smarter-intentional-compaction" class="nav-link" data-scroll-target="#slightly-smarter-intentional-compaction"><span class="header-section-number">1.1.2</span> Slightly Smarter: Intentional Compaction</a></li>
-  <li><a href="#what-exactly-are-we-compacting" id="toc-what-exactly-are-we-compacting" class="nav-link" data-scroll-target="#what-exactly-are-we-compacting"><span class="header-section-number">1.1.3</span> What Exactly Are We Compacting?</a></li>
-  <li><a href="#why-obsess-over-context" id="toc-why-obsess-over-context" class="nav-link" data-scroll-target="#why-obsess-over-context"><span class="header-section-number">1.1.4</span> Why obsess over context?</a></li>
-  <li><a href="#back-to-compaction-using-sub-agents" id="toc-back-to-compaction-using-sub-agents" class="nav-link" data-scroll-target="#back-to-compaction-using-sub-agents"><span class="header-section-number">1.1.5</span> Back to compaction: Using Sub-Agents</a></li>
-  <li><a href="#what-works-even-better-frequent-intentional-compaction" id="toc-what-works-even-better-frequent-intentional-compaction" class="nav-link" data-scroll-target="#what-works-even-better-frequent-intentional-compaction"><span class="header-section-number">1.1.6</span> What works even better: Frequent Intentional Compaction</a></li>
-  <li><a href="#putting-this-into-practice" id="toc-putting-this-into-practice" class="nav-link" data-scroll-target="#putting-this-into-practice"><span class="header-section-number">1.1.7</span> Putting this into practice</a></li>
-  <li><a href="#solving-complex-problems" id="toc-solving-complex-problems" class="nav-link" data-scroll-target="#solving-complex-problems"><span class="header-section-number">1.1.8</span> Solving complex problems</a></li>
-  <li><a href="#this-is-not-magic" id="toc-this-is-not-magic" class="nav-link" data-scroll-target="#this-is-not-magic"><span class="header-section-number">1.1.9</span> This is not Magic</a></li>
-  <li><a href="#eggs-on-faces" id="toc-eggs-on-faces" class="nav-link" data-scroll-target="#eggs-on-faces"><span class="header-section-number">1.1.10</span> Eggs on Faces</a></li>
-  <li><a href="#on-human-leverage" id="toc-on-human-leverage" class="nav-link" data-scroll-target="#on-human-leverage"><span class="header-section-number">1.1.11</span> On Human Leverage</a></li>
-  <li><a href="#what-is-code-review-for" id="toc-what-is-code-review-for" class="nav-link" data-scroll-target="#what-is-code-review-for"><span class="header-section-number">1.1.12</span> What is code review for?</a></li>
-  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap"><span class="header-section-number">1.1.13</span> Recap</a></li>
-  <li><a href="#whats-coming" id="toc-whats-coming" class="nav-link" data-scroll-target="#whats-coming"><span class="header-section-number">1.1.14</span> What’s coming</a></li>
-  <li><a href="#okay-so-clearly-you-have-something-to-sell-me" id="toc-okay-so-clearly-you-have-something-to-sell-me" class="nav-link" data-scroll-target="#okay-so-clearly-you-have-something-to-sell-me"><span class="header-section-number">1.1.15</span> okay so clearly you have something to sell me</a></li>
+  <li><a href="#but-first-the-naive-way-to-manage-agent-context" id="toc-but-first-the-naive-way-to-manage-agent-context" class="nav-link" data-scroll-target="#but-first-the-naive-way-to-manage-agent-context"><span class="header-section-number">1.4.1</span> But first: The Naive Way to manage agent context</a></li>
+  <li><a href="#slightly-smarter-intentional-compaction" id="toc-slightly-smarter-intentional-compaction" class="nav-link" data-scroll-target="#slightly-smarter-intentional-compaction"><span class="header-section-number">1.4.2</span> Slightly Smarter: Intentional Compaction</a></li>
+  <li><a href="#what-exactly-are-we-compacting" id="toc-what-exactly-are-we-compacting" class="nav-link" data-scroll-target="#what-exactly-are-we-compacting"><span class="header-section-number">1.4.3</span> What Exactly Are We Compacting?</a></li>
+  <li><a href="#why-obsess-over-context" id="toc-why-obsess-over-context" class="nav-link" data-scroll-target="#why-obsess-over-context"><span class="header-section-number">1.4.4</span> Why obsess over context?</a></li>
+  <li><a href="#back-to-compaction-using-sub-agents" id="toc-back-to-compaction-using-sub-agents" class="nav-link" data-scroll-target="#back-to-compaction-using-sub-agents"><span class="header-section-number">1.4.5</span> Back to compaction: Using Sub-Agents</a></li>
+  <li><a href="#what-works-even-better-frequent-intentional-compaction" id="toc-what-works-even-better-frequent-intentional-compaction" class="nav-link" data-scroll-target="#what-works-even-better-frequent-intentional-compaction"><span class="header-section-number">1.4.6</span> What works even better: Frequent Intentional Compaction</a></li>
+  <li><a href="#putting-this-into-practice" id="toc-putting-this-into-practice" class="nav-link" data-scroll-target="#putting-this-into-practice"><span class="header-section-number">1.4.7</span> Putting this into practice</a></li>
+  <li><a href="#solving-complex-problems" id="toc-solving-complex-problems" class="nav-link" data-scroll-target="#solving-complex-problems"><span class="header-section-number">1.4.8</span> Solving complex problems</a></li>
+  <li><a href="#this-is-not-magic" id="toc-this-is-not-magic" class="nav-link" data-scroll-target="#this-is-not-magic"><span class="header-section-number">1.4.9</span> This is not Magic</a></li>
+  <li><a href="#eggs-on-faces" id="toc-eggs-on-faces" class="nav-link" data-scroll-target="#eggs-on-faces"><span class="header-section-number">1.4.10</span> Eggs on Faces</a></li>
+  <li><a href="#on-human-leverage" id="toc-on-human-leverage" class="nav-link" data-scroll-target="#on-human-leverage"><span class="header-section-number">1.4.11</span> On Human Leverage</a></li>
+  <li><a href="#what-is-code-review-for" id="toc-what-is-code-review-for" class="nav-link" data-scroll-target="#what-is-code-review-for"><span class="header-section-number">1.4.12</span> What is code review for?</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap"><span class="header-section-number">1.4.13</span> Recap</a></li>
+  <li><a href="#whats-coming" id="toc-whats-coming" class="nav-link" data-scroll-target="#whats-coming"><span class="header-section-number">1.4.14</span> What’s coming</a></li>
+  <li><a href="#okay-so-clearly-you-have-something-to-sell-me" id="toc-okay-so-clearly-you-have-something-to-sell-me" class="nav-link" data-scroll-target="#okay-so-clearly-you-have-something-to-sell-me"><span class="header-section-number">1.4.15</span> okay so clearly you have something to sell me</a></li>
   </ul></li>
-  <li><a href="#for-oss-maintainers---lets-ship-something-together" id="toc-for-oss-maintainers---lets-ship-something-together" class="nav-link" data-scroll-target="#for-oss-maintainers---lets-ship-something-together"><span class="header-section-number">1.2</span> For OSS Maintainers - lets ship something together</a></li>
-  <li><a href="#for-engineering-leaders" id="toc-for-engineering-leaders" class="nav-link" data-scroll-target="#for-engineering-leaders"><span class="header-section-number">1.3</span> For Engineering Leaders</a>
+  <li><a href="#for-oss-maintainers---lets-ship-something-together" id="toc-for-oss-maintainers---lets-ship-something-together" class="nav-link" data-scroll-target="#for-oss-maintainers---lets-ship-something-together"><span class="header-section-number">1.5</span> For OSS Maintainers - lets ship something together</a></li>
+  <li><a href="#for-engineering-leaders" id="toc-for-engineering-leaders" class="nav-link" data-scroll-target="#for-engineering-leaders"><span class="header-section-number">1.6</span> For Engineering Leaders</a>
   <ul class="collapse">
-  <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks"><span class="header-section-number">1.3.1</span> Thanks</a></li>
+  <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks"><span class="header-section-number">1.6.1</span> Thanks</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/edit/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/blob/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -394,14 +390,14 @@ ul.task-list li input[type="checkbox"] {
 <p>This isn’t another “10x your productivity” pitch. I <a href="https://hlyr.dev/12fa">tend to be pretty measured when it comes to interfacing with the ai hype machine</a>. But we’ve stumbled into workflows that leave me with considerable optimism for what’s possible. We’ve gotten claude code to handle 300k LOC Rust codebases, ship a week’s worth of work in a day, and maintain code quality that passes expert review. We use a family of techniques I call “frequent intentional compaction” - deliberately structuring how you feed context to the AI throughout the development process.</p>
 <p>I am now fully convinced that AI for coding is not just for toys and prototypes, but rather a deeply technical engineering craft.</p>
 <p><strong>Video Version</strong>: If you prefer video, this post is based on <a href="https://hlyr.dev/ace">a talk given at Y Combinator on August 20th</a></p>
-<section id="grounding-context-from-ai-engineer" class="level3 page-columns page-full" data-number="1.0.1">
-<h3 data-number="1.0.1" class="anchored" data-anchor-id="grounding-context-from-ai-engineer"><span class="header-section-number">1.0.1</span> Grounding Context from AI Engineer</h3>
+<section id="grounding-context-from-ai-engineer" class="level2 page-columns page-full" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="grounding-context-from-ai-engineer"><span class="header-section-number">1.1</span> Grounding Context from AI Engineer</h2>
 <p>Two talks from AI Engineer 2025 fundamentally shaped my thinking about this problem.</p>
 <p>The first is <a href="https://www.youtube.com/watch?v=8rABwKRsec4">Sean Grove’s talk on “Specs are the new code”</a> and the second is <a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">the Stanford study on AI’s impact on developer productivity</a>.</p>
 <p>Sean argued that we’re all <em>vibe coding wrong</em>. The idea of chatting with an AI agent for two hours, specifying what you want, and then throwing away all the prompts while committing only the final code… is like a Java developer compiling a JAR and checking in the compiled binary while throwing away the source.</p>
 <p>Sean proposes that in the AI future, the specs will become the real code. That in two years, you’ll be opening python files in your IDE with about the same frequency that, today, you might open up a hex editor to read assembly (which, for most of us, is never).</p>
 <p><a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">Yegor’s talk on developer productivity</a> tackled an orthogonal problem. They analyzed commits from 100k developers and found, among other things,</p>
-<ol type="1">
+<ol start="3" type="1">
 <li>That AI tools often lead to a lot of rework, diminishing the perceived productivity gains</li>
 </ol>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -410,7 +406,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption class="margin-caption">AI coding productivity research findings</figcaption>
 </figure>
 </div>
-<ol start="2" type="1">
+<ol start="4" type="1">
 <li>That AI tools work well for greenfield projects, but are often counter-productive for brownfield codebases and complex tasks</li>
 </ol>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -433,22 +429,22 @@ ul.task-list li input[type="checkbox"] {
 <p>Heck even <a href="https://x.com/amasad">Amjad</a> was on a <a href="https://www.lennysnewsletter.com/p/behind-the-product-replit-amjad-masad">lenny’s podcast 9 months ago</a> talking about how PMs use Replit agent to prototype new stuff and then they hand it off to engineers to implement for production. (Disclaimer: i haven’t caught up with him recently (ok, ever), this stance may have changed)</p>
 <p>Whenever I hear “Maybe someday when the models are smart” I generally leap to exclaim <strong>that’s what context engineering is all about</strong>: getting the most out of <em>today’s</em> models.</p>
 </section>
-<section id="whats-actually-possible-today" class="level3" data-number="1.0.2">
-<h3 data-number="1.0.2" class="anchored" data-anchor-id="whats-actually-possible-today"><span class="header-section-number">1.0.2</span> What’s actually possible today</h3>
+<section id="whats-actually-possible-today" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="whats-actually-possible-today"><span class="header-section-number">1.2</span> What’s actually possible today</h2>
 <p>I’ll deep dive on this a bit futher down, but to prove this isn’t just theory, let me outline a concrete example. A few weeks ago, I decided to test our techniques on <a href="https://github.com/BoundaryML/baml">BAML</a>, a 300k LOC Rust codebase for a programming language that works with LLMs. I’m at best an amateur Rust dev and had never touched the BAML codebase before.</p>
 <p>Within an hour or so, I had a <a href="https://github.com/BoundaryML/baml/pull/2259#issuecomment-3155883849">PR fixing a bug</a> which was approved by the maintainer the next morning. A few weeks later, <a href="https://x.com/hellovai"><span class="citation" data-cites="hellovai">@hellovai</span></a> and I paired on shipping 35k LOC to BAML, adding <a href="https://github.com/BoundaryML/baml/pull/2357">cancellation support</a> and <a href="https://github.com/BoundaryML/baml/pull/2330">WASM compilation</a> - features the team estimated would take a senior engineer 3-5 days each. We got both draft prs ready in about 7 hours.</p>
 <p>Again, this is all built around a workflow we call <a href="#what-works-even-better-frequent-intentional-compaction">frequent intentional compaction</a> - essentially designing your entire development process around context management, keeping utilization in the 40-60% range, and building in high-leverage human review at exactly the right points. We use a “research, plan, implement” workflow, but the core capabilities/learnings here are FAR more general than any specific workflow or set of prompts.</p>
 </section>
-<section id="our-weird-journey-to-get-here" class="level3" data-number="1.0.3">
-<h3 data-number="1.0.3" class="anchored" data-anchor-id="our-weird-journey-to-get-here"><span class="header-section-number">1.0.3</span> Our weird journey to get here</h3>
+<section id="our-weird-journey-to-get-here" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="our-weird-journey-to-get-here"><span class="header-section-number">1.3</span> Our weird journey to get here</h2>
 <p>I was working with one of the most productive AI coders I’ve ever met. Every few days they’d drop <strong>2000-line Go PRs</strong>. And this wasn’t a nextjs app or a CRUD API. This was complex, <a href="https://github.com/humanlayer/humanlayer/blob/main/hld/daemon/daemon_subscription_integration_test.go#L45">race-prone systems code</a> that did JSON RPC over unix sockets and managed streaming stdio from forked unix processes (mostly claude code sdk processes, more on that later 🙂).</p>
 <p>The idea of carefully reading 2,000 lines of complex Go code every few days was simply not sustainable. I was starting to feel a bit like Mitchell Hashimoto when he added the <a href="https://github.com/ghostty-org/ghostty/pull/8289">AI contributions must be disclosed</a> rules for ghostty.</p>
 <p>Our approach was to adopt something like sean’s <strong>spec-driven development</strong>.</p>
 <p>It was uncomfortable at first. I had to learn to let go of reading every line of PR code. I still read the tests pretty carefully, but the specs became our source of truth for what was being built and why.</p>
 <p>The transformation took about 8 weeks. It was incredibly uncomfortable for everyone involved, not least of all for me. But now we’re flying. A few weeks back, I shipped 6 PRs in a day. I can count on one hand the number of times I’ve edited a non-markdown file by hand in the last three months.</p>
 </section>
-<section id="advanced-context-engineering-for-coding-agents" class="level2 page-columns page-full" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="advanced-context-engineering-for-coding-agents"><span class="header-section-number">1.1</span> Advanced Context Engineering for Coding Agents</h2>
+<section id="advanced-context-engineering-for-coding-agents" class="level2 page-columns page-full" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="advanced-context-engineering-for-coding-agents"><span class="header-section-number">1.4</span> Advanced Context Engineering for Coding Agents</h2>
 <p>What we needed was:</p>
 <ul>
 <li>AI that Works Well in Brownfield Codebases</li>
@@ -464,8 +460,8 @@ ul.task-list li input[type="checkbox"] {
 <li>why I don’t believe these approaches are generalizable</li>
 <li>the number of times I’ve been repeatedly proven wrong about (3)</li>
 </ol>
-<section id="but-first-the-naive-way-to-manage-agent-context" class="level3 page-columns page-full" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="but-first-the-naive-way-to-manage-agent-context"><span class="header-section-number">1.1.1</span> But first: The Naive Way to manage agent context</h3>
+<section id="but-first-the-naive-way-to-manage-agent-context" class="level3 page-columns page-full" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="but-first-the-naive-way-to-manage-agent-context"><span class="header-section-number">1.4.1</span> But first: The Naive Way to manage agent context</h3>
 <p>Most of us start by using a coding agent like a chatbot. You talk (or <a href="https://ghuntley.com/six-month-recap/#:~:text=Last%20week%2C%20over%20Zoom%20margaritas%2C%20a%20friend%20and%20I%20reminisced%20about%20COBOL.">drunkenly shout</a>) back and forth with it, vibing your way through a problem until you either run out of context, give up, or the agent starts apologizing.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -484,8 +480,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="slightly-smarter-intentional-compaction" class="level3 page-columns page-full" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="slightly-smarter-intentional-compaction"><span class="header-section-number">1.1.2</span> Slightly Smarter: Intentional Compaction</h3>
+<section id="slightly-smarter-intentional-compaction" class="level3 page-columns page-full" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="slightly-smarter-intentional-compaction"><span class="header-section-number">1.4.2</span> Slightly Smarter: Intentional Compaction</h3>
 <p>You have probably done something I’ve come to call “intentional compaction”. Whether you’re on track or not, as your context starts to fill up, you probably want to pause your work and start over with a fresh context window. To do this, you might use a prompt like</p>
 <blockquote class="blockquote">
 <p>“Write everything we did so far to progress.md, ensure to note the end goal, the approach we’re taking, the steps we’ve done so far, and the current failure we’re working on”</p>
@@ -498,8 +494,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>You can also <a href="https://x.com/dexhorthy/status/1961490837017088051">use commit messages for intentional compaction</a>.</p>
 </section>
-<section id="what-exactly-are-we-compacting" class="level3 page-columns page-full" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="what-exactly-are-we-compacting"><span class="header-section-number">1.1.3</span> What Exactly Are We Compacting?</h3>
+<section id="what-exactly-are-we-compacting" class="level3 page-columns page-full" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="what-exactly-are-we-compacting"><span class="header-section-number">1.4.3</span> What Exactly Are We Compacting?</h3>
 <p>What eats up context?</p>
 <ul>
 <li>Searching for files</li>
@@ -517,8 +513,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="why-obsess-over-context" class="level3 page-columns page-full" data-number="1.1.4">
-<h3 data-number="1.1.4" class="anchored" data-anchor-id="why-obsess-over-context"><span class="header-section-number">1.1.4</span> Why obsess over context?</h3>
+<section id="why-obsess-over-context" class="level3 page-columns page-full" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="why-obsess-over-context"><span class="header-section-number">1.4.4</span> Why obsess over context?</h3>
 <p>As we went deep on in <a href="https://hlyr.dev/12fa">12-factor agents</a>, LLMs are stateless functions. The only thing that affects the quality of your output (without training/tuning models themselves) is the quality of the inputs.</p>
 <p>This is just as true for <a href="https://www.youtube.com/watch?v=F_RyElT_gJk">wielding</a> coding agents as it is for general agent design, you just have a smaller problem space, and rather than building agents, we’re talking about using agents.</p>
 <p>At any given point, a turn in an agent like claude code is a stateless function call. Context window in, next step out.</p>
@@ -557,8 +553,8 @@ done</code></pre>
 <p>If you wanna learn more about ralph or what’s in PROMPT.md, you can check out Geoff’s post or dive into the project that <a href="https://x.com/simonfarshid"><span class="citation" data-cites="simonfarshid">@simonfarshid</span></a>, <a href="https://x.com/lantos1618"><span class="citation" data-cites="lantos1618">@lantos1618</span></a>, <a href="https://x.com/AVGVSTVS96"><span class="citation" data-cites="AVGVSTVS96">@AVGVSTVS96</span></a> and I built at last weekend’s YC Agents Hackathon, which was able to (mostly) <a href="https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md">port BrowserUse to TypeScript overnight</a></p>
 <p>Geoff describes ralph as a “hilariously dumb” solution to the context window problem. <a href="https://ghuntley.com/content/images/size/w2400/2025/07/The-ralph-Process.webp">I’m not entirely sure that it is dumb</a>.</p>
 </section>
-<section id="back-to-compaction-using-sub-agents" class="level3 page-columns page-full" data-number="1.1.5">
-<h3 data-number="1.1.5" class="anchored" data-anchor-id="back-to-compaction-using-sub-agents"><span class="header-section-number">1.1.5</span> Back to compaction: Using Sub-Agents</h3>
+<section id="back-to-compaction-using-sub-agents" class="level3 page-columns page-full" data-number="1.4.5">
+<h3 data-number="1.4.5" class="anchored" data-anchor-id="back-to-compaction-using-sub-agents"><span class="header-section-number">1.4.5</span> Back to compaction: Using Sub-Agents</h3>
 <p>Subagents are another way to manage context, and generic subagents (i.e.&nbsp;not <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">custom</a> ones) have been a feature of claude code and many coding CLIs since the early days.</p>
 <p>Subagents are not about <a href="https://x.com/dexhorthy/status/1950288431122436597">playing house and anthropomorphizing roles</a>. Subagents are about context control.</p>
 <p>The most common/straightforward use case for subagents is to let you use a fresh context window to do finding/searching/summarizing that enables the parent agent to get straight to work without clouding its context window with <code>Glob</code> / <code>Grep</code> / <code>Read</code> / etc calls.</p>
@@ -585,8 +581,8 @@ done</code></pre>
 </figure>
 </div>
 </section>
-<section id="what-works-even-better-frequent-intentional-compaction" class="level3" data-number="1.1.6">
-<h3 data-number="1.1.6" class="anchored" data-anchor-id="what-works-even-better-frequent-intentional-compaction"><span class="header-section-number">1.1.6</span> What works even better: Frequent Intentional Compaction</h3>
+<section id="what-works-even-better-frequent-intentional-compaction" class="level3" data-number="1.4.6">
+<h3 data-number="1.4.6" class="anchored" data-anchor-id="what-works-even-better-frequent-intentional-compaction"><span class="header-section-number">1.4.6</span> What works even better: Frequent Intentional Compaction</h3>
 <p>The techniques I want to talk about and that we’ve adopted in the last few months fall under what I call “frequent intentional compaction”.</p>
 <p>Essentially, this means designing your ENTIRE WORKFLOW around context management, and keeping utilization in the 40%-60% range (depends on complexity of the problem ).</p>
 <p>The way we do it is to split into three (ish) steps.</p>
@@ -605,30 +601,30 @@ done</code></pre>
 <p><strong>How we manage/share the markdown files</strong></p>
 <p>I will skip this part for brevity but feel free to launch a claude session in <a href="https://github.com/humanlayer/humanlayer">humanlayer/humanlayer</a> and ask how the “thoughts tool” works.</p>
 </section>
-<section id="putting-this-into-practice" class="level3" data-number="1.1.7">
-<h3 data-number="1.1.7" class="anchored" data-anchor-id="putting-this-into-practice"><span class="header-section-number">1.1.7</span> Putting this into practice</h3>
+<section id="putting-this-into-practice" class="level3" data-number="1.4.7">
+<h3 data-number="1.4.7" class="anchored" data-anchor-id="putting-this-into-practice"><span class="header-section-number">1.4.7</span> Putting this into practice</h3>
 <p>I do a <a href="https://github.com/ai-that-works/ai-that-works">weekly live-coding session</a> with <a href="https://www.linkedin.com/in/vaigup/"><span class="citation" data-cites="vaibhav">@vaibhav</span></a> where we whiteboard and code up a solution to an advanced AI Engineering problem. It’s one of the highlights of my week.</p>
 <p>Several weeks ago, I <a href="https://hlyr.dev/he-gh">decided to share some more about the process</a>, curious if our in-house techniques could one-shot a fix to a 300k LOC Rust codebase for BAML, a programming language for working with LLMs. I picked out <a href="https://github.com/BoundaryML/baml/issues/1252">an (admittedly small-ish) bug</a> from the <span class="citation" data-cites="BoundaryML">@BoundaryML</span> repo and got to work.</p>
 <p>You can <a href="https://hlyr.dev/he-yt">watch the episode</a> to learn more about the process, but to outline it:</p>
 <p><strong>Worth noting</strong>: I am at best an amateur Rust dev, and I have never worked in the BAML codebase before.</p>
-<section id="the-research" class="level4" data-number="1.1.7.1">
-<h4 data-number="1.1.7.1" class="anchored" data-anchor-id="the-research"><span class="header-section-number">1.1.7.1</span> The research</h4>
+<section id="the-research" class="level4" data-number="1.4.7.1">
+<h4 data-number="1.4.7.1" class="anchored" data-anchor-id="the-research"><span class="header-section-number">1.4.7.1</span> The research</h4>
 <ul>
 <li>I created a piece of research, I read it. Claude decided the bug was invalid and the codebase was correct.</li>
 <li>I threw that research out and kicked off a new one, with more steering.</li>
 <li>here is <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/research/2025-08-05_05-15-59_baml_test_assertions.md">the final research doc i ended up using</a></li>
 </ul>
 </section>
-<section id="the-plans" class="level4" data-number="1.1.7.2">
-<h4 data-number="1.1.7.2" class="anchored" data-anchor-id="the-plans"><span class="header-section-number">1.1.7.2</span> The plans</h4>
+<section id="the-plans" class="level4" data-number="1.4.7.2">
+<h4 data-number="1.4.7.2" class="anchored" data-anchor-id="the-plans"><span class="header-section-number">1.4.7.2</span> The plans</h4>
 <ul>
 <li>While the research was running, I got impatient and kicked off a plan, with no research, to see if claude could go straight to an implementation plan - <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/plans/fix-assert-syntax-validation-no-research.md">you can see it here</a></li>
 <li>When the research was done, I kicked off another implementation plan that used the research results - <a href="https://github.com/ai-that-works/ai-that-works/blob/main/2025-08-05-advanced-context-engineering-for-coding-agents/thoughts/shared/plans/baml-test-assertion-validation-with-research.md">you can see it here</a></li>
 </ul>
 <p>The plans are both fairly short, but they differ significantly. They fix the issue in different ways, and have different testing approaches. Without going too much into detail, they both “would have worked” but the one built with research fixed the problem in the <em>best</em> place and prescribed testing that was in line with the codebase conventions.</p>
 </section>
-<section id="the-implementation" class="level4" data-number="1.1.7.3">
-<h4 data-number="1.1.7.3" class="anchored" data-anchor-id="the-implementation"><span class="header-section-number">1.1.7.3</span> The implementation</h4>
+<section id="the-implementation" class="level4" data-number="1.4.7.3">
+<h4 data-number="1.4.7.3" class="anchored" data-anchor-id="the-implementation"><span class="header-section-number">1.4.7.3</span> The implementation</h4>
 <ul>
 <li>This was all happening the night before the podcast recording. I ran both plans in parallel and submitted both as PRs before signing off for the night.</li>
 </ul>
@@ -642,15 +638,15 @@ done</code></pre>
 </ul>
 </section>
 </section>
-<section id="solving-complex-problems" class="level3" data-number="1.1.8">
-<h3 data-number="1.1.8" class="anchored" data-anchor-id="solving-complex-problems"><span class="header-section-number">1.1.8</span> Solving complex problems</h3>
+<section id="solving-complex-problems" class="level3" data-number="1.4.8">
+<h3 data-number="1.4.8" class="anchored" data-anchor-id="solving-complex-problems"><span class="header-section-number">1.4.8</span> Solving complex problems</h3>
 <p>Vaibhav was still skeptical, and I wanted to see if we could solve a more complex problem.</p>
 <p>So a few weeks later, the two of us spent 7 hours (3 hours on research/plans, 4 hours on implementation) and shipped 35k LOC to add cancellation and wasm support to BAML. The <a href="https://github.com/BoundaryML/baml/pull/2357">cancelation PR just got merged last week</a>. <a href="https://github.com/BoundaryML/baml/pull/2330">The WASM one is still open</a>, but has a working demo of calling the wasm-compiled rust runtime from a JS app in the browser.</p>
 <p>While the cancelation PR required a little more love to take things over the line, we got incredible progress in just a day. Vaibhav estimated that each of these PRs would have been 3-5 days of work for a senior engineer on the BAML team to complete.</p>
 <p>✅ So we can solve complex problems too.</p>
 </section>
-<section id="this-is-not-magic" class="level3" data-number="1.1.9">
-<h3 data-number="1.1.9" class="anchored" data-anchor-id="this-is-not-magic"><span class="header-section-number">1.1.9</span> This is not Magic</h3>
+<section id="this-is-not-magic" class="level3" data-number="1.4.9">
+<h3 data-number="1.4.9" class="anchored" data-anchor-id="this-is-not-magic"><span class="header-section-number">1.4.9</span> This is not Magic</h3>
 <p>Remember that part in the example where I read the research and threw it out cause it was wrong? Or me and Vaibhav sitting DEEPLY ENGAGED FOR 7 HOURS? You have to engage with your task when you’re doing this or it WILL NOT WORK.</p>
 <p>There’s a certain type of person who is always looking for the one magic prompt that will solve all their problems. It doesn’t exist.</p>
 <p>Frequent Intentional Compaction via a research/plan/implement flow will make your performance <strong>better</strong>, but what makes it <strong>good enough for hard problems</strong> is that you build high-leverage human review into your pipeline.</p>
@@ -658,13 +654,13 @@ done</code></pre>
 <p><em>Human leverage diagram not available</em></p>
 </blockquote>
 </section>
-<section id="eggs-on-faces" class="level3" data-number="1.1.10">
-<h3 data-number="1.1.10" class="anchored" data-anchor-id="eggs-on-faces"><span class="header-section-number">1.1.10</span> Eggs on Faces</h3>
+<section id="eggs-on-faces" class="level3" data-number="1.4.10">
+<h3 data-number="1.4.10" class="anchored" data-anchor-id="eggs-on-faces"><span class="header-section-number">1.4.10</span> Eggs on Faces</h3>
 <p>A few weeks back, <a href="https://www.linkedin.com/in/bhsmith/"><span class="citation" data-cites="blakesmith">@blakesmith</span></a> and I sat down for 7 hours and <a href="https://github.com/dexhorthy/parquet-java/blob/remove-hadoop/thoughts/shared/plans/remove-hadoop-dependencies.md">tried to remove hadoop dependencies from parquet java</a> - the deep dive on everything that went wrong and my theories as to why, I’ll save for another post, suffice it to say that it did not go well. The tl;dr is that the research steps didn’t go deep enough through the dependency tree, and assumed classes could be moved upstream without introducing deeply nested hadoop dependencies.</p>
 <p>There are big hard problems you cannot just prompt your way through in 7 hours, and we’re still curiously and excitedly hacking on pushing the boundaries with friends and partners. I think the other learning here is that you probably need at least one person who is an expert in the codebase, and for this case, that was neither of us.</p>
 </section>
-<section id="on-human-leverage" class="level3 page-columns page-full" data-number="1.1.11">
-<h3 data-number="1.1.11" class="anchored" data-anchor-id="on-human-leverage"><span class="header-section-number">1.1.11</span> On Human Leverage</h3>
+<section id="on-human-leverage" class="level3 page-columns page-full" data-number="1.4.11">
+<h3 data-number="1.4.11" class="anchored" data-anchor-id="on-human-leverage"><span class="header-section-number">1.4.11</span> On Human Leverage</h3>
 <p>If there’s one thing you take away from all this, let it be this:</p>
 <p>A bad line of code is… a bad line of code. But a bad line of a <strong>plan</strong> could lead to hundreds of bad lines of code. And a bad line of <strong>research</strong>, a misunderstanding of how the codebase works or where certain functionality is located, could land you with thousands of bad lines of code.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -679,8 +675,8 @@ done</code></pre>
 </blockquote>
 <p>When you review the research and the plans, you get more leverage than you do when you review the code. (By the way, one of our primary focuses @ <a href="https://hlyr.dev/code">humanlayer</a> is helping teams build and leverage high-quality workflow prompts and crafting great collaboration workflows for ai-generated code and specs).</p>
 </section>
-<section id="what-is-code-review-for" class="level3 page-columns page-full" data-number="1.1.12">
-<h3 data-number="1.1.12" class="anchored" data-anchor-id="what-is-code-review-for"><span class="header-section-number">1.1.12</span> What is code review for?</h3>
+<section id="what-is-code-review-for" class="level3 page-columns page-full" data-number="1.4.12">
+<h3 data-number="1.4.12" class="anchored" data-anchor-id="what-is-code-review-for"><span class="header-section-number">1.4.12</span> What is code review for?</h3>
 <p>People have a lot of different opinions on what code review is for.</p>
 <p>I prefer <a href="https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html">Blake Smith’s framing in Code Review Essentials for Software Teams</a>, where he says the most important part of code review is mental alignment - keeping members of the team on the page as to how the code is changing and why.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -701,8 +697,8 @@ done</code></pre>
 <p>I can’t read 2000 lines of golang daily. But I <em>can</em> read 200 lines of a well-written implementation plan.</p>
 <p>I can’t go spelunking through 40+ files of daemon code for an hour+ when something is broken (okay, I can, but I don’t want to). I <em>can</em> steer a research prompt to give me the speed-run on where I should be looking and why.</p>
 </section>
-<section id="recap" class="level3" data-number="1.1.13">
-<h3 data-number="1.1.13" class="anchored" data-anchor-id="recap"><span class="header-section-number">1.1.13</span> Recap</h3>
+<section id="recap" class="level3" data-number="1.4.13">
+<h3 data-number="1.4.13" class="anchored" data-anchor-id="recap"><span class="header-section-number">1.4.13</span> Recap</h3>
 <p>Basically we got everything we needed.</p>
 <ul>
 <li>✅ Works in brownfield codebases</li>
@@ -715,29 +711,29 @@ done</code></pre>
 <p>In August the whole team spent 2 weeks spinning circles on a really tricky race condition that spiraled into a rabbit hole of issues with MCP sHTTP keepalives in golang and a whole bunch of other dead ends.</p>
 <p>But that’s the exception now. In general, this works well for us. Our intern shipped 2 PRs on his first day, and 10 on his 8th day. I was genuinely skeptical that it would work for anyone else, but me and Vaibhav shipped 35k LOC of working BAML code in 7 hours. (And if you haven’t met Vaibhav, he’s one of the most meticulous engineers I know when it comes to code design and quality.)</p>
 </section>
-<section id="whats-coming" class="level3" data-number="1.1.14">
-<h3 data-number="1.1.14" class="anchored" data-anchor-id="whats-coming"><span class="header-section-number">1.1.14</span> What’s coming</h3>
+<section id="whats-coming" class="level3" data-number="1.4.14">
+<h3 data-number="1.4.14" class="anchored" data-anchor-id="whats-coming"><span class="header-section-number">1.4.14</span> What’s coming</h3>
 <p>I’m reasonably confident that coding agents will be commoditized.</p>
 <p>The hard part will be the team and workflow transformation. Everything about collaboration will change in a world where AI writes 99% of our code.</p>
 <p>And I believe pretty strongly that if you don’t figure this out, you’re gonna get lapped by someone who did.</p>
 </section>
-<section id="okay-so-clearly-you-have-something-to-sell-me" class="level3" data-number="1.1.15">
-<h3 data-number="1.1.15" class="anchored" data-anchor-id="okay-so-clearly-you-have-something-to-sell-me"><span class="header-section-number">1.1.15</span> okay so clearly you have something to sell me</h3>
+<section id="okay-so-clearly-you-have-something-to-sell-me" class="level3" data-number="1.4.15">
+<h3 data-number="1.4.15" class="anchored" data-anchor-id="okay-so-clearly-you-have-something-to-sell-me"><span class="header-section-number">1.4.15</span> okay so clearly you have something to sell me</h3>
 <p>We’re pretty bullish on spec-first, agentic workflows, so we’re building tools to make it easier. Among many things, I’m obsessed with the problem of scaling these “frequent intentional compaction” workflows collaboratively across large teams.</p>
 <p>Today, we’re launching CodeLayer, our new “post-IDE IDE” in private beta - think “Superhuman for claude code”. If you’re a fan of Superhuman and/or vim mode and you’re ready to move beyond “vibe coding” and get serious about building with agents, we’d love to have you join the waitlist.</p>
 <p><strong>Sign up at <a href="https://humanlayer.dev">https://humanlayer.dev</a></strong>.</p>
 </section>
 </section>
-<section id="for-oss-maintainers---lets-ship-something-together" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="for-oss-maintainers---lets-ship-something-together"><span class="header-section-number">1.2</span> For OSS Maintainers - lets ship something together</h2>
+<section id="for-oss-maintainers---lets-ship-something-together" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="for-oss-maintainers---lets-ship-something-together"><span class="header-section-number">1.5</span> For OSS Maintainers - lets ship something together</h2>
 <p>If you are a maintainer on a complex OSS project and based in the bay area, my open offer - I will pair with you in-person in SF for 7 hours on a saturday and see if we can ship something big.</p>
 <p>I get a lot of learning about the limitations and where these techniques fall short (and, with any luck, a working merged PR that adds a ton of value that I can point to). You get to learn the workflow in the only way I’ve found that works well - direct 1x1 pairing.</p>
 </section>
-<section id="for-engineering-leaders" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="for-engineering-leaders"><span class="header-section-number">1.3</span> For Engineering Leaders</h2>
+<section id="for-engineering-leaders" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="for-engineering-leaders"><span class="header-section-number">1.6</span> For Engineering Leaders</h2>
 <p>If you or someone you know is an engineering leader that wants to 10x their team’s productivity with AI, we’re forward-deploying with ~10-25 person eng orgs to help teams make the culture/process/tech shift needed to transition to an ai-first coding world.</p>
-<section id="thanks" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="thanks"><span class="header-section-number">1.3.1</span> Thanks</h3>
+<section id="thanks" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="thanks"><span class="header-section-number">1.6.1</span> Thanks</h3>
 <ul>
 <li>Thanks to all the friends and founders who’ve listened through early ramble-y versions of this post - Adam, Josh, Andrew, and many many more</li>
 <li>Thanks Sundeep for weathering this wacky storm</li>

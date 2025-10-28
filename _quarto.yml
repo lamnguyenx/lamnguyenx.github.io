@@ -30,12 +30,13 @@ book:
 format:
   html:
     theme:
-      light: [cosmo]
       dark: [darkly, custom-dark.scss]
+      light: [cosmo]
     code-fold: false
     css: visionbook.css
     citation-style: elsevier-with-titles.csl
     anchor-sections: true
+    number-sections: true
     fontsize: "16px"
     linestretch: 1.6
     smooth-scroll: true

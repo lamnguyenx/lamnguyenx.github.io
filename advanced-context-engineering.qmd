@@ -15,7 +15,7 @@ I am now fully convinced that AI for coding is not just for toys and prototypes,
 
 **Video Version**: If you prefer video, this post is based on [a talk given at Y Combinator on August 20th](https://hlyr.dev/ace)
 
-### Grounding Context from AI Engineer
+## Grounding Context from AI Engineer
 
 Two talks from AI Engineer 2025 fundamentally shaped my thinking about this problem.
 
@@ -27,11 +27,11 @@ Sean proposes that in the AI future, the specs will become the real code. That i
 
 [Yegor's talk on developer productivity](https://www.youtube.com/watch?v=tbDDYKRFjhk) tackled an orthogonal problem. They analyzed commits from 100k developers and found, among other things,
 
-1. That AI tools often lead to a lot of rework, diminishing the perceived productivity gains
+3. That AI tools often lead to a lot of rework, diminishing the perceived productivity gains
 
 ![AI coding productivity research findings](./images/ai-productivity-rework-chart.webp){width=100% .lightbox fig-alt="Chart showing AI tools often lead to more rework and can be counterproductive for complex brownfield codebases"}
 
-2. That AI tools work well for greenfield projects, but are often counter-productive for brownfield codebases and complex tasks
+4. That AI tools work well for greenfield projects, but are often counter-productive for brownfield codebases and complex tasks
 
 ![AI tools performance across different project types](./images/ai-tools-greenfield-brownfield-chart.webp){width=100% .lightbox fig-alt="Chart showing AI tools work better for greenfield projects than complex brownfield codebases"}
 
@@ -51,7 +51,7 @@ Heck even [Amjad](https://x.com/amasad) was on a [lenny's podcast 9 months ago](
 
 Whenever I hear "Maybe someday when the models are smart" I generally leap to exclaim **that's what context engineering is all about**: getting the most out of *today's* models.
 
-### What's actually possible today
+## What's actually possible today
 
 I'll deep dive on this a bit futher down, but to prove this isn't just theory, let me outline a concrete example. A few weeks ago, I decided to test our techniques on [BAML](https://github.com/BoundaryML/baml), a 300k LOC Rust codebase for a programming language that works with LLMs. I'm at best an amateur Rust dev and had never touched the BAML codebase before.
 
@@ -59,7 +59,7 @@ Within an hour or so, I had a [PR fixing a bug](https://github.com/BoundaryML/ba
 
 Again, this is all built around a workflow we call [frequent intentional compaction](#what-works-even-better-frequent-intentional-compaction) - essentially designing your entire development process around context management, keeping utilization in the 40-60% range, and building in high-leverage human review at exactly the right points. We use a "research, plan, implement" workflow, but the core capabilities/learnings here are FAR more general than any specific workflow or set of prompts.
 
-### Our weird journey to get here
+## Our weird journey to get here
 
 I was working with one of the most productive AI coders I've ever met.
 Every few days they'd drop **2000-line Go PRs**.
