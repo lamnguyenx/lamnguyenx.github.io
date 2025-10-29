@@ -3,3 +3,5 @@ debug/
 target/
 /.quarto/
 /_site/
+
+**/*.quarto_ipynb
