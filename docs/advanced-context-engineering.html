@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="visionbook.css">
 </head>
 
-<body class="nav-sidebar floating slimcontent quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -358,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="toc-actions"><ul><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/edit/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/lamnguyenx/lamnguyenx.github.io/blob/master/book/advanced-context-engineering.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -390,7 +390,7 @@ ul.task-list li input[type="checkbox"] {
 <p>This isn’t another “10x your productivity” pitch. I <a href="https://hlyr.dev/12fa">tend to be pretty measured when it comes to interfacing with the ai hype machine</a>. But we’ve stumbled into workflows that leave me with considerable optimism for what’s possible. We’ve gotten claude code to handle 300k LOC Rust codebases, ship a week’s worth of work in a day, and maintain code quality that passes expert review. We use a family of techniques I call “frequent intentional compaction” - deliberately structuring how you feed context to the AI throughout the development process.</p>
 <p>I am now fully convinced that AI for coding is not just for toys and prototypes, but rather a deeply technical engineering craft.</p>
 <p><strong>Video Version</strong>: If you prefer video, this post is based on <a href="https://hlyr.dev/ace">a talk given at Y Combinator on August 20th</a></p>
-<section id="grounding-context-from-ai-engineer" class="level2 page-columns page-full" data-number="1.1">
+<section id="grounding-context-from-ai-engineer" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="grounding-context-from-ai-engineer"><span class="header-section-number">1.1</span> Grounding Context from AI Engineer</h2>
 <p>Two talks from AI Engineer 2025 fundamentally shaped my thinking about this problem.</p>
 <p>The first is <a href="https://www.youtube.com/watch?v=8rABwKRsec4">Sean Grove’s talk on “Specs are the new code”</a> and the second is <a href="https://www.youtube.com/watch?v=tbDDYKRFjhk">the Stanford study on AI’s impact on developer productivity</a>.</p>
@@ -400,19 +400,19 @@ ul.task-list li input[type="checkbox"] {
 <ol start="3" type="1">
 <li>That AI tools often lead to a lot of rework, diminishing the perceived productivity gains</li>
 </ol>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/ai-productivity-rework-chart.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AI coding productivity research findings"><img src="./images/ai-productivity-rework-chart.webp" class="img-fluid figure-img" style="width:100.0%" alt="Chart showing AI tools often lead to more rework and can be counterproductive for complex brownfield codebases"></a></p>
-<figcaption class="margin-caption">AI coding productivity research findings</figcaption>
+<figcaption>AI coding productivity research findings</figcaption>
 </figure>
 </div>
 <ol start="4" type="1">
 <li>That AI tools work well for greenfield projects, but are often counter-productive for brownfield codebases and complex tasks</li>
 </ol>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/ai-tools-greenfield-brownfield-chart.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AI tools performance across different project types"><img src="./images/ai-tools-greenfield-brownfield-chart.webp" class="img-fluid figure-img" style="width:100.0%" alt="Chart showing AI tools work better for greenfield projects than complex brownfield codebases"></a></p>
-<figcaption class="margin-caption">AI tools performance across different project types</figcaption>
+<figcaption>AI tools performance across different project types</figcaption>
 </figure>
 </div>
 <p>This matched what I heard talking with founders:</p>
@@ -443,7 +443,7 @@ ul.task-list li input[type="checkbox"] {
 <p>It was uncomfortable at first. I had to learn to let go of reading every line of PR code. I still read the tests pretty carefully, but the specs became our source of truth for what was being built and why.</p>
 <p>The transformation took about 8 weeks. It was incredibly uncomfortable for everyone involved, not least of all for me. But now we’re flying. A few weeks back, I shipped 6 PRs in a day. I can count on one hand the number of times I’ve edited a non-markdown file by hand in the last three months.</p>
 </section>
-<section id="advanced-context-engineering-for-coding-agents" class="level2 page-columns page-full" data-number="1.4">
+<section id="advanced-context-engineering-for-coding-agents" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="advanced-context-engineering-for-coding-agents"><span class="header-section-number">1.4</span> Advanced Context Engineering for Coding Agents</h2>
 <p>What we needed was:</p>
 <ul>
@@ -460,41 +460,41 @@ ul.task-list li input[type="checkbox"] {
 <li>why I don’t believe these approaches are generalizable</li>
 <li>the number of times I’ve been repeatedly proven wrong about (3)</li>
 </ol>
-<section id="but-first-the-naive-way-to-manage-agent-context" class="level3 page-columns page-full" data-number="1.4.1">
+<section id="but-first-the-naive-way-to-manage-agent-context" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="but-first-the-naive-way-to-manage-agent-context"><span class="header-section-number">1.4.1</span> But first: The Naive Way to manage agent context</h3>
 <p>Most of us start by using a coding agent like a chatbot. You talk (or <a href="https://ghuntley.com/six-month-recap/#:~:text=Last%20week%2C%20over%20Zoom%20margaritas%2C%20a%20friend%20and%20I%20reminisced%20about%20COBOL.">drunkenly shout</a>) back and forth with it, vibing your way through a problem until you either run out of context, give up, or the agent starts apologizing.</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/naive-context-management-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Naive context management approach"><img src="./images/naive-context-management-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Diagram showing naive approach of chatting with AI agent for hours then discarding prompts"></a></p>
-<figcaption class="margin-caption">Naive context management approach</figcaption>
+<figcaption>Naive context management approach</figcaption>
 </figure>
 </div>
 <p>A slightly smarter way is to just start over when you get off track, discarding your session and starting a new one, perhaps with a little more steering in the prompt.</p>
 <blockquote class="blockquote">
 <p>[original prompt], but make sure you use XYZ approach, because ABC approach won’t work</p>
 </blockquote>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/restarting-sessions-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Restarting sessions when off-track"><img src="./images/restarting-sessions-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Diagram showing approach of discarding sessions and starting fresh with better prompts"></a></p>
-<figcaption class="margin-caption">Restarting sessions when off-track</figcaption>
+<figcaption>Restarting sessions when off-track</figcaption>
 </figure>
 </div>
 </section>
-<section id="slightly-smarter-intentional-compaction" class="level3 page-columns page-full" data-number="1.4.2">
+<section id="slightly-smarter-intentional-compaction" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="slightly-smarter-intentional-compaction"><span class="header-section-number">1.4.2</span> Slightly Smarter: Intentional Compaction</h3>
 <p>You have probably done something I’ve come to call “intentional compaction”. Whether you’re on track or not, as your context starts to fill up, you probably want to pause your work and start over with a fresh context window. To do this, you might use a prompt like</p>
 <blockquote class="blockquote">
 <p>“Write everything we did so far to progress.md, ensure to note the end goal, the approach we’re taking, the steps we’ve done so far, and the current failure we’re working on”</p>
 </blockquote>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/intentional-compaction-workflow-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Intentional compaction workflow"><img src="./images/intentional-compaction-workflow-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Diagram showing intentional compaction approach where context is distilled into structured artifacts"></a></p>
-<figcaption class="margin-caption">Intentional compaction workflow</figcaption>
+<figcaption>Intentional compaction workflow</figcaption>
 </figure>
 </div>
 <p>You can also <a href="https://x.com/dexhorthy/status/1961490837017088051">use commit messages for intentional compaction</a>.</p>
 </section>
-<section id="what-exactly-are-we-compacting" class="level3 page-columns page-full" data-number="1.4.3">
+<section id="what-exactly-are-we-compacting" class="level3" data-number="1.4.3">
 <h3 data-number="1.4.3" class="anchored" data-anchor-id="what-exactly-are-we-compacting"><span class="header-section-number">1.4.3</span> What Exactly Are We Compacting?</h3>
 <p>What eats up context?</p>
 <ul>
@@ -506,22 +506,22 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>All of these can flood the context window. <strong>Compaction</strong> is simply distilling them into structured artifacts.</p>
 <p>A good output for an intentional compaction might include something like</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/good-compaction-output-example.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Example of good compaction output"><img src="./images/good-compaction-output-example.webp" class="img-fluid figure-img" style="width:100.0%" alt="Structured summary showing end goal, approach, completed steps, and current failure point"></a></p>
-<figcaption class="margin-caption">Example of good compaction output</figcaption>
+<figcaption>Example of good compaction output</figcaption>
 </figure>
 </div>
 </section>
-<section id="why-obsess-over-context" class="level3 page-columns page-full" data-number="1.4.4">
+<section id="why-obsess-over-context" class="level3" data-number="1.4.4">
 <h3 data-number="1.4.4" class="anchored" data-anchor-id="why-obsess-over-context"><span class="header-section-number">1.4.4</span> Why obsess over context?</h3>
 <p>As we went deep on in <a href="https://hlyr.dev/12fa">12-factor agents</a>, LLMs are stateless functions. The only thing that affects the quality of your output (without training/tuning models themselves) is the quality of the inputs.</p>
 <p>This is just as true for <a href="https://www.youtube.com/watch?v=F_RyElT_gJk">wielding</a> coding agents as it is for general agent design, you just have a smaller problem space, and rather than building agents, we’re talking about using agents.</p>
 <p>At any given point, a turn in an agent like claude code is a stateless function call. Context window in, next step out.</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/context-window-agent-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Image"><img src="./images/context-window-agent-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
-<figcaption class="margin-caption">Image</figcaption>
+<figcaption>Image</figcaption>
 </figure>
 </div>
 <p>That is, the contents of your context window are the ONLY lever you have to affect the quality of your output. So yeah, it’s worth obsessing over.</p>
@@ -553,7 +553,7 @@ done</code></pre>
 <p>If you wanna learn more about ralph or what’s in PROMPT.md, you can check out Geoff’s post or dive into the project that <a href="https://x.com/simonfarshid"><span class="citation" data-cites="simonfarshid">@simonfarshid</span></a>, <a href="https://x.com/lantos1618"><span class="citation" data-cites="lantos1618">@lantos1618</span></a>, <a href="https://x.com/AVGVSTVS96"><span class="citation" data-cites="AVGVSTVS96">@AVGVSTVS96</span></a> and I built at last weekend’s YC Agents Hackathon, which was able to (mostly) <a href="https://github.com/repomirrorhq/repomirror/blob/main/repomirror.md">port BrowserUse to TypeScript overnight</a></p>
 <p>Geoff describes ralph as a “hilariously dumb” solution to the context window problem. <a href="https://ghuntley.com/content/images/size/w2400/2025/07/The-ralph-Process.webp">I’m not entirely sure that it is dumb</a>.</p>
 </section>
-<section id="back-to-compaction-using-sub-agents" class="level3 page-columns page-full" data-number="1.4.5">
+<section id="back-to-compaction-using-sub-agents" class="level3" data-number="1.4.5">
 <h3 data-number="1.4.5" class="anchored" data-anchor-id="back-to-compaction-using-sub-agents"><span class="header-section-number">1.4.5</span> Back to compaction: Using Sub-Agents</h3>
 <p>Subagents are another way to manage context, and generic subagents (i.e.&nbsp;not <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">custom</a> ones) have been a feature of claude code and many coding CLIs since the early days.</p>
 <p>Subagents are not about <a href="https://x.com/dexhorthy/status/1950288431122436597">playing house and anthropomorphizing roles</a>. Subagents are about context control.</p>
@@ -567,17 +567,17 @@ done</code></pre>
 </blockquote>
 </details>
 <p>The ideal subagent response probably looks similar to the ideal ad-hoc compaction from above</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/good-compaction-output-example.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Image"><img src="./images/good-compaction-output-example.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
-<figcaption class="margin-caption">Image</figcaption>
+<figcaption>Image</figcaption>
 </figure>
 </div>
 <p>Getting a subagent to return this is not trivial:</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/subagent-response-example.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Image"><img src="./images/subagent-response-example.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
-<figcaption class="margin-caption">Image</figcaption>
+<figcaption>Image</figcaption>
 </figure>
 </div>
 </section>
@@ -659,14 +659,14 @@ done</code></pre>
 <p>A few weeks back, <a href="https://www.linkedin.com/in/bhsmith/"><span class="citation" data-cites="blakesmith">@blakesmith</span></a> and I sat down for 7 hours and <a href="https://github.com/dexhorthy/parquet-java/blob/remove-hadoop/thoughts/shared/plans/remove-hadoop-dependencies.md">tried to remove hadoop dependencies from parquet java</a> - the deep dive on everything that went wrong and my theories as to why, I’ll save for another post, suffice it to say that it did not go well. The tl;dr is that the research steps didn’t go deep enough through the dependency tree, and assumed classes could be moved upstream without introducing deeply nested hadoop dependencies.</p>
 <p>There are big hard problems you cannot just prompt your way through in 7 hours, and we’re still curiously and excitedly hacking on pushing the boundaries with friends and partners. I think the other learning here is that you probably need at least one person who is an expert in the codebase, and for this case, that was neither of us.</p>
 </section>
-<section id="on-human-leverage" class="level3 page-columns page-full" data-number="1.4.11">
+<section id="on-human-leverage" class="level3" data-number="1.4.11">
 <h3 data-number="1.4.11" class="anchored" data-anchor-id="on-human-leverage"><span class="header-section-number">1.4.11</span> On Human Leverage</h3>
 <p>If there’s one thing you take away from all this, let it be this:</p>
 <p>A bad line of code is… a bad line of code. But a bad line of a <strong>plan</strong> could lead to hundreds of bad lines of code. And a bad line of <strong>research</strong>, a misunderstanding of how the codebase works or where certain functionality is located, could land you with thousands of bad lines of code.</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/bad-lines-impact-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Image"><img src="./images/bad-lines-impact-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
-<figcaption class="margin-caption">Image</figcaption>
+<figcaption>Image</figcaption>
 </figure>
 </div>
 <p>So you want to <strong>focus human effort and attention</strong> on the HIGHEST LEVERAGE parts of the pipeline.</p>
@@ -675,14 +675,14 @@ done</code></pre>
 </blockquote>
 <p>When you review the research and the plans, you get more leverage than you do when you review the code. (By the way, one of our primary focuses @ <a href="https://hlyr.dev/code">humanlayer</a> is helping teams build and leverage high-quality workflow prompts and crafting great collaboration workflows for ai-generated code and specs).</p>
 </section>
-<section id="what-is-code-review-for" class="level3 page-columns page-full" data-number="1.4.12">
+<section id="what-is-code-review-for" class="level3" data-number="1.4.12">
 <h3 data-number="1.4.12" class="anchored" data-anchor-id="what-is-code-review-for"><span class="header-section-number">1.4.12</span> What is code review for?</h3>
 <p>People have a lot of different opinions on what code review is for.</p>
 <p>I prefer <a href="https://blakesmith.me/2015/02/09/code-review-essentials-for-software-teams.html">Blake Smith’s framing in Code Review Essentials for Software Teams</a>, where he says the most important part of code review is mental alignment - keeping members of the team on the page as to how the code is changing and why.</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="./images/code-review-mental-alignment-diagram.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Image"><img src="./images/code-review-mental-alignment-diagram.webp" class="img-fluid figure-img" style="width:100.0%" alt="Image"></a></p>
-<figcaption class="margin-caption">Image</figcaption>
+<figcaption>Image</figcaption>
 </figure>
 </div>
 <p>Remember those 2k line golang PRs? I cared about them being correct and well designed, but the biggest source of internal unrest and frustration on the team was the lack of mental alignment. <strong>I was starting to lose touch with what our product was and how it worked.</strong></p>

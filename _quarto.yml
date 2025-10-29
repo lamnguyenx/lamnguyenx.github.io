@@ -49,7 +49,7 @@ format:
     code-overflow: wrap
     fig-align: "center"
     reference-location: margin
-    cap-location: margin
+    cap-location: bottom
     mathjax: true
     lightbox: true
     crossref:
