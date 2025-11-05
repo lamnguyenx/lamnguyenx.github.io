@@ -1,0 +1,60 @@
+# Live Coding: Implementing Timeout Features in BAML
+
+## Section 1: Introduction to Live Coding and BAML
+
+## Stream Setup and Welcome
+
+The live coding session begins with technical setup to ensure viewers can join the stream properly. The hosts express excitement about this long-awaited episode focused on practical AI coding workflows.
+
+## Series Context: "AI that Works"
+
+This session is part of the regular "AI that Works" Tuesday series, which showcases real-world shipping workflows that effectively leverage AI. The series demonstrates:
+
+- Building AI-powered pipelines
+- Methodologies for pipeline construction
+- Practical mechanisms for AI integration
+
+## Host Introductions
+
+**Fibof**: Works on BAML (a programming language for LLMs and AI agents)
+**Dex**: Works on human layer and coding workflows
+
+## The Challenge: BAML Timeout Feature
+
+### Problem Statement
+
+The team is tackling a long-standing issue in BAML: implementing timeout configuration capabilities. Users have been requesting the ability to configure:
+
+- Connection timeouts
+- Response timeouts
+- Total timeouts
+- Timeouts within fallback and retry policies
+
+### Background and History
+
+- **GitHub Issue Created**: March 18th (initial proposal)
+- **Previous Attempts**:
+  - Assigned to an engineer who attempted implementation
+  - Tried using a coding agent (which failed)
+  - The problem involves complex nesting requirements to avoid verbose syntax
+
+### Current State
+
+Dex has minimal familiarity with the BAML codebase, creating an ideal test case for demonstrating how coding agents can tackle complex problems in unfamiliar codebases. The hosts plan to:
+
+1. Start from the GitHub issue specification
+2. Review existing documentation
+3. Build the timeout feature from scratch using AI assistance
+
+## Technical Context
+
+BAML enables users to configure LLMs with various policies and mechanisms. The timeout feature needs to integrate seamlessly with existing retry policies and fallback mechanisms, requiring careful architectural consideration.
+
+## Session Goals
+
+This live coding session aims to demonstrate:
+
+- How coding agents can solve hard problems in maintainable ways
+- The transition from concept to working implementation
+- Practical AI-assisted development workflows
+- Building complex features in unfamiliar codebases

@@ -5,3 +5,4 @@ target/
 /_site/
 
 **/*.quarto_ipynb
+exp/

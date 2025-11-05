@@ -1,0 +1,1 @@
+../../.agents/commands/write-story.md
